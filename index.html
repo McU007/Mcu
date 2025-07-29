@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Center of Urology</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Natural Center of Urology</h1>
+                <p>Tu salud natural es nuestra prioridad</p>
+            </div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <span class="cart-symbol">🛒</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" onclick="toggleMegaMenu('quienes-somos')">Quiénes Somos</a></li>
+                <li><a href="#" onclick="toggleMegaMenu('contactanos')">Contáctanos</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleMegaMenu('productos')">Productos</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="showProductSection('gomitas')">Gomitas</a>
+                        <a href="#" onclick="showProductSection('capsulas')">Cápsulas y Tabletas</a>
+                        <a href="#" onclick="showProductSection('suplementos')">Suplementos y Harinas</a>
+                    </div>
+                </li>
+                <li><a href="#" onclick="toggleMegaMenu('prevenciones')">Prevenciones</a></li>
+                <li><a href="#" onclick="toggleMegaMenu('promociones')">Promociones</a></li>
+                <li><a href="#" onclick="toggleMegaMenu('tests')">Tests Médicos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Carrito de Compras</h3>
+                <span class="close" onclick="toggleCart()">&times;</span>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-total">
+                <p>Total: S/. <span id="cartTotal">0</span></p>
+            </div>
+            <div class="cart-actions">
+                <button onclick="clearCart()" class="btn-clear">Vaciar Carrito</button>
+                <button onclick="showPaymentOptions()" class="btn-checkout">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="payment-modal">
+        <div class="payment-content">
+            <div class="payment-header">
+                <h3>Opciones de Pago</h3>
+                <span class="close" onclick="closePaymentModal()">&times;</span>
+            </div>
+            <div class="payment-options">
+                <div class="payment-option" onclick="showPaymentDetails('bcp')">
+                    <h4>Opción 1: BCP</h4>
+                    <p>Transferencia bancaria</p>
+                </div>
+                <div class="payment-option" onclick="showPaymentDetails('interbancaria')">
+                    <h4>Opción 2: Interbancaria</h4>
+                    <p>Transferencia interbancaria</p>
+                </div>
+                <div class="payment-option" onclick="showPaymentDetails('yape')">
+                    <h4>Opción 3: Yape</h4>
+                    <p>Pago móvil</p>
+                </div>
+            </div>
+            <div id="paymentDetails" class="payment-details"></div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="product-modal">
+        <div class="product-modal-content">
+            <div class="product-modal-header">
+                <h3>Detalles del Producto</h3>
+                <span class="close" onclick="closeProductModal()">&times;</span>
+            </div>
+            <div id="productDetails" class="product-details"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Megamenu Sections -->
+            <div id="megamenu-quienes-somos" class="megamenu">
+                <div class="megamenu-content">
+                    <h2>Quiénes Somos</h2>
+                    <div class="content-box">
+                        <p><strong>Natural Center of Urology</strong> es una empresa dedicada a la venta en línea de productos naturales para el cuidado de la salud prostática y urológica, comprometida con el bienestar integral de las personas a través de soluciones 100% naturales, libres de fármacos, químicos sintéticos y componentes artificiales.</p>
+                        
+                        <h3>¿Qué ofrecemos?</h3>
+                        <ul>
+                            <li><strong>Productos naturales de alta calidad</strong>: Suplementos especializados, hierbas medicinales, aceites esenciales, productos orgánicos y otros remedios basados en la medicina tradicional y alternativas naturales para la salud prostática.</li>
+                            <li><strong>Enfoque holístico</strong>: Promovemos un estilo de vida saludable, combinando nutrición especializada, terapias naturales y prevención sin depender de fármacos convencionales.</li>
+                            <li><strong>Seguridad y confianza</strong>: Todos nuestros productos están elaborados con ingredientes puros, certificados y respaldados por procesos de producción éticos y sostenibles.</li>
+                            <li><strong>Tests médicos especializados</strong>: Ofrecemos evaluaciones de salud prostática, hígado graso, metabolismo y deficiencias nutricionales.</li>
+                        </ul>
+
+                        <h3>Nuestra filosofía</h3>
+                        <p>Creemos en el poder de la naturaleza para restaurar y mantener la salud prostática y urológica. Nuestra misión es brindar alternativas efectivas, seguras y accesibles para quienes buscan un enfoque más natural y preventivo en su cuidado personal.</p>
+
+                        <h3>¿Por qué elegirnos?</h3>
+                        <ul class="benefits-list">
+                            <li>✅ <strong>Calidad garantizada</strong>: Seleccionamos rigurosamente cada producto.</li>
+                            <li>✅ <strong>Sin químicos dañinos</strong>: Libre de aditivos artificiales y efectos secundarios.</li>
+                            <li>✅ <strong>Educación en salud</strong>: Acompañamos a nuestros clientes con información veraz sobre el uso de remedios naturales.</li>
+                            <li>✅ <strong>Especialización urológica</strong>: Enfoque específico en la salud prostática y del sistema urinario.</li>
+                        </ul>
+
+                        <p class="closing-message">En <strong>Natural Center of Urology</strong>, tu salud prostática es lo primero, ¡de la mano de la naturaleza! 🌿</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="megamenu-contactanos" class="megamenu">
+                <div class="megamenu-content">
+                    <h2>Contáctanos</h2>
+                    <div class="content-box">
+                        <h3>Tenemos Oportunidades para Emprendedores</h3>
+                        <p>¿Estás interesado en formar parte de nuestra red de distribuidores? En Natural Center of Urology ofrecemos excelentes oportunidades de negocio para personas emprendedoras que deseen comercializar nuestros productos naturales de alta calidad.</p>
+                        
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <h4>📧 Email</h4>
+                                <p>info@naturalcenterofurology.com</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>📱 WhatsApp</h4>
+                                <p>+51 940 106 849</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>⏰ Horarios de Atención</h4>
+                                <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="megamenu-productos" class="megamenu">
+                <div class="megamenu-content">
+                    <h2>Nuestros Productos</h2>
+                    
+                    <!-- Product Filters -->
+                    <div class="product-filters">
+                        <button class="filter-btn active" onclick="showProductSection('gomitas')">Gomitas</button>
+                        <button class="filter-btn" onclick="showProductSection('capsulas')">Cápsulas y Tabletas</button>
+                        <button class="filter-btn" onclick="showProductSection('suplementos')">Suplementos y Harinas</button>
+                    </div>
+
+                    <!-- Gomitas Subsection -->
+                    <div id="gomitas-section" class="product-subsection">
+                        <h3>Gomitas Naturales</h3>
+                        <div class="product-grid" id="gomitas-grid"></div>
+                    </div>
+
+                    <!-- Capsulas Subsection -->
+                    <div id="capsulas-section" class="product-subsection" style="display: none;">
+                        <h3>Cápsulas y Tabletas</h3>
+                        <div class="product-grid" id="capsulas-grid"></div>
+                    </div>
+
+                    <!-- Suplementos Subsection -->
+                    <div id="suplementos-section" class="product-subsection" style="display: none;">
+                        <h3>Suplementos y Harinas</h3>
+                        <div class="product-grid" id="suplementos-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="megamenu-prevenciones" class="megamenu">
+                <div class="megamenu-content">
+                    <h2>Prevenciones</h2>
+                    <div class="content-box">
+                        <div class="video-container">
+                            <video controls width="100%" height="400">
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento video.
+                            </video>
+                        </div>
+                        
+                        <div class="prevention-tips">
+                            <h3>Consejos para Prevenir Enfermedades Prostáticas</h3>
+                            <div class="tips-grid">
+                                <div class="tip-card">
+                                    <h4>💧 Hidratación Adecuada</h4>
+                                    <p>Bebe al menos 8 vasos de agua al día, pero evita excesos antes de dormir para reducir la frecuencia urinaria nocturna.</p>
+                                </div>
+                                <div class="tip-card">
+                                    <h4>🥗 Dieta Saludable</h4>
+                                    <p>Consume alimentos ricos en zinc, vitamina E y licopeno. Incluye tomates, brócoli, nueces y pescado graso.</p>
+                                </div>
+                                <div class="tip-card">
+                                    <h4>🏃‍♂️ Ejercicio Regular</h4>
+                                    <p>Realiza actividad física moderada. Los ejercicios de Kegel pueden fortalecer los músculos del suelo pélvico.</p>
+                                </div>
+                                <div class="tip-card">
+                                    <h4>😴 Descanso Adecuado</h4>
+                                    <p>Duerme entre 7-8 horas diarias. Un buen descanso ayuda a mantener el equilibrio hormonal.</p>
+                                </div>
+                                <div class="tip-card">
+                                    <h4>🧘‍♂️ Manejo del Estrés</h4>
+                                    <p>Practica técnicas de relajación. El estrés crónico puede afectar la salud prostática.</p>
+                                </div>
+                                <div class="tip-card">
+                                    <h4>🚭 Evita Hábitos Nocivos</h4>
+                                    <p>Limita el alcohol y elimina el tabaco. Estos hábitos pueden empeorar los síntomas prostáticos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="megamenu-promociones" class="megamenu">
+                <div class="megamenu-content">
+                    <h2>Promociones Especiales</h2>
+                    <div class="promotions-grid" id="promotions-grid"></div>
+                </div>
+            </div>
+
+            <div id="megamenu-tests" class="megamenu">
+                <div class="megamenu-content">
+                    <h2>Tests Médicos</h2>
+                    <div class="content-box">
+                        <p>Realiza nuestros tests médicos especializados para evaluar tu estado de salud actual. Estos cuestionarios están basados en estándares médicos reconocidos y te ayudarán a identificar posibles áreas de mejora en tu salud.</p>
+                        
+                        <div class="tests-grid">
+                            <div class="test-card" onclick="window.open('test-prostatico.html', '_blank')">
+                                <div class="test-icon"><img src="https://i.imgur.com/NzSNVjL.gif" alt="Test Prostático"></div>
+                                <h4>Test de Salud Prostática</h4>
+                                <p>Evaluación basada en el Índice Internacional de Síntomas Prostáticos (I-PSS) para detectar posibles problemas de próstata.</p>
+                                <button class="test-btn">Realizar Test</button>
+                            </div>
+                            <div class="test-card" onclick="window.open('test-higado.html', '_blank')">
+                                <div class="test-icon"><img src="https://i.imgur.com/5Jl3zaM.gif" alt="Test Hígado Graso"></div>
+                                <h4>Test de Hígado Graso</h4>
+                                <p>Evaluación de factores de riesgo para detectar posibles problemas de hígado graso no alcohólico.</p>
+                                <button class="test-btn">Realizar Test</button>
+                            </div>
+                            <div class="test-card" onclick="window.open('test-metabolismo.html', '_blank')">
+                                <div class="test-icon"><img src="https://i.imgur.com/7S4Iqmv.gif" alt="Test Metabolismo"></div>
+                                <h4>Test de Metabolismo</h4>
+                                <p>Análisis de tu metabolismo y factores que pueden estar afectando tu peso y energía.</p>
+                                <button class="test-btn">Realizar Test</button>
+                            </div>
+                            <div class="test-card" onclick="window.open('test-nutrientes.html', '_blank')">
+                                <div class="test-icon"><img src="https://i.imgur.com/XBMbFt1.gif" alt="Test Nutricional"></div>
+                                <h4>Test de Deficiencias Nutricionales</h4>
+                                <p>Evaluación de posibles carencias de vitaminas y minerales esenciales en tu organismo.</p>
+                                <button class="test-btn">Realizar Test</button>
+                            </div>
+                        </div>
+                        
+                        <div class="disclaimer">
+                            <p><strong>Importante:</strong> Estos tests son herramientas de orientación y no reemplazan una consulta médica profesional. Si tienes síntomas o preocupaciones sobre tu salud, consulta con un médico especialista.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2>Conoce Más Sobre Nosotros</h2>
+            <div class="main-video-container">
+                <video controls class="main-video" width="100%">
+                    <source src="https://i.imgur.com/F0zLVyw.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Natural Center of Urology</h4>
+                    <p>Tu salud prostática es nuestra prioridad. Productos 100% naturales para tu bienestar.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📱 WhatsApp: +51 940 106 849</p>
+                    <p>📧 Email: info@naturalcenterofurology.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horarios</h4>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 2:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Natural Center of Urology. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para promociones expandidas -->
+    <div id="promotion-modal" class="promotion-modal">
+        <div class="promotion-modal-content">
+            <span class="promotion-modal-close">&times;</span>
+            <div id="promotion-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Iconos flotantes de redes sociales -->
+    <div class="social-float">
+        <a href="https://www.facebook.com/profile.php?id=100093035566725" target="_blank" class="social-icon facebook" title="Síguenos en Facebook">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+        </a>
+        <a href="https://www.instagram.com/naturalcenterurology/" target="_blank" class="social-icon instagram" title="Síguenos en Instagram">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="https://www.tiktok.com/@naturalcenterurology" target="_blank" class="social-icon tiktok" title="Síguenos en TikTok">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+            </svg>
+        </a>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
