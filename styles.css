@@ -1358,3 +1358,124 @@ body {
         height: 50px;
     }
 }
+/* CÓDIGO PARA AÑADIR A TU style.css */
+
+/* --- Estilos para el ícono del Chatbot --- */
+#chatbot-icon {
+    position: fixed; /* Lo deja fijo en la pantalla */
+    bottom: 25px;
+    right: 25px;
+    width: 60px; /* Ajusta el tamaño de tu ícono */
+    height: 60px; /* Ajusta el tamaño de tu ícono */
+    background-color: #6200ea;
+    border-radius: 50%; /* Lo hace redondo */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 999; /* Se asegura que esté por encima de otros elementos */
+}
+
+#chatbot-icon:hover {
+    transform: scale(1.1); /* Efecto al pasar el mouse */
+}
+
+/* --- Estilos para el contenedor del Chatbot --- */
+#chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 400px; /* Ancho del chatbot */
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+/* --- Clase para ocultar/mostrar --- */
+#chatbot-container.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none; /* Evita interacción cuando está oculto */
+}
+/* --- Estilos de la ventana de chat (versión negro/verde manzana) --- */
+.chatbot { 
+    width: 100%; 
+    background: #000; /* Fondo negro */
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Sombra más oscura */
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    height: 500px; 
+}
+.chat-header { 
+    background: #7CFC00; /* Verde manzana */
+    color: #000; /* Texto negro para contraste */
+    padding: 15px; 
+    text-align: center; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    font-weight: bold; /* Opcional: texto en negrita */
+}
+.chat-header h2 { 
+    margin: 0; 
+    font-size: 1.1em; 
+}
+#close-chatbot { 
+    font-size: 2em; 
+    cursor: pointer; 
+    line-height: 0.5; 
+    padding: 0 10px;
+    color: #000; /* Color del ícono de cerrar */
+}
+.chat-window { 
+    flex-grow: 1; 
+    padding: 15px; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    background-color: #111; /* Negro oscuro para el área de chat */
+}
+.message { 
+    padding: 10px 15px; 
+    border-radius: 20px; 
+    max-width: 80%; 
+    line-height: 1.4; 
+}
+.user-message { 
+    background-color: #333; /* Gris oscuro para mensajes del usuario */
+    color: #fff; /* Texto blanco */
+    align-self: flex-end; 
+}
+.bot-message { 
+    background-color: #7CFC00; /* Verde manzana para el bot */
+    color: #000; /* Texto negro */
+    align-self: flex-start; 
+}
+.chat-input { 
+    display: flex; 
+    padding: 10px; 
+    border-top: 1px solid #333; /* Borde gris oscuro */
+    background-color: #000; /* Fondo negro */
+}
+#message-input { 
+    flex-grow: 1; 
+    border: 1px solid #7CFC00; /* Borde verde manzana */
+    border-radius: 20px; 
+    padding: 10px 15px; 
+    background: #111; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+}
+.chat-input button { 
+    background-color: #7CFC00; /* Verde manzana */
+    color: #000; /* Texto negro */
+    border: none; 
+    border-radius: 20px; 
+    padding: 10px 15px; 
+    margin-left: 10px; 
+    cursor: pointer; 
+    font-weight: bold; /* Opcional */
+}
+.loading { 
+    text-align: center; 
+    color: #7CFC00; /* Verde manzana para texto de carga */
+    align-self: center; 
