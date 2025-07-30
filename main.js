@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeProducts();
     updateCartDisplay();
     loadCartFromStorage();
- });
-
+    
+    // =============== INTEGRACIÓN DEL CHATBOT ===============
 
     const chatbotIcon = document.getElementById('chatbot-icon');
     const chatbotContainer = document.getElementById('chatbot-container');
@@ -87,8 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     // =============== FIN DE LA INTEGRACIÓN DEL CHATBOT ===============
-  });
-}
+});
 
 // Initialize products with sample data
 function initializeProducts() {
