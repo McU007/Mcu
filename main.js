@@ -13,6 +13,82 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCartFromStorage();
 });
 
+
+    const chatbotIcon = document.getElementById('chatbot-icon');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatbotButton = document.getElementById('close-chatbot');
+    const chatForm = document.getElementById('chat-form');
+    const messageInput = document.getElementById('message-input');
+    const chatWindow = document.getElementById('chat-window');
+    const apiEndpoint = '/.netlify/functions/gemini';
+
+    // Evento: Al hacer click en el ícono se muestra el contenedor del chat.
+    if (chatbotIcon && chatbotContainer) {
+        chatbotIcon.addEventListener('click', () => {
+            chatbotContainer.classList.remove('hidden');
+        });
+    }
+
+    // Evento: Al hacer click en el botón de cerrar, oculta el contenedor del chat.
+    if (closeChatbotButton && chatbotContainer) {
+        closeChatbotButton.addEventListener('click', () => {
+            chatbotContainer.classList.add('hidden');
+        });
+    }
+
+    // Evento: Al enviar el formulario, envía el mensaje del usuario y muestra la respuesta del bot.
+    if (chatForm && messageInput && chatWindow) {
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Previene recargar la página
+
+            const userMessage = messageInput.value.trim();
+            if (!userMessage) return; // Sale si el input está vacío
+
+            // Muestra el mensaje del usuario en la ventana del chat.
+            addMessageToWindow(userMessage, 'user-message');
+            messageInput.value = '';
+
+            // Muestra mensaje de "Escribiendo..." mientras espera la respuesta.
+            const loadingIndicator = addMessageToWindow('Escribiendo...', 'loading');
+
+            try {
+                // Llama al backend (Netlify Function) enviando el mensaje como prompt.
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userMessage }),
+                });
+
+                // Si hay error en la respuesta HTTP, lanza excepción.
+                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+                // Procesa la respuesta y muestra el mensaje del bot.
+                const data = await response.json();
+                chatWindow.removeChild(loadingIndicator);
+                addMessageToWindow(data.message, 'bot-message');
+            } catch (error) {
+                // Si hay error de red o backend, muestra mensaje de error al usuario.
+                console.error('Error:', error);
+                chatWindow.removeChild(loadingIndicator);
+                addMessageToWindow('Lo siento, algo salió mal. Por favor, inténtalo de nuevo.', 'bot-message');
+            }
+        });
+
+        // Función auxiliar para agregar mensajes a la ventana del chat.
+        // 'message': texto del mensaje. 'className': clase CSS para diferenciar tipo de mensaje.
+        function addMessageToWindow(message, className) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', className);
+            messageElement.textContent = message;
+            chatWindow.appendChild(messageElement);
+            // Asegura que siempre se vea el último mensaje (scroll abajo).
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            return messageElement;
+        }
+    }
+    // =============== FIN DE LA INTEGRACIÓN DEL CHATBOT ===============
+});
+
 // Initialize products with sample data
 function initializeProducts() {
     // Gomitas (12 products)
