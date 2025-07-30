@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeProducts();
     updateCartDisplay();
     loadCartFromStorage();
-});
-
+       });
+}
 
     const chatbotIcon = document.getElementById('chatbot-icon');
     const chatbotContainer = document.getElementById('chatbot-container');
