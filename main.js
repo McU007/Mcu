@@ -1,84 +1,94 @@
 // Global variables
-let cart = JSON.parse(localStorage.getItem('naturalUrologyCart')) || [];
+let cart = JSON.parse(localStorage.getItem("naturalUrologyCart")) || [];
 let products = {
     gomitas: [],
     capsulas: [],
-    suplementos: []
+    suplementos: [],
 };
 
+// Ejemplos de personalización directa en el código fuente
+// Para modificar productos, edita directamente los arrays de products en initializeProducts()
+
 // Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
     initializeProducts();
     updateCartDisplay();
     loadCartFromStorage();
-    
+
     // =============== INTEGRACIÓN DEL CHATBOT ===============
 
-    const chatbotIcon = document.getElementById('chatbot-icon');
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const closeChatbotButton = document.getElementById('close-chatbot');
-    const chatForm = document.getElementById('chat-form');
-    const messageInput = document.getElementById('message-input');
-    const chatWindow = document.getElementById('chat-window');
-    const apiEndpoint = '/.netlify/functions/gemini';
+    const chatbotIcon = document.getElementById("chatbot-icon");
+    const chatbotContainer = document.getElementById("chatbot-container");
+    const closeChatbotButton = document.getElementById("close-chatbot");
+    const chatForm = document.getElementById("chat-form");
+    const messageInput = document.getElementById("message-input");
+    const chatWindow = document.getElementById("chat-window");
+    const apiEndpoint = "/.netlify/functions/gemini";
 
     // Evento: Al hacer click en el ícono se muestra el contenedor del chat.
     if (chatbotIcon && chatbotContainer) {
-        chatbotIcon.addEventListener('click', () => {
-            chatbotContainer.classList.remove('hidden');
+        chatbotIcon.addEventListener("click", () => {
+            chatbotContainer.classList.remove("hidden");
         });
     }
 
     // Evento: Al hacer click en el botón de cerrar, oculta el contenedor del chat.
     if (closeChatbotButton && chatbotContainer) {
-        closeChatbotButton.addEventListener('click', () => {
-            chatbotContainer.classList.add('hidden');
+        closeChatbotButton.addEventListener("click", () => {
+            chatbotContainer.classList.add("hidden");
         });
     }
 
     // Evento: Al enviar el formulario, envía el mensaje del usuario y muestra la respuesta del bot.
     if (chatForm && messageInput && chatWindow) {
-        chatForm.addEventListener('submit', async (e) => {
+        chatForm.addEventListener("submit", async (e) => {
             e.preventDefault(); // Previene recargar la página
 
             const userMessage = messageInput.value.trim();
             if (!userMessage) return; // Sale si el input está vacío
 
             // Muestra el mensaje del usuario en la ventana del chat.
-            addMessageToWindow(userMessage, 'user-message');
-            messageInput.value = '';
+            addMessageToWindow(userMessage, "user-message");
+            messageInput.value = "";
 
             // Muestra mensaje de "Escribiendo..." mientras espera la respuesta.
-            const loadingIndicator = addMessageToWindow('Escribiendo...', 'loading');
+            const loadingIndicator = addMessageToWindow(
+                "Escribiendo...",
+                "loading",
+            );
 
             try {
                 // Llama al backend (Netlify Function) enviando el mensaje como prompt.
                 const response = await fetch(apiEndpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ prompt: userMessage }),
                 });
 
                 // Si hay error en la respuesta HTTP, lanza excepción.
-                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+                if (!response.ok)
+                    throw new Error(`Error: ${response.statusText}`);
 
                 // Procesa la respuesta y muestra el mensaje del bot.
                 const data = await response.json();
                 chatWindow.removeChild(loadingIndicator);
-                addMessageToWindow(data.message, 'bot-message');
+                addMessageToWindow(data.message, "bot-message");
             } catch (error) {
                 // Si hay error de red o backend, muestra mensaje de error al usuario.
-                console.error('Error:', error);
+                console.error("Error:", error);
                 chatWindow.removeChild(loadingIndicator);
-                addMessageToWindow('Lo siento, algo salió mal. Por favor, inténtalo de nuevo.', 'bot-message');
+                addMessageToWindow(
+                    "Lo siento, algo salió mal. Por favor, inténtalo de nuevo.",
+                    "bot-message",
+                );
             }
         });
 
         // Función auxiliar para agregar mensajes a la ventana del chat.
         // 'message': texto del mensaje. 'className': clase CSS para diferenciar tipo de mensaje.
         function addMessageToWindow(message, className) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', className);
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message", className);
             messageElement.textContent = message;
             chatWindow.appendChild(messageElement);
             // Asegura que siempre se vea el último mensaje (scroll abajo).
@@ -91,39 +101,566 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize products with sample data
 function initializeProducts() {
-    // Gomitas (12 products)
-    for (let i = 1; i <= 12; i++) {
+    // EJEMPLO 1 GOMITAS: Modificar descripción y precio
+    products.gomitas.push({
+        id: "1#",
+        name: "Gomita Omega 3 6 9 dha epa ara colina Potasio",
+        price: 49, // EJEMPLO: precio modificado
+        image: "https://i.imgur.com/Py8azRO.png",
+        description:
+            "Gomitas Nutricionales Omega 3-6-9 con DHA, EPA, ARA, Colina y Potasio 🍬 ¡La Mejor Forma de Nutrirte con Sabor!.", // EJEMPLO: descripción personalizada
+        category: "gomitas",
+    });
+
+    // EJEMPLO 2 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "2#",
+        name: "Gomitas Multivitamínicas 3-6-9-12",
+        price: 49,
+        image: "https://i.imgur.com/0HZuzIP.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "Gomitas Multivitamínicas 3-6-9-12 🍊 ¡Vitaminas Esenciales en Deliciosas Gomitas!",
+        category: "gomitas",
+    });
+	
+	// EJEMPLO 3 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "3#",
+        name: "Gomitas de Colágeno Hidrolizado + Vitaminas",
+        price: 49,
+        image: "https://i.imgur.com/D9cY43C.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "Gomitas de Colágeno Hidrolizado + Vitaminas 💖 ¡Tu ritual diario de belleza en formato delicioso! 💖",
+        category: "gomitas",
+    });
+	
+		// EJEMPLO 4 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "4#",
+        name: "Gomitas Antiinflamatorias de Cúrcuma ",
+        price: 49,
+        image: "https://i.imgur.com/SvBB6Uk.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "Gomitas Antiinflamatorias de Cúrcuma 🌟 ¡Alivio Natural en Cada Gomita!",
+        category: "gomitas",
+    });
+
+		// EJEMPLO 5 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "5#",
+        name: "Gomitas Energéticas de Hierro + Moringa & Vitamina C",
+        price: 49,
+        image: "https://i.imgur.com/QmSdfUK.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "Gomitas Energéticas de Hierro + Moringa & Vitamina C ¡Combate la Anemia con Sabor!",
+        category: "gomitas",
+    });
+	
+	// EJEMPLO 6 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "6#",
+        name: "Gomitas de Própolis Premium para Adultos  ¡Defensas Naturales en Cada Gomita!",
+        price: 49,
+        image: "https://i.imgur.com/36zZBkW.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "usar Adultos con sistema inmunológico débil  Fumadores o personas con irritación faríngea frecuente ",
+        category: "gomitas",
+    });
+	
+	// EJEMPLO 7 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "7#",
+        name: "Gomitas de Própolis para Niños  ¡Protección Deliciosa para los Pequeños!",
+        price: 49,
+        image: "https://i.imgur.com/REjF1Hd.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "Gomitas Energéticas de Hierro + Moringa & Vitamina C ¡Combate la Anemia con Sabor!",
+        category: "gomitas",
+    });
+	
+	// EJEMPLO 8 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "8#",
+        name: "Gomitas Relajantes de Valeriana ¡Descanso Natural en Cada Gomita!",
+        price: 49,
+        image: "https://i.imgur.com/w8AokCO.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "🌙 ¡El descanso que mereces, en la forma más deliciosa! 🌙",
+        category: "gomitas",
+    });
+	
+	// EJEMPLO 9 GOMITAS: Usar imagen de Imgur
+    products.gomitas.push({
+        id: "9#",
+        name: "Gomitas Inmuno-Energéticas con Zinc, Magnesio, Betaglucano, Vitamina C y Selenio!",
+        price: 49,
+        image: "https://i.imgur.com/Ccvj8wt.png", // EJEMPLO: imagen de Imgur (puedes usar .jpg, .png, .gif)
+        description:
+            "⚡ ¡Energía y Defensas en Cada Gomita!",
+        category: "gomitas",
+    });
+	
+	
+	
+    // Resto de gomitas (generadas automáticamente)
+    for (let i = 1; i <= 1; i++) {
         products.gomitas.push({
             id: `gomita-${i}`,
             name: `Gomita Prostática Natural ${i}`,
             price: 49,
             image: `🍬`,
             description: `Deliciosa gomita natural ${i} elaborada con ingredientes 100% naturales específicamente formulada para la salud prostática. Contiene extractos de saw palmetto, zinc y licopeno para el bienestar del sistema urológico.`,
-            category: 'gomitas'
+            category: "gomitas",
         });
     }
 
-    // Capsulas (80 products)
-    for (let i = 1; i <= 80; i++) {
+    // EJEMPLO 1 CÁPSULAS: Producto premium con precio y descripción personalizada
+    products.capsulas.push({
+        id: "c1",
+        name: "ErectMax Maxx - Potenciador Masculino en Cápsulas💪 ¡Máximo Desempeño y Vitalidad Masculina!",
+        price: 59, // EJEMPLO: precio premium
+        image: "https://i.imgur.com/pcLMm5r.png",
+        description:
+            "🚀 ¡Potencia tu energía íntima de forma natural y deliciosa! 🚀.", // EJEMPLO: descripción detallada
+        category: "capsulas",
+    });
+
+    // EJEMPLO 2 CÁPSULAS: Con imagen personalizada de Imgur
+    products.capsulas.push({
+        id: "c2",
+        name: "BioProst - Soporte Prostático Integral ¡Salud Prostática Natural en Cada Cápsula!",
+        price: 49,
+        image: "https://i.imgur.com/uYo7NaV.png", // EJEMPLO: imagen de Imgur
+        description:
+            "🛡️ ¡Cuida tu salud prostática de manera natural con BioProst ! 🛡️",
+        category: "capsulas",
+    });
+
+// EJEMPLO 3 CÁPSULAS: Con imagen personalizada de Imgur
+    products.capsulas.push({
+        id: "c3",
+        name: "Te Verde- Antioxidante Premium🍃 ¡Poder Antioxidante en Cada Cápsula!",
+        price: 49,
+        image: "https://i.imgur.com/L6PDL6n.png", // EJEMPLO: imagen de Imgur
+        description:
+            "🌱 ¡Tu dosis diaria de salud en estado puro con Te Verde! 🌱",
+        category: "capsulas",
+    });
+	
+	// EJEMPLO 4 CÁPSULAS: Con imagen personalizada de Imgur
+    products.capsulas.push({
+        id: "c4",
+        name: "Aguaje  Belleza Femenina Natural🌸 ¡Potenciador Hormonal 100% Natural!",
+        price: 49,
+        image: "https://i.imgur.com/D9mD7DB.png", // EJEMPLO: imagen de Imgur
+        description:
+            "🌺 ¡Descubre el poder de la feminidad natural con Aguaje! 🌺",
+        category: "capsulas",
+    });
+	
+	  products.capsulas.push({
+        id: "c5",
+        name: "Citrato de Magnesio - Relajación Muscular y Nerviosa🌀 ¡Equilibrio Natural para Cuerpo y Mente!",
+        price: 49,
+        image: "https://i.imgur.com/FWrtLRX.png", // EJEMPLO: imagen de Imgur
+        description:
+            "⚡ ¡Recupera tu equilibrio natural con Citrato de Magnesio! ⚡",
+        category: "capsulas",
+    });
+	
+	 products.capsulas.push({
+        id: "c6",
+        name: "Alfa Maxx - Potenciador Masculino Premium🔥 ¡Máximo Desempeño y Vitalidad!",
+        price: 49,
+        image: "https://i.imgur.com/vTddhnl.png", // EJEMPLO: imagen de Imgur
+        description:
+            "🚀 ¡Descubre tu máximo potencial con Alfa Maxx! 🚀",
+        category: "capsulas",
+    });
+	
+	 products.capsulas.push({
+        id: "c7",
+        name: "Chupa Panza - Reductor y Quemagrasas Natural ¡Adiós Grasa Localizada, Hola Figura Esbelta!",
+        price: 49,
+        image: "https://i.imgur.com/mcYspYv.png", // EJEMPLO: imagen de Imgur
+        description:
+            "⚡ ¡Transforma tu cuerpo de forma natural con Chupa Panza ! ⚡",
+        category: "capsulas",
+    });
+	
+		 products.capsulas.push({
+        id: "c8",
+        name: "Fenogreco - Potenciador Natural de Salud ¡Energía, Metabolismo y Bienestar en Cada Cápsula!",
+        price: 49,
+        image: "https://i.imgur.com/Fvyor5I.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Descubre el poder milenario del fenogreco con Fenogreco! ✨",
+        category: "capsulas",
+    });
+	
+		 products.capsulas.push({
+        id: "c9",
+        name: "Tocosh- Probiótico Andino Premium¡Salud Digestiva y Refuerzo Inmunológico Ancestral!",
+        price: 49,
+        image: "https://i.imgur.com/SVvq1TL.png", // EJEMPLO: imagen de Imgur
+        description:
+            "🍃 ¡La sabiduría medicinal de los Andes en tu suplemento diario! 🍃",
+        category: "capsulas",
+    });
+	
+		 products.capsulas.push({
+        id: "c10",
+        name: "Moring Natural Medix - Superalimento Detox ¡Desintoxicación y Nutrición en Cada Cápsula!",
+        price: 49,
+        image: "https://i.imgur.com/XjxJNdD.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Nutrición pura y desintoxicación inteligente con Moring Natural ! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c11",
+        name: "Aguaje + Inojo + Maca Triple 🌸 ¡Potenciador Femenino Integral!",
+        price: 49,
+        image: "https://i.imgur.com/8hp93K2.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Potencia tu esencia femenina con esta fórmula exclusiva! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c12",
+        name: "Vigoron Maxx - Potenciador de Energía y Vitalidad ¡Máximo Rendimiento Físico y Mental!",
+        price: 49,
+        image: "https://i.imgur.com/0PadOJ9.png", // EJEMPLO: imagen de Imgur
+        description:
+            "Vigoron Maxx - Potenciador de Energía y Vitalidad ¡Máximo Rendimiento Físico y Mental!",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c13",
+        name: "Omega Triple ¡Potencia tu mente y corazón!",
+        price: 49,
+        image: "https://i.imgur.com/TKaXBZN.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ Omega Triple - Funcionamiento Avanzado Cómo Actúa Esta Fórmula Potente ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({ 
+        id: "c14",
+        name: "!Hierro + Calcio + B12 ¡Triple Acción Nutricional!",
+        price: 49,
+        image: "https://i.imgur.com/yZ7Owg6.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ La sinergia perfecta para tu bienestar integral ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c15",
+        name: "!HierroCalcio B12 Plus 🩸💊 ¡Fórmula Completa para Tu Bienestar",
+        price: 49,
+        image: "https://i.imgur.com/fppSMAz.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ Tu dosis diaria de energía y claridad mental✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c16",
+        name: "GlucoBalance Plus ¡Control Integral para Tu Salud Metabólica!",
+        price: 49,
+        image: "https://i.imgur.com/uQj68Jf.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ El equilibrio inteligente para tu bienestar integral !! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c17",
+        name: "Gastrizan Forte🩹 ¡Alivio Integral para Tu Sistema Digestivo!!",
+        price: 49,
+        image: "https://i.imgur.com/G7HThAX.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Salud digestiva desde la primera toma! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c18",
+        name: "FitoHorm Plus¡ Balance Natural para Mujeres Inteligentes!",
+        price: 49,
+        image: "https://i.imgur.com/sx1JhBh.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡La sabiduría de la naturaleza para tu equilibrio hormonal! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c19",
+        name: "FlexiJoint Pro 🦴 ¡Regeneración Articular Completa!!",
+        price: 49,
+        image: "https://i.imgur.com/S3dlPET.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Movilidad sin límites a cualquier edad! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c20",
+        name: "HepatoDetox Ultra ¡Desintoxicación Hepática Profunda!!",
+        price: 49,
+        image: "https://i.imgur.com/qgUDB36.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El escudo natural que tu hígado necesita! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c21",
+        name: "Spirulina Pure+🌱 ¡Superalimento Detox y Energético!",
+        price: 49,
+        image: "https://i.imgur.com/Nj7yx15.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ Nutrición concentrada de la naturaleza Ideal para veganos, deportistas y personas con déficit nutricional. ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c22",
+        name: "EnergiMax B+D Complex ¡Combustible Natural para Cuerpo y Mente!",
+        price: 49,
+        image: "https://i.imgur.com/qEKTdul.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El multivitamínico inteligente para tu vida activa! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c23",
+        name: "RenalClean Forte🌿 ¡Protección Renal Natural!",
+        price: 49,
+        image: "https://i.imgur.com/ma0KeR1.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ El aliado natural de tu sistema urinario ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c24",
+        name: "GlucoControl Plus🩸 ¡Control Inteligente del Azúcar!!",
+        price: 49,
+        image: "https://i.imgur.com/QBwg3aF.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El enfoque natural para un metabolismo equilibrado! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c25",
+        name: "D3 Vital Max☀️ ¡Vitamina Solar en su Máxima Potencia!",
+        price: 49,
+        image: "https://i.imgur.com/wQXXyBc.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡La esencia del sol en cada cápsula! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c26",
+        name: "C-Vital Complex ¡Defensas de Acero con Antioxidante Potente!",
+        price: 49,
+        image: "https://i.imgur.com/yiIUVBf.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡La vitamina C como la naturaleza la diseñó! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c27",
+        name: "Centella Pure+ ¡Regeneración Celular Premium!",
+        price: 49,
+        image: "https://i.imgur.com/w1RNnQd.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El secreto asiático para una piel y mente jóvenes! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c28",
+        name: "VenoForte Pro ¡Solución Natural para Piernas Ligeras!!",
+        price: 49,
+        image: "https://i.imgur.com/fuorVen.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Bienestar circulatorio desde la primera semana! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c29",
+        name: "D3 Ultra Active ¡Poder Solar en Cada Cápsula!!",
+        price: 49,
+        image: "https://i.imgur.com/Sa578cB.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡La deficiencia de vitamina D termina hoy! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c30",
+        name: "Magnesium Ultra+¡Relajación Muscular y Nerviosa Profunda!!",
+        price: 49,
+        image: "https://i.imgur.com/GYKe7Hi.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c31",
+        name: "GynoCare Complex🌸 ¡Salud Femenina! Cuidado inteligente para tu bienestar ginecológico",
+        price: 49,
+        image: "https://i.imgur.com/ELxjUz3.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡Cuidado inteligente para tu bienestar ginecológico! ✨",
+        category: "capsulas",
+    });
+	
+	
+			 products.capsulas.push({
+        id: "c32",
+        name: "Curcuma Gold Complex ¡Antiinflamatorio Natural de Máxima Potencia!!",
+        price: 49,
+        image: "https://i.imgur.com/mrM1WqP.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c33",
+        name: "CalMagZn+D Premium🦴 ¡Fórmula Completa para Huesos Fuertes!!",
+        price: 49,
+        image: "https://i.imgur.com/LLUeKZV.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c34",
+        name: "Uña de Gato Forte El secreto inmunológico de la selva peruana!",
+        price: 49,
+        image: "https://i.imgur.com/TDlMM9l.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c35",
+        name: "CardoMariano Plus El guardián natural de tu hígado",
+        price: 49,
+        image: "https://i.imgur.com/Tytc1yu.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c36",
+        name: "BioProst Peruviano🌿 ¡Salud Prostática 100% Natural!",
+        price: 49,
+        image: "https://i.imgur.com/fKGoM4t.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c37",
+        name: "ColonPure Pro, Solución completa para tu comodidad intestinal",
+        price: 49,
+        image: "https://i.imgur.com/GjVC9YV.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c38",
+        name: "CicloFem Balance, Armonía menstrual en cada ciclo",
+        price: 49,
+        image: "https://i.imgur.com/igMh4gA.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c39",
+        name: "Colágeno Hidrolizado Premium, El secreto para una juventud prolongada",
+        price: 49,
+        image: "https://i.imgur.com/pMUeyay.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c40",
+        name: "FlexiColageno 🦵 ¡Soporte Articular Completo!",
+        price: 49,
+        image: "https://i.imgur.com/Gr4875z.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+    // Resto de cápsulas (generadas automáticamente)
+    for (let i = 1; i <= 1; i++) {
         products.capsulas.push({
             id: `capsula-${i}`,
             name: `Cápsula Urológica ${i}`,
             price: 49,
             image: `💊`,
             description: `Cápsula natural ${i} con formulación avanzada para el cuidado de la salud prostática y urinaria. Contiene extractos concentrados de plantas medicinales tradicionales para máxima efectividad.`,
-            category: 'capsulas'
+            category: "capsulas",
         });
     }
 
-    // Suplementos (12 products)
-    for (let i = 1; i <= 12; i++) {
+    // EJEMPLO 1 SUPLEMENTOS: Precio especial y descripción personalizada
+    products.suplementos.push({
+        id: "suplemento-1",
+        name: "Harina de Calabaza Orgánica",
+        price: 65, // EJEMPLO: precio diferente
+        image: "🌾",
+        description:
+            "Harina pura de semillas de calabaza orgánica, rica en zinc natural y ácidos grasos esenciales. Perfecta para smoothies y batidos prostáticos.", // EJEMPLO: descripción específica
+        category: "suplementos",
+    });
+
+    // EJEMPLO 2 SUPLEMENTOS: Con imagen de Imgur
+    products.suplementos.push({
+        id: "suplemento-2",
+        name: "Aceite de Semilla de Calabaza",
+        price: 125,
+        image: "https://i.imgur.com/NzSNVjL.gif", // EJEMPLO: imagen animada de Imgur
+        description:
+            "Aceite virgen prensado en frío de semillas de calabaza estiria. Rico en fitoesteroles y omega-3, ideal para la salud prostática.",
+        category: "suplementos",
+    });
+
+    // Resto de suplementos (generadas automáticamente)
+    for (let i = 3; i <= 12; i++) {
         products.suplementos.push({
             id: `suplemento-${i}`,
             name: `Suplemento Prostático ${i}`,
             price: 49,
             image: `🌾`,
             description: `Suplemento natural ${i} rico en nutrientes esenciales para la salud prostática. Perfecto para complementar tu alimentación diaria con ingredientes orgánicos y propiedades antiinflamatorias.`,
-            category: 'suplementos'
+            category: "suplementos",
         });
     }
 
@@ -133,22 +670,22 @@ function initializeProducts() {
 
 // Render products in their respective grids
 function renderProducts() {
-    renderProductGrid('gomitas', products.gomitas);
-    renderProductGrid('capsulas', products.capsulas);
-    renderProductGrid('suplementos', products.suplementos);
+    renderProductGrid("gomitas", products.gomitas);
+    renderProductGrid("capsulas", products.capsulas);
+    renderProductGrid("suplementos", products.suplementos);
 }
 
 function renderProductGrid(category, productList) {
     const grid = document.getElementById(`${category}-grid`);
     if (!grid) return;
 
-    grid.innerHTML = '';
-    
-    productList.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
+    grid.innerHTML = "";
+
+    productList.forEach((product) => {
+        const productCard = document.createElement("div");
+        productCard.className = "product-card";
         productCard.innerHTML = `
-            <div class="product-image">${product.image}</div>
+            <div class="product-image">${product.image.startsWith("http") ? `<img src="${product.image}" alt="${product.name}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:3em;">🍬</div>` : product.image}</div>
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
                 <div class="product-price">S/. ${product.price}</div>
@@ -157,85 +694,167 @@ function renderProductGrid(category, productList) {
                 </button>
             </div>
         `;
-        
+
         // Add double-click event to show product details
-        productCard.addEventListener('dblclick', () => showProductDetail(product.id));
-        
+        productCard.addEventListener("dblclick", () =>
+            showProductDetail(product.id),
+        );
+
         grid.appendChild(productCard);
     });
 }
 
 // Render promotions
 function renderPromotions() {
-    const promotionsGrid = document.getElementById('promotions-grid');
+    const promotionsGrid = document.getElementById("promotions-grid");
     if (!promotionsGrid) return;
 
+    // PROMOCIONES PERSONALIZABLES - 12 EJEMPLOS
     const promotions = [
         {
-            title: '🎉 Pack Gomitas Prostáticas x2',
+            id: "promo-1",
+            title: "Pack Próstata Saludable",
+            price: 89,
+            originalPrice: 120,
+            quantity: 1,
+            image: "https://i.imgur.com/NzSNVjL.gif",
+            description:
+                "Combo especial para mantener la salud prostática con ingredientes naturales.",
+        },
+        {
+            id: "promo-2",
+            title: "Combo Zinc + Vitaminas",
+            price: 65,
+            originalPrice: 85,
+            quantity: 1,
+            image: "https://i.imgur.com/5Jl3zaM.gif",
+            description:
+                "Suplementos esenciales de zinc y vitaminas para el bienestar masculino.",
+        },
+        {
+            id: "promo-3",
+            title: "Pack Antioxidante Natural",
+            price: 125,
+            originalPrice: 165,
+            quantity: 1,
+            image: "https://i.imgur.com/7S4Iqmv.gif",
+            description:
+                "Potente combinación antioxidante para proteger células y tejidos.",
+        },
+        {
+            id: "promo-4",
+            title: "Trio Digestivo Completo",
             price: 99,
-            originalPrice: 149,
-            description: 'Llévate 2 frascos de nuestras deliciosas gomitas prostáticas por el precio de uno. Perfectas para un tratamiento prolongado y efectivo.',
-            details: 'Incluye:\n• 2 Frascos de Gomitas Prostáticas (60 unidades c/u)\n• Envío gratuito\n• Guía de uso personalizada\n• Seguimiento de resultados'
+            originalPrice: 135,
+            quantity: 1,
+            image: "https://i.imgur.com/XBMbFt1.gif",
+            description:
+                "Sistema completo para mejorar la digestión y absorción de nutrientes.",
         },
         {
-            title: '💊 Pack Cápsulas Premium',
-            price: 109,
-            originalPrice: 180,
-            description: 'Combo especial de nuestras cápsulas más efectivas con 30% de descuento. Formula concentrada para resultados óptimos.',
-            details: 'Incluye:\n• 3 Frascos de Cápsulas Premium (90 cápsulas c/u)\n• Tabletas de Saw Palmetto GRATIS\n• Plan nutricional personalizado\n• Consulta virtual incluida'
+            id: "promo-5",
+            title: "Pack Energía Masculina",
+            price: 110,
+            originalPrice: 145,
+            quantity: 1,
+            image: "https://i.imgur.com/F0zLVyw.mp4",
+            description:
+                "Aumenta tu energía y vitalidad de forma natural y sostenida.",
         },
         {
-            title: '🌾 Mega Pack Salud Prostática',
-            price: 149,
-            originalPrice: 220,
-            description: 'El paquete más completo para el cuidado integral de tu salud prostática. Todo lo que necesitas en un solo pack.',
-            details: 'Incluye:\n• 2 Frascos Gomitas Prostáticas\n• 2 Frascos Cápsulas Premium\n• 1 Suplemento Antioxidante\n• Guía completa de salud prostática\n• 3 meses de seguimiento'
+            id: "promo-6",
+            title: "Combo Desintox Hepático",
+            price: 78,
+            originalPrice: 105,
+            quantity: 1,
+            image: "https://i.imgur.com/j6ik9u1.png",
+            description:
+                "Limpia y protege tu hígado con ingredientes 100% naturales.",
         },
         {
-            title: '🎯 Pack Inicio Prostático',
-            price: 159,
-            originalPrice: 240,
-            description: 'Pack perfecto para comenzar tu tratamiento natural. Incluye los productos esenciales más consultorías especializadas.',
-            details: 'Incluye:\n• 1 Frasco Gomitas Prostáticas\n• 2 Frascos Cápsulas Urológicas\n• 1 Suplemento Natural\n• 2 Consultas con especialista\n• Manual de ejercicios prostáticos'
+            id: "promo-7",
+            title: "Pack Control Metabólico",
+            price: 95,
+            originalPrice: 125,
+            quantity: 1,
+            image: "🔥",
+            description:
+                "Acelera tu metabolismo y controla el peso de manera natural.",
         },
         {
-            title: '⚡ Bundle Premium VIP',
-            price: 300,
-            originalPrice: 450,
-            description: 'La experiencia más completa para tu salud prostática. Incluye productos premium y acompañamiento personalizado por 6 meses.',
-            details: 'Incluye:\n• 4 Frascos Gomitas Premium\n• 4 Frascos Cápsulas Elite\n• 2 Suplementos Especializados\n• 6 meses de seguimiento médico\n• Tests de laboratorio incluidos\n• Programa nutricional personalizado\n• Acceso VIP a contenido exclusivo'
-        }
+            id: "promo-8",
+            title: "Combo Inmunidad Plus",
+            price: 85,
+            originalPrice: 115,
+            quantity: 1,
+            image: "🛡️",
+            description:
+                "Fortalece tu sistema inmunológico con vitaminas y minerales.",
+        },
+        {
+            id: "promo-9",
+            title: "Pack Circulación Activa",
+            price: 105,
+            originalPrice: 140,
+            quantity: 1,
+            image: "❤️",
+            description:
+                "Mejora la circulación sanguínea y la salud cardiovascular.",
+        },
+        {
+            id: "promo-10",
+            title: "Trio Articulaciones Sanas",
+            price: 115,
+            originalPrice: 155,
+            quantity: 1,
+            image: "🦴",
+            description:
+                "Cuida tus articulaciones y huesos con colágeno y calcio natural.",
+        },
+        {
+            id: "promo-11",
+            title: "Pack Memoria Mental",
+            price: 88,
+            originalPrice: 118,
+            quantity: 1,
+            image: "🧠",
+            description:
+                "Potencia tu memoria y concentración con nootrópicos naturales.",
+        },
+        {
+            id: "promo-12",
+            title: "Combo Descanso Reparador",
+            price: 72,
+            originalPrice: 95,
+            quantity: 1,
+            image: "😴",
+            description:
+                "Mejora la calidad de tu sueño con relajantes naturales.",
+        },
     ];
 
     promotions.forEach((promotion, index) => {
-        const promotionItem = document.createElement('div');
-        promotionItem.className = 'promotion-item';
+        const promotionItem = document.createElement("div");
+        promotionItem.className = "promotion-item";
         promotionItem.innerHTML = `
-            <div class="promotion-price">S/. ${promotion.price}</div>
-            <h3>${promotion.title}</h3>
-            <p class="promotion-description">${promotion.description}</p>
-            <div class="promotion-savings">Ahorra S/. ${promotion.originalPrice - promotion.price}</div>
+            <div class="promotion-image-full">${promotion.image.startsWith("http") ? `<img src="${promotion.image}" alt="${promotion.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:3em;">🎁</div>` : `<div style="font-size:4em; display:flex; align-items:center; justify-content:center; height:100%;">${promotion.image}</div>`}</div>
+            <div class="promotion-footer">
+                <span class="promotion-price-small">S/. ${promotion.price}</span>
+                <button class="add-to-cart-small" onclick="addPromotionToCart('${promotion.title}', ${promotion.price})">+</button>
+            </div>
         `;
-        
-        // Agregar funcionalidad para expandir
-        promotionItem.addEventListener('click', () => {
-            showPromotionModal(promotion);
-        });
-        
-        promotionItem.addEventListener('dblclick', () => {
-            showPromotionModal(promotion);
-        });
-        
+
         promotionsGrid.appendChild(promotionItem);
     });
 }
 
+
+
 // Mostrar modal de promoción expandida
 function showPromotionModal(promotion) {
-    const modal = document.getElementById('promotion-modal');
-    const modalBody = document.getElementById('promotion-modal-body');
-    
+    const modal = document.getElementById("promotion-modal");
+    const modalBody = document.getElementById("promotion-modal-body");
+
     modalBody.innerHTML = `
         <h2>${promotion.title}</h2>
         <div class="promotion-modal-price">
@@ -257,14 +876,14 @@ function showPromotionModal(promotion) {
             </button>
         </div>
     `;
-    
-    modal.style.display = 'flex';
+
+    modal.style.display = "flex";
 }
 
 // Cerrar modal de promoción
 function closePromotionModal() {
-    const modal = document.getElementById('promotion-modal');
-    modal.style.display = 'none';
+    const modal = document.getElementById("promotion-modal");
+    modal.style.display = "none";
 }
 
 // Agregar promoción al carrito
@@ -273,12 +892,12 @@ function addPromotionToCart(title, price) {
         id: `promo-${Date.now()}`,
         name: title,
         price: price,
-        image: '🎁',
-        description: 'Promoción especial',
-        category: 'promocion',
-        quantity: 1
+        image: "🎁",
+        description: "Promoción especial",
+        category: "promocion",
+        quantity: 1,
     };
-    
+
     cart.push(promotionItem);
     updateCartDisplay();
     saveCartToStorage();
@@ -287,23 +906,29 @@ function addPromotionToCart(title, price) {
 }
 
 // Event listeners para cerrar modal
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Cerrar modal al hacer clic en la X
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('promotion-modal-close')) {
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("promotion-modal-close")) {
             closePromotionModal();
         }
-        
+
         // Cerrar modal al hacer clic fuera del contenido
-        if (e.target.classList.contains('promotion-modal')) {
+        if (e.target.classList.contains("promotion-modal")) {
             closePromotionModal();
+        }
+
+        // Cerrar modal de imagen al hacer clic fuera del contenido
+        if (e.target.classList.contains("image-modal")) {
+            closeImageModal();
         }
     });
-    
+
     // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
             closePromotionModal();
+            closeImageModal();
         }
     });
 });
@@ -311,91 +936,1708 @@ document.addEventListener('DOMContentLoaded', function() {
 // Navigation functions
 function toggleMegaMenu(sectionId) {
     // Close all other megamenus
-    const allMegamenus = document.querySelectorAll('.megamenu');
-    allMegamenus.forEach(menu => {
+    const allMegamenus = document.querySelectorAll(".megamenu");
+    allMegamenus.forEach((menu) => {
         if (menu.id !== `megamenu-${sectionId}`) {
-            menu.classList.remove('active');
+            menu.classList.remove("active");
         }
     });
-    
+
     // Toggle the selected megamenu
     const targetMegamenu = document.getElementById(`megamenu-${sectionId}`);
     if (targetMegamenu) {
-        targetMegamenu.classList.toggle('active');
-        
+        targetMegamenu.classList.toggle("active");
+
         // If it's products section, show gomitas by default
-        if (sectionId === 'productos' && targetMegamenu.classList.contains('active')) {
-            showProductSection('gomitas');
+        if (
+            sectionId === "productos" &&
+            targetMegamenu.classList.contains("active")
+        ) {
+            showProductSection("gomitas");
         }
-        
+
         // Scroll to the megamenu or video section
-        if (targetMegamenu.classList.contains('active')) {
+        if (targetMegamenu.classList.contains("active")) {
             setTimeout(() => {
-                targetMegamenu.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                targetMegamenu.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
             }, 100);
         }
     }
-    
+
     // Check if any megamenu is active, if not, show video section
     setTimeout(() => {
-        const activeMegamenus = document.querySelectorAll('.megamenu.active');
-        const videoSection = document.querySelector('.video-section');
-        
+        const activeMegamenus = document.querySelectorAll(".megamenu.active");
+        const videoSection = document.querySelector(".video-section");
+
         if (activeMegamenus.length === 0 && videoSection) {
-            videoSection.style.display = 'block';
+            videoSection.style.display = "block";
             setTimeout(() => {
-                videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                videoSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
             }, 100);
         } else if (videoSection) {
-            videoSection.style.display = 'none';
+            videoSection.style.display = "none";
         }
     }, 150);
 }
 
 function showProductSection(subsection) {
     // Update filter buttons
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    event.target?.classList.add('active');
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    event.target?.classList.add("active");
 
     // Hide all product subsections
-    const subsections = document.querySelectorAll('.product-subsection');
-    subsections.forEach(sub => {
-        sub.style.display = 'none';
+    const subsections = document.querySelectorAll(".product-subsection");
+    subsections.forEach((sub) => {
+        sub.style.display = "none";
     });
 
     // Show selected subsection
     const targetSubsection = document.getElementById(`${subsection}-section`);
     if (targetSubsection) {
-        targetSubsection.style.display = 'block';
+        targetSubsection.style.display = "block";
     }
 }
 
-// Product detail modal
+// Product detail modal with full landing page
 function showProductDetail(productId) {
     const product = findProductById(productId);
     if (!product) return;
 
-    const modal = document.getElementById('productModal');
-    const details = document.getElementById('productDetails');
-    
+    // Get detailed product info based on ID
+    const detailedProductInfo = getDetailedProductInfo(productId);
+
+    const modal = document.getElementById("productModal");
+    const details = document.getElementById("productDetails");
+
     details.innerHTML = `
-        <div class="product-detail">
-            <div class="product-image" style="font-size: 6em; margin-bottom: 20px;">${product.image}</div>
-            <h3>${product.name}</h3>
-            <div class="price">S/. ${product.price}</div>
-            <div class="description">${product.description}</div>
-            <button class="add-to-cart" onclick="addToCart('${product.id}'); closeProductModal();" style="padding: 15px 30px; font-size: 1.2em;">
-                Agregar al Carrito
-            </button>
+        <div class="product-detail-full">
+            <div class="product-header">
+                <div class="product-image-large">
+                    ${detailedProductInfo.largeImage ? `<img src="${detailedProductInfo.largeImage}" alt="${product.name}" style="width: 400px; height: 400px; object-fit: cover; border-radius: 15px;">` : `<div class="placeholder-image">${product.image}</div>`}
+                </div>
+                <div class="product-info-header">
+                    <h2>${product.name}</h2>                 
+                </div>
+            </div>
+
+            <div class="product-landing-page">
+                <div class="benefits-section">
+                    <h3>🌟 Beneficios Principales</h3>
+                    <div class="benefits-grid">
+                        ${detailedProductInfo.benefits.map((benefit) => `<div class="benefit-item">${benefit}</div>`).join("")}
+                    </div>
+                </div>
+
+                <div class="ingredients-section">
+                    <h3>🌿 Ingredientes Naturales</h3>
+                    <div class="ingredients-list">
+                        ${detailedProductInfo.ingredients.map((ingredient) => `<span class="ingredient-tag">${ingredient}</span>`).join("")}
+                    </div>
+                </div>
+
+                <div class="how-to-use">
+                    <h3>📋 Modo de Uso</h3>
+                    <p>${detailedProductInfo.usage}</p>
+                </div>
+
+                <div class="guarantee-section">
+                    <h3>✅ Nuestra Garantía</h3>
+                    <div class="guarantee-content">
+                        <div class="guarantee-item">🚚 Envío a todo el Perú, entrega gratis en lima</div>
+                        <div class="guarantee-item">💯 100% Natural y seguro</div>                                      
+                    </div>
+                </div>
+            
+                <div class="final-cta">
+                    <button class="buy-now-btn" onclick="addToCart('${product.id}'); showPaymentOptions(); closeProductModal();">
+                        🔥 COMPRAR AHORA - S/. ${product.price}
+                    </button>
+                    <div class="payment-methods">
+                        <small>💳 Aceptamos: Transferencia BCP • Interbancaria • Yape</small>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
-    
-    modal.style.display = 'block';
+
+    modal.style.display = "block";
+}
+
+// Function to get detailed product information
+function getDetailedProductInfo(productId) {
+    const detailedProducts = {
+        // EJEMPLOS GOMITAS
+        "1#": {
+            largeImage: "https://i.imgur.com/Py8azRO.png",
+            benefits: [
+                "👪 Ideal Para",
+                "🔹 Niños en etapa de crecimiento y desarrollo",
+                "🔹 Estudiantes y adultos con alta actividad mental",
+                "🔹 Quienes buscan un suplemento práctico y delicioso",
+				
+				"💡 Beneficios de Nuestras Gomitas Enriquecidas",
+			    "✔ Ácidos Grasos Esenciales – DHA y EPA para un cerebro saludable y corazón fuerte",
+				"✔ ARA (Ácido Araquidónico) – Apoya el desarrollo cognitivo en niños",
+				"✔ Colina – Mejora la memoria y la función neuronal",
+				"✔ Potasio – Contribuye al equilibrio muscular y nervioso",
+				"✔ Delicioso Sabor Frutal – ¡Una experiencia dulce y nutritiva!",
+            ],
+            ingredients: [
+                "Omega 3-6-9",
+				"DHA",
+				"EPA",
+				"ARA",
+				"Colina",
+				"Potasio",
+            ],
+            usage: "Tomar 2 gomitas al día, preferiblemente con las comidas. Para mejores resultados, usar consistentemente por al menos 3 meses.",
+            testimonials: [
+                {
+                    text: "Excelente producto, noté mejoras en pocas semanas",
+                    author: "Carlos M., 45 años",
+                },
+                {
+                    text: "Muy buen sabor y efectivo para la salud prostática",
+                    author: "Roberto L., 52 años",
+                },
+            ],
+        },
+        "2#": {
+            largeImage: "https://i.imgur.com/0HZuzIP.png",
+            benefits: [
+                "✔ Complejo Vitamínico Integral – Combina vitaminas 3, 6, 9 y 12 para un soporte nutricional",
+                "✔ Energía Natural – Ayuda a combatir el cansancio y la fatiga",
+                "✔ Sistema Nervioso Saludable – Contribuye al funcionamiento óptimo del cerebro",
+                "✔ Metabolismo Activo – Favorece la producción de energía celular",
+			    "✔ Sabor Cítrico Delicioso – ¡La forma más divertida de tomar tus vitaminas!",
+            ],
+            ingredients: [
+                "Vitamina B3 (Niacina)",
+                "Vitamina B6 (Piridoxina)",
+                "Vitamina B9 (Ácido Fólico)",
+                "Vitamina B12 (Cobalamina)",
+				 "Frasco con 120 gomitas)",
+            ],
+            usage: "Consumir 1-2 gomitas diarias con el desayuno. No exceder la dosis recomendada.",
+            testimonials: [
+                {
+                    text: "Me siento con más energía desde que las tomo",
+                    author: "Miguel A., 38 años",
+                },
+                {
+                    text: "Perfectas para complementar mi rutina de salud",
+                    author: "Eduardo R., 41 años",
+                },
+            ],
+        },
+		"3#": {
+            largeImage: "https://i.imgur.com/D9cY43C.png",
+            benefits: [
+                "✔ Piel Radiante – Estimula la producción de colágeno para reducir arrugas y líneas de expresión",
+                "✔ Cabello y Uñas Fuertes – Fortalece la estructura capilar y ungueal",
+                "✔ Articulaciones Saludables – Ayuda a mantener la flexibilidad y movilidad articular",
+                "✔ Dosis Diaria de Juventud – Con vitamina C para mejor absorción",
+			    "✔ Delicioso Sabor a Frutos Rojos – ¡Cuidarte nunca fue tan sabroso!",
+            ],
+            ingredients: [
+                "Colágeno Hidrolizado Tipo I y III (10g por porción)",
+                "Vitamina C (para potenciar la síntesis de colágeno)",
+                "Ácido Hialurónico (hidratación profunda)",
+                "Biotina (para cabello y uñas)",
+				 "Frasco con 130 gomitas)",
+            ],
+            usage: "Consumir 1-2 gomitas diarias con el desayuno. No exceder la dosis recomendada.",
+            testimonials: [
+                {
+                    text: "Me siento con más energía desde que las tomo",
+                    author: "Miguel A., 38 años",
+                },
+                {
+                    text: "Perfectas para complementar mi rutina de salud",
+                    author: "Eduardo R., 41 años",
+                },
+            ],
+        },
+			"4#": {
+            largeImage: "https://i.imgur.com/SvBB6Uk.png",
+            benefits: [
+                "✔ Poder Antiinflamatorio – Reduce dolores articulares y musculares",
+                "✔ Protección Hepática – Apoya la función detoxificante del hígado",
+                "✔ Antioxidante Natural – Combate los radicales libres",
+                "✔ Digestión Saludable – Alivia malestares estomacales",
+			    "✔ Delicioso Sabor Cítrico – ¡Sin el sabor amargo de la cúrcuma en polvo!",
+            ],
+            ingredients: [
+                "Cúrcuma (95% curcuminoides)",
+                "Vitamina C (para potenciar la síntesis de colágeno)",
+                "engibre (potencia el efecto antiinflamatorio)",
+                "Pimienta Negra (mejora la absorción)",
+				"Vitamina E (acción antioxidante)",
+				 "Frasco con 130 gomitas)",
+            ],
+            usage: "Consumir 1-2 gomitas diarias con el desayuno. No exceder la dosis recomendada.",
+            testimonials: [
+                {
+                    text: "Me siento con más energía desde que las tomo",
+                    author: "Miguel A., 38 años",
+                },
+                {
+                    text: "Perfectas para complementar mi rutina de salud",
+                    author: "Eduardo R., 41 años",
+                },
+            ],
+        },
+		"5#": {
+            largeImage: "https://i.imgur.com/QmSdfUK.png",
+            benefits: [
+                "✔ Refuerzo Contra la Anemia – Hierro altamente biodisponible",
+                "✔ Energía Natural – Combate el cansancio y fatiga crónica",
+                "✔ Defensas Fortalecidas – Gracias a la vitamina C y moringa",
+                "✔ Poder Antioxidante – Protección celular completa",
+			    "✔ Sabor Frutal Delicioso – ¡Sin ese regusto metálico del hierro!",
+            ],
+            ingredients: [
+                "Hierro Bisglicinato (alta absorción)",
+                "Aceite de Moringa (superalimento nutritivo)",
+                "Vitamina C (mejora la absorción del hierro)",
+                "Vitamina B12 (apoyo adicional contra la anemia)",
+				 "Frasco con 130 gomitas)",
+				 "❤️ ¡Hierro que sí se absorbe, energía que sí se siente! ❤️",
+            ],
+            usage: "Consumir 1-2 gomitas diarias con el desayuno. No exceder la dosis recomendada.",
+            testimonials: [
+                {
+                    text: "Me siento con más energía desde que las tomo",
+                    author: "Miguel A., 38 años",
+                },
+                {
+                    text: "Perfectas para complementar mi rutina de salud",
+                    author: "Eduardo R., 41 años",
+                },
+            ],
+        },
+		"6#": { 
+            largeImage: "https://i.imgur.com/36zZBkW.png",
+            benefits: [
+                "✔ Escudo Antigripal Natural – Refuerza el sistema inmunológico",
+                "✔ Alivio de Garganta Irritada – Propiedades antisépticas y antiinflamatorias",
+                "✔ Protección Respiratoria – Ideal para temporadas de frío y alergias",
+                "✔ Poder Antibacteriano – Ayuda a combatir infecciones",
+			    "✔ Sabor Miel-Limón Delicioso – ¡Sin el amargor del própolis líquido!",
+            ],
+            ingredients: [
+                "Hierro Bisglicinato (alta absorción)",
+                "Aceite de Moringa (superalimento nutritivo)",
+                "Vitamina C (mejora la absorción del hierro)",
+                "Vitamina B12 (apoyo adicional contra la anemia)",
+				 "Frasco con 130 gomitas)",
+				 "❤️ ¡Hierro que sí se absorbe, energía que sí se siente! ❤️",
+            ],
+            usage:  "Consumir 1-2 gomitas diarias con el desayuno. No exceder la dosis recomendada",
+            testimonials: [
+                {
+                    text: "Me siento con más energía desde que las tomo",
+                    author: "Miguel A., 38 años",
+                },
+                {
+                    text: "Perfectas para complementar mi rutina de salud",
+                    author: "Eduardo R., 41 años",
+                },
+            ],
+        },
+		"7#": {
+            largeImage: "https://i.imgur.com/Q2Rz2Kw.png",
+            benefits: [
+            "Refuerza las defensas naturales de los niños.",
+            "Ayuda a aliviar las molestias de garganta y vías respiratorias.",
+            "Contribuye a prevenir resfriados y gripes estacionales.",
+            "Formato divertido y delicioso que los niños adorarán.",
+            "Apoyo inmunológico diario para los más pequeños."
+        ],
+        ingredients: [
+            "Extracto de Propóleo de alta calidad.",
+            "Vitamina C para un impulso extra de inmunidad.",
+            "Zinc para el correcto funcionamiento del sistema inmune.",
+            "Miel pura para un sabor delicioso y propiedades calmantes.",
+            "Saborizantes naturales de frutas (fresa, naranja, limón).",
+            "Sin colorantes ni conservantes artificiales."
+        ],
+        "usage": "Se recomienda administrar 1 a 2 gomitas al día a niños mayores de 3 años. Masticar completamente antes de tragar. No exceder la dosis recomendada.",
+      ingredients: [
+            {
+                "text": "Desde que mis hijos toman las gomitas de propóleo, se enferman mucho menos. ¡Están encantados con el sabor!",
+                "author": "Ana S., Mamá de 2"
+            },
+            {
+                "text": "Son perfectas para la guardería. Me da tranquilidad saber que están reforzando sus defensas de forma natural.",
+                "author": "Javier P., Papá de una niña"
+            },
+        ]
+    },
+	"8#": {
+            largeImage: "https://i.imgur.com/w8AokCO.png",
+		benefits: [
+            "Promueve la relajación y el descanso natural.",
+            "Ayuda a reducir el estrés y la ansiedad ocasional.",
+            "Favorece un sueño reparador sin sensación de pesadez.",
+            "Fácil de tomar y con un sabor agradable.",
+            "Ideal para calmar los nervios antes de situaciones estresantes."
+        ],
+        ingredients: [
+            "Extracto de Raíz de Valeriana (Valeriana officinalis).",
+            "Melatonina para regular el ciclo del sueño (si aplica en el producto, si no, omitir o adaptar).",
+            "Manzanilla y Lavanda para un efecto sinérgico relajante (si aplica).",
+            "Jarabe de glucosa, azúcar, gelatina (u otros agentes gelificantes si son veganas).",
+            "Ácido cítrico, sabores naturales.",
+            "Libre de gluten y lactosa (si aplica)."
+        ],
+        usage: "Se recomienda tomar 1 o 2 gomitas antes de acostarse, o cuando se necesite un efecto relajante.",
+        testimonials: [
+            {
+                "text": "Desde que las tomo, consigo conciliar el sueño mucho más rápido y me despierto más descansada. ¡Son geniales!",
+                "author": "Laura M., 45 años"
+            },
+            {
+                "text": "Me ayudan muchísimo a relajarme después de un día ajetreado. Su sabor es suave y no dejan resaca.",
+                "author": "Carlos R., 32 años"
+            },
+        ]
+},
+        "9#": {
+            largeImage: "https://i.imgur.com/Ccvj8wt.png",
+		 benefits: [
+            "Fortalece potentemente el sistema inmune.",
+            "Contribuye a reducir el cansancio y la fatiga.",
+            "Mejora la función muscular y nerviosa.",
+            "Promueve la salud ósea y dental.",
+            "Actúa como un poderoso antioxidante para proteger las células.",
+            "Apoya la salud del cabello, piel y uñas."
+        ],
+        ingredients: [
+            "Zinc (como Citrato de Zinc)",
+            "Magnesio (como Citrato de Magnesio)",
+            "Beta-Glucano (de Levadura)",
+            "Vitamina C (como Ácido Ascórbico)",
+            "Selenio (como Selenometionina)",
+            "Jarabe de Tapioca Orgánico",
+            "Azúcar de Caña Orgánica",
+            "Pectina",
+            "Sabores Naturales de Frutas",
+            "Ácido Cítrico"
+        ],
+        usage: "Tomar 2 gomitas al día, preferiblemente con una comida. Masticar bien antes de tragar. Diseñado para adultos. Consulte a un profesional de la salud si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que las tomo, me siento con mucha más energía y mi sistema inmunológico está a tope. ¡Un producto increíble!",
+                "author": "Sofía P., 35 años"
+            },
+            {
+                "text": "Estaba buscando un multivitamínico completo en un formato fácil de tomar, y estas gomitas superaron mis expectativas. El sabor es delicioso.",
+                "author": "Roberto G., 42 años"
+            }
+        ]
+    },
+
+
+        // EJEMPLOS CÁPSULAS
+        "c1": {
+            largeImage: "https://i.imgur.com/pcLMm5r.pngf",
+           benefits: [
+            "Apoyo para la vitalidad y el rendimiento masculino.",
+            "Contribuye a mejorar la circulación sanguínea.",
+            "Promueve la energía y la resistencia.",
+            "Formulado para el bienestar general y la confianza.",
+            "Ayuda a mantener una función saludable."
+        ],
+        ingredients: [
+            "L-Arginina",
+            "Extracto de Ginseng (Panax ginseng)",
+            "Maca (Lepidium meyenii)",
+            "Tribulus Terrestris",
+            "Zinc (como Gluconato de Zinc)",
+            "Vitaminas del complejo B",
+            "Celulosa microcristalina (agente de carga)",
+            "Estearato de magnesio (antiaglomerante)",
+            "Cápsula vegetal (HPMC)"
+        ],
+        usage: "Tomar 1 cápsula al día, preferiblemente con agua. Se recomienda tomar 30-60 minutos antes de la actividad o según las indicaciones de un profesional de la salud. No exceder la dosis recomendada.",
+        testimonials: [
+            {
+                "text": "Me siento con más energía y confianza. Noté una mejora significativa en mi rendimiento general.",
+                "author": "Alejandro D., 52 años"
+            },
+            {
+                "text": "Un producto que realmente cumple lo que promete. Siento que ha mejorado mi vitalidad diaria.",
+                "author": "Fernando S., 48 años"
+            }
+        ]
+    },
+        "c2": {
+            largeImage: "https://i.imgur.com/uYo7NaV.png",
+          benefits: [
+            "Promueve la salud y el bienestar de la próstata.",
+            "Ayuda a mantener una función urinaria normal.",
+            "Contribuye a reducir la inflamación y las molestias.",
+            "Apoya el flujo urinario saludable.",
+            "Formulación natural para el cuidado masculino."
+        ],
+        ingredients: [
+            "Extracto de Saw Palmetto (Serenoa repens)",
+            "Pygeum Africanum",
+            "Licopeno",
+            "Zinc (como Citrato de Zinc)",
+            "Selenio (como Selenometionina)",
+            "Vitamina E",
+            "Extracto de Semilla de Calabaza",
+            "Uva Ursi",
+            "Ortiga (Urtica dioica)",
+            "Otros excipientes y agentes de carga naturales."
+        ],
+        usage: "Tomar 2 cápsulas al día con una comida, o según las indicaciones de su profesional de la salud. Para obtener mejores resultados, se recomienda un uso continuo. No exceder la dosis recomendada.",
+        testimonials: [
+            {
+                "text": "He notado una gran mejora en mi flujo urinario y me siento mucho más cómodo desde que tomo BioProst. ¡Muy recomendable!",
+                "author": "Ricardo G., 65 años"
+            },
+            {
+                "text": "Este producto natural me ha ayudado a mantener mi próstata saludable sin efectos secundarios. Estoy muy satisfecho.",
+                "author": "Juan P., 58 años"
+            }
+        ]
+    },
+			"c3": {
+            largeImage: "https://i.imgur.com/L6PDL6n.png",
+            benefits: [
+                "Potente antioxidante natural que combate los radicales libres.",
+                "Apoya la aceleración del metabolismo y la quema de grasa.",
+                "Contribuye a aumentar los niveles de energía y concentración.",
+                "Favorece la salud cardiovascular y el control del colesterol.",
+                "Ayuda a la desintoxicación del organismo.",
+                "Promueve la salud general y el bienestar."
+            ],
+            ingredients: [
+                "Extracto de Hoja de Té Verde (Camellia sinensis)",
+                "Estandarizado a Polifenoles y Catequinas (EGCG)",
+                "Cafeína natural (en cantidades moderadas, si aplica)",
+                "Cápsula vegetal (Hipromelosa)",
+                "Agentes de carga (Celulosa microcristalina)",
+                "Antiaglomerantes (Estearato de magnesio, Dióxido de silicio)"
+            ],
+            usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para mejores resultados, tomar por la mañana o al mediodía. No exceder la dosis recomendada. Consulte a su médico si tiene alguna condición médica o es sensible a la cafeína.",
+            testimonials: [
+                {
+                    "text": "Me siento con más energía durante el día y he notado una mejora en mi digestión. ¡Excelente para mi rutina diaria!",
+                    "author": "María G., 30 años"
+                },
+                {
+                    "text": "Un gran aliado para mi metabolismo. Siento que me ayuda a mantenerme activo y a sentirme más ligero. Lo recomiendo.",
+                    "author": "Pablo R., 40 años"
+                }
+            ]
+        },
+		
+		"c4": {
+                largeImage: "https://i.imgur.com/D9mD7DB.png",
+        benefits: [
+            "Contribuye al realce de las curvas femeninas de forma natural.",
+            "Favorece la salud de la piel, haciéndola más suave y elástica.",
+            "Ayuda a fortalecer el cabello y las uñas.",
+            "Proporciona fitoestrógenos naturales para el equilibrio hormonal.",
+            "Rico en vitaminas A, C y E, y ácidos grasos esenciales.",
+            "Apoya la belleza integral desde el interior."
+        ],
+        ingredients: [
+            "Extracto de Fruto de Aguaje (Mauritia flexuosa)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida. Para resultados óptimos, se recomienda un uso continuado. Consulte a su médico antes de usar si está embarazada, amamantando o si tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Aguaje, siento mi piel más hidratada y elástica. ¡Mis curvas también lucen mejor!",
+                "author": "Camila P., 28 años"
+            },
+            {
+                "text": "Es un excelente suplemento para la belleza femenina. He notado mi cabello más fuerte y brillante. Muy feliz con los resultados.",
+                "author": "Valentina R., 34 años"
+            }
+            ]
+        },
+		
+		"c6": {
+        largeImage: "https://i.imgur.com/vTddhnl.png",
+        benefits: [
+            "Potencia la energía y el vigor general.",
+            "Ayuda a mejorar el rendimiento físico y mental.",
+            "Contribuye a la vitalidad masculina.",
+            "Promueve la fuerza y resistencia.",
+            "Fomenta un estado de ánimo positivo y enfoque."
+        ],
+        ingredients: [
+            "Extracto de Ginseng (Panax ginseng)",
+            "L-Arginina",
+            "Maca (Lepidium meyenii)",
+            "Tribulus Terrestris",
+            "Zinc",
+            "Vitaminas del complejo B",
+            "Extractos de plantas adaptógenas (ej. Rhodiola Rosea, Ashwagandha, si aplica)",
+            "Celulosa microcristalina",
+            "Cápsula vegetal (Hipromelosa)"
+        ],
+        usage: "Tomar 1 cápsula al día con un vaso de agua, preferiblemente por la mañana. No exceder la dosis recomendada. Consulte a su médico antes de usar si tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Me siento más enérgico y con una vitalidad renovada. 'Alfa Maxx' realmente funciona para mantenerme activo.",
+                "author": "Andrés P., 45 años"
+            },
+            {
+                "text": "Desde que lo tomo, mi concentración ha mejorado y siento un impulso extra para enfrentar el día. Muy satisfecho.",
+                "author": "Daniel S., 39 años"
+            }
+            ]
+        },
+			"c7": {
+        largeImage: "https://i.imgur.com/mcYspYv.png",
+        benefits: [
+            "Apoya la reducción de medidas en la zona abdominal.",
+            "Contribuye a la eliminación de líquidos y toxinas.",
+            "Favorece un metabolismo digestivo saludable.",
+            "Ayuda a controlar el apetito y la ansiedad por comer.",
+            "Promueve la quema de grasa de forma natural.",
+            "Proporciona un efecto desintoxicante y depurativo."
+        ],
+        ingredients: [
+            "Extracto de Jengibre (Zingiber officinale)",
+            "Té Verde (Camellia sinensis)",
+            "Jamaica (Hibiscus sabdariffa)",
+            "Alcachofa (Cynara scolymus)",
+            "Linaza (Linum usitatissimum)",
+            "Raíz de Nopal (Opuntia ficus-indica)",
+            "Ciruela (Prunus domestica)",
+            "Picolinato de Cromo (para el control del azúcar en sangre)",
+            "Cápsula vegetal (Hipromelosa)"
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con un vaso de agua, preferiblemente 30 minutos antes de las comidas principales. Se recomienda acompañar con una dieta balanceada y ejercicio regular para mejores resultados. No exceder la dosis recomendada.",
+        testimonials: [
+            {
+                "text": "Desde que lo uso, he notado una diferencia en mi abdomen y me siento menos hinchada. ¡Me encanta!",
+                "author": "Fernanda L., 38 años"
+            },
+            {
+                "text": "Es el complemento perfecto para mi rutina de bienestar. Me ayuda a sentirme más ligera y activa.",
+                "author": "Miguel R., 42 años"
+            }
+            ]
+        },
+		 "c8": {
+        largeImage: "https://i.imgur.com/Fvyor5I.png",
+        benefits: [
+            "Apoya la producción natural de leche materna en madres lactantes.",
+            "Contribuye al control de los niveles de azúcar en la sangre.",
+            "Favorece una digestión saludable y reduce la hinchazón.",
+            "Ayuda a mejorar la salud del cabello y el cuero cabelludo.",
+            "Promueve el equilibrio hormonal natural.",
+            "Rico en fibra dietética para la saciedad y el tránsito intestinal."
+        ],
+        ingredients: [
+            "Extracto de Semilla de Fenogreco (Trigonella foenum-graecum)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga (Celulosa microcristalina)",
+            "Antiaglomerantes (Estearato de magnesio, Dióxido de silicio)"
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para madres lactantes, consulte a su médico para la dosis adecuada. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Fenogreco, he notado una mejora significativa en mi producción de leche. ¡Es increíble!",
+                "author": "Laura V., 30 años (Madre lactante)"
+            },
+            {
+                "text": "Me ayuda a mantener mis niveles de azúcar estables y siento mi digestión mucho más ligera. Un excelente complemento.",
+                "author": "Roberto C., 55 años"
+            }
+            ]
+        },
+		 "c9": {
+        largeImage: "https://i.imgur.com/SVvq1TL.png",
+        benefits: [
+            "Favorece la salud digestiva y el equilibrio de la flora intestinal.",
+            "Ayuda a fortalecer el sistema inmunológico de forma natural.",
+            "Contribuye a la desintoxicación y limpieza del organismo.",
+            "Apoya la recuperación de molestias estomacales e intestinales.",
+            "Aporta nutrientes esenciales para el bienestar general."
+        ],
+        ingredients: [
+            "Polvo de Tocosh (Solanum tuberosum fermentado)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con agua, preferiblemente antes de las comidas. No exceder la dosis recomendada. Consulte a un profesional de la salud si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi digestión ha mejorado muchísimo desde que tomo Tocosh. Siento mi estómago más ligero y desinflamado.",
+                "author": "Isabel P., 40 años"
+            },
+            {
+                "text": "Es un gran apoyo para mi sistema inmune, especialmente en épocas de cambios. Me siento más fuerte y protegido.",
+                "author": "Carlos M., 50 años"
+            }
+            ]
+        },
+		 "c10": {
+        largeImage: "https://i.imgur.com/XjxJNdD.png",
+        benefits: [
+            "Superalimento rico en vitaminas, minerales y aminoácidos.",
+            "Potente antioxidante que combate el daño de los radicales libres.",
+            "Apoya la energía y la vitalidad general.",
+            "Contribuye a la salud de la piel y el cabello.",
+            "Ayuda a fortalecer el sistema inmunológico.",
+            "Favorece la desintoxicación y el bienestar digestivo."
+        ],
+        ingredients: [
+            "Extracto de Hoja de Moringa Oleifera",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga (Celulosa microcristalina)",
+            "Antiaglomerantes (Estearato de magnesio, Dióxido de silicio)"
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Me siento con mucha más energía y mi piel luce radiante desde que incluyo Moringa en mi dieta. ¡Es un cambio notable!",
+                "author": "Laura Q., 42 años"
+            },
+            {
+                "text": "Un excelente suplemento para mi bienestar diario. Siento que me ayuda a mantenerme saludable y activo. Totalmente recomendado.",
+                "author": "Manuel A., 50 años"
+            }
+            ]
+        },
+		
+		"c11": {
+        largeImage: "https://i.imgur.com/xx0rCq6.png",
+        benefits: [
+            "Potencia el realce natural de las curvas femeninas.",
+            "Favorece el equilibrio hormonal y el bienestar femenino.",
+            "Contribuye a una digestión saludable y reduce la hinchazón (gracias al Hinojo).",
+            "Aumenta la energía, vitalidad y resistencia (gracias a la Maca).",
+            "Mejora la salud de la piel, cabello y uñas.",
+            "Apoyo integral para la salud femenina."
+        ],
+        ingredients: [
+            "Extracto de Fruto de Aguaje (Mauritia flexuosa)",
+            "Extracto de Semilla de Hinojo (Foeniculum vulgare)",
+            "Extracto de Raíz de Maca (Lepidium meyenii)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. Consulte a su médico antes de usar si está embarazada, amamantando o si tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "¡Esta combinación es increíble! Me siento con más energía, mi digestión ha mejorado y mis curvas lucen más definidas.",
+                "author": "Sofía C., 32 años"
+            },
+            {
+                "text": "Un producto completo para la mujer. He notado un equilibrio en mi cuerpo y me siento con mayor vitalidad a diario. Muy contenta.",
+                "author": "Gabriela F., 40 años"
+            }
+            ]
+        },
+		
+		"c12": {
+        largeImage: "https://i.imgur.com/0PadOJ9.png",
+        benefits: [
+            "Potencia la energía y el vigor masculino.",
+            "Contribuye a mejorar la resistencia física y el rendimiento.",
+            "Favorece la vitalidad y el bienestar general del hombre.",
+            "Ayuda a mantener un estado de ánimo positivo y confianza.",
+            "Formulado para un soporte integral de la fuerza y el aguante."
+        ],
+        ingredients: [
+            "Extracto de Raíz de Maca (Lepidium meyenii)",
+            "Ginseng (Panax ginseng)",
+            "L-Arginina",
+            "Tribulus Terrestris",
+            "Damiana (Turnera diffusa)",
+            "Zinc",
+            "Vitaminas del complejo B",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con un vaso de agua, preferiblemente por la mañana o antes de la actividad. No exceder la dosis recomendada. Consulte a su médico antes de usar si tiene alguna condición médica o está tomando otros medicamentos.",
+        testimonials: [
+            {
+                "text": "Desde que uso Vigoron Maxx, me siento con una energía renovada y mi resistencia ha mejorado notablemente. ¡Un cambio excelente!",
+                "author": "Javier L., 50 años"
+            },
+            {
+                "text": "Es el impulso que necesitaba. Siento más vitalidad y confianza en mi día a día. Totalmente recomendado para hombres activos.",
+                "author": "Roberto A., 43 años"
+            }
+            ]
+        },
+		
+			"c13": {
+        largeImage: "https://i.imgur.com/TKaXBZN.png",
+        benefits: [
+            "Apoya la salud cardiovascular y el corazón.",
+            "Contribuye al buen funcionamiento cerebral y la memoria.",
+            "Favorece la salud de la piel, cabello y uñas.",
+            "Ayuda a reducir la inflamación en el cuerpo.",
+            "Esencial para el bienestar ocular.",
+            "Promueve el equilibrio de colesterol saludable."
+        ],
+        ingredients: [
+            "Aceite de Pescado (Omega 3: EPA y DHA)",
+            "Aceite de Linaza (Omega 3, 6, 9)",
+            "Aceite de Borraja (Omega 6, GLA)",
+            "Vitamina E (como antioxidante)",
+            "Gelatina (de la cápsula blanda)",
+            "Glicerina (humectante)",
+            "Agua purificada"
+        ],
+        usage: "Tomar 1 a 2 cápsulas blandas al día, preferiblemente con las comidas. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tomando anticoagulantes o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "He notado una mejora en mi concentración y mi piel se siente más hidratada. ¡El Omega Triple es un esencial para mí!",
+                "author": "Claudia R., 48 años"
+            },
+            {
+                "text": "Un producto excelente para la salud del corazón. Me siento más activo y mi bienestar general ha mejorado. Lo recomiendo sin duda.",
+                "author": "Felipe G., 55 años"
+            }
+            ]
+        },
+		
+			"c14": {
+        largeImage: "https://i.imgur.com/yZ7Owg6.png",
+        benefits: [
+            "Apoya la salud ósea y dental fuerte.",
+            "Contribuye a la formación de glóbulos rojos y previene la anemia.",
+            "Esencial para el funcionamiento normal del sistema nervioso.",
+            "Ayuda a reducir el cansancio y la fatiga, aumentando la energía.",
+            "Fundamental para el metabolismo energético y el bienestar general.",
+            "Ideal para personas con deficiencias de hierro, calcio o vitamina B12."
+        ],
+        ingredients: [
+            "Hierro (como Fumarato Ferroso o Bisglicinato de Hierro)",
+            "Calcio (como Carbonato de Calcio o Citrato de Calcio)",
+            "Vitamina B12 (Cianocobalamina o Metilcobalamina)",
+            "Vitamina D3 (para la absorción del Calcio, si aplica)",
+            "Ácido Fólico (para la absorción del Hierro, si aplica)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua, o según las indicaciones de su médico. No exceder la dosis recomendada. Consulte a su médico si está embarazada, amamantando o tiene alguna condición médica, especialmente si toma otros suplementos de hierro o calcio.",
+        testimonials: [
+            {
+                "text": "Sentía mucha fatiga, pero desde que tomo este suplemento, mi energía ha regresado y mis huesos se sienten más fuertes. ¡Excelente combinación!",
+                "author": "María J., 40 años"
+            },
+            {
+                "text": "Mi médico me lo recomendó para mi deficiencia de hierro y me ha ayudado muchísimo. Además, el calcio es un plus para mis huesos.",
+                "author": "Pedro S., 58 años"
+            }
+            ]
+        },
+		
+		"c15": {
+        largeImage: "https://i.imgur.com/fppSMAz.png",
+        benefits: [
+            "Aumenta los niveles de energía y reduce el cansancio.",
+            "Esencial para el buen funcionamiento del sistema nervioso.",
+            "Contribuye a la formación normal de glóbulos rojos.",
+            "Apoya la salud cerebral y la función cognitiva.",
+            "Favorece un metabolismo saludable de proteínas, grasas y carbohidratos.",
+            "Fundamental para el bienestar general y la vitalidad."
+        ],
+        ingredients: [
+            "Vitamina B1 (Tiamina)",
+            "Vitamina B2 (Riboflavina)",
+            "Vitamina B3 (Niacina)",
+            "Vitamina B5 (Ácido Pantoténico)",
+            "Vitamina B6 (Piridoxina)",
+            "Vitamina B7 (Biotina)",
+            "Vitamina B9 (Ácido Fólico)",
+            "Vitamina B12 (Cianocobalamina o Metilcobalamina)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día, preferiblemente con una comida y un vaso de agua. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Siento un gran cambio en mi energía desde que tomo este Complejo B. Adiós al cansancio extremo y más concentración.",
+                "author": "Marta G., 35 años"
+            },
+            {
+                "text": "Es el impulso que necesitaba para mi día a día. Mis nervios están más tranquilos y me siento más vital. Excelente producto.",
+                "author": "Jorge L., 47 años"
+            }
+            ]
+        },
+		
+		"c16": {
+        largeImage: "https://i.imgur.com/uQj68Jf.png",
+        benefits: [
+            "Ayuda a mantener niveles saludables de azúcar en la sangre.",
+            "Contribuye al control de los niveles de colesterol.",
+            "Apoya la regulación de la presión arterial dentro de rangos normales.",
+            "Promueve la salud cardiovascular general.",
+            "Fórmula natural para el bienestar metabólico integral.",
+            "Actúa como un antioxidante protector."
+        ],
+        ingredients: [
+            "Extracto de Canela (Cinnamomum verum)",
+            "Melón Amargo (Momordica charantia)",
+            "Berberina (si aplica)",
+            "Ácido Alfa Lipoico",
+            "Cromo (como Picolinato de Cromo)",
+            "Ajo Negro (Allium sativum)",
+            "Hibisco (Hibiscus sabdariffa)",
+            "Fenogreco (Trigonella foenum-graecum)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para mejores resultados, se recomienda un uso constante junto con un estilo de vida saludable. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tomando medicamentos para diabetes, colesterol o presión arterial.",
+        testimonials: [
+            {
+                "text": "Estoy muy contenta con los resultados. Mis chequeos han mejorado y me siento mucho más tranquila sobre mi salud.",
+                "author": "Ana R., 60 años"
+            },
+            {
+                "text": "Un gran apoyo para mi bienestar general. Me ayuda a mantener a raya mis indicadores de salud de forma natural. Lo recomiendo.",
+                "author": "José M., 68 años"
+            }
+            ]
+        },
+		
+		"c17": {
+        largeImage: "https://i.imgur.com/G7HThAX.png",
+        benefits: [
+            "Alivia las molestias estomacales y la acidez.",
+            "Favorece una digestión suave y eficiente.",
+            "Ayuda a proteger la mucosa gástrica e intestinal.",
+            "Contribuye a reducir la hinchazón y los gases.",
+            "Promueve el bienestar digestivo general.",
+            "Ideal para calmar el estómago de forma natural."
+        ],
+        ingredients: [
+            "Regaliz (Glycyrrhiza glabra)",
+            "Manzanilla (Matricaria chamomilla)",
+            "Aloe Vera (Aloe barbadensis Miller)",
+            "Malvavisco (Althaea officinalis)",
+            "Jengibre (Zingiber officinale)",
+            "Bicarbonato de sodio (para el alivio de la acidez, si aplica)",
+            "Carbonato de Calcio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas con agua antes o después de las comidas, o según sea necesario para el alivio digestivo. No exceder la dosis recomendada. Consulte a su médico si los síntomas persisten o si está embarazada, amamantando o tomando otros medicamentos.",
+        testimonials: [
+            {
+                "text": "Gastrizan ha sido mi salvación para la acidez. Siento un alivio rápido y duradero. Lo recomiendo a todos con problemas estomacales.",
+                "author": "Patricia L., 45 años"
+            },
+            {
+                "text": "Ahora puedo disfrutar de mis comidas sin preocuparme por la indigestión. Me siento mucho más cómodo y mi digestión es excelente.",
+                "author": "Ramón S., 58 años"
+            }
+            ]
+        },
+		
+		"c18": {
+        largeImage: "https://i.imgur.com/sx1JhBh.png",
+        benefits: [
+            "Ayuda a equilibrar las hormonas de forma natural.",
+            "Alivia los síntomas de la menopausia y perimenopausia (sofocos, cambios de humor).",
+            "Contribuye a la salud ósea y cardiovascular en la mujer.",
+            "Promueve el bienestar emocional y reduce la irritabilidad.",
+            "Favorece la vitalidad y el confort durante las etapas de cambio hormonal."
+        ],
+        ingredients: [
+            "Isoflavonas de Soya (Glycine max)",
+            "Cimicífuga Racemosa (Black Cohosh)",
+            "Dong Quai (Angelica sinensis)",
+            "Ñame Silvestre (Dioscorea villosa)",
+            "Trébol Rojo (Trifolium pratense)",
+            "Vitaminas del complejo B (si aplica)",
+            "Vitamina D3 y Calcio (para soporte óseo, si aplica)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida, o según las indicaciones de su profesional de la salud. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si tiene antecedentes de condiciones sensibles a hormonas.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Fito Hormonas, mis sofocos han disminuido y me siento mucho más equilibrada. ¡Una gran ayuda en esta etapa!",
+                "author": "Carmen R., 52 años"
+            },
+            {
+                "text": "Me ha ayudado a manejar los cambios de humor y a dormir mejor. Es un apoyo natural excelente para el balance hormonal.",
+                "author": "Elena M., 48 años"
+            }
+            ]
+        },
+		
+		"c19": {
+        largeImage: "https://i.imgur.com/S3dlPET.png",
+        benefits: [
+            "Promueve la salud y flexibilidad de las articulaciones.",
+            "Ayuda a regenerar el cartílago y reducir el desgaste.",
+            "Alivia el dolor y la rigidez articular.",
+            "Contribuye a mejorar la movilidad y el confort al moverse.",
+            "Fortalece huesos, tendones y ligamentos.",
+            "Soporte integral para la salud articular y ósea."
+        ],
+        ingredients: [
+            "Glucosamina (Sulfato de Glucosamina)",
+            "Colágeno Hidrolizado (Tipo II o Bovino/Marino)",
+            "Cartílago de Tiburón",
+            "Condroitina (Sulfato de Condroitina, si aplica)",
+            "MSM (Metilsulfonilmetano, si aplica)",
+            "Vitamina C (para la síntesis de colágeno, si aplica)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 2 cápsulas al día con una comida y un vaso de agua. Para obtener resultados óptimos, se recomienda un uso continuado durante al menos 3 meses. No exceder la dosis recomendada. Consulte a su médico antes de usar si tiene alergia al pescado o mariscos, o alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mis rodillas se sienten mucho mejor desde que tomo este suplemento. La rigidez ha disminuido y puedo moverme con más facilidad.",
+                "author": "Ramón D., 62 años"
+            },
+            {
+                "text": "Es el apoyo perfecto para mis articulaciones después del ejercicio. Me ayuda a recuperarme más rápido y sin molestias. Muy recomendado.",
+                "author": "Sofía T., 49 años"
+            }
+            ]
+        },
+		
+		"c20": {
+        largeImage: "https://i.imgur.com/qgUDB36.png",
+        benefits: [
+            "Apoya la salud y función hepática óptima.",
+            "Contribuye a la desintoxicación natural del hígado.",
+            "Ayuda a proteger el hígado de toxinas y daños.",
+            "Promueve la regeneración de las células hepáticas.",
+            "Actúa como un potente antioxidante para el bienestar general.",
+            "Favorece una digestión saludable."
+        ],
+        ingredients: [
+            "Extracto de Semilla de Cardo Mariano (Silybum marianum)",
+            "Estandarizado a Silimarina (el compuesto activo)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida. No exceder la dosis recomendada. Para obtener mejores resultados, se recomienda un uso continuado. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica hepática preexistente.",
+        testimonials: [
+            {
+                "text": "Mi hígado se siente mucho mejor y tengo más energía desde que tomo Cardo Mariano. ¡Un excelente desintoxicante natural!",
+                "author": "Ricardo B., 55 años"
+            },
+            {
+                "text": "Es el apoyo perfecto para mi hígado. Me ayuda a sentirme más ligero y a mantener mi sistema digestivo en forma. Lo recomiendo ampliamente.",
+                "author": "Ana F., 48 años"
+            }
+            ]
+        },
+		
+		"c21": {
+        largeImage: "https://i.imgur.com/Nj7yx15.png",
+        benefits: [
+            "Superalimento rico en proteínas, vitaminas y minerales esenciales.",
+            "Potente antioxidante que ayuda a combatir el estrés oxidativo.",
+            "Contribuye a la desintoxicación natural del organismo.",
+            "Aumenta los niveles de energía y vitalidad.",
+            "Apoya el sistema inmunológico.",
+            "Favorece el control del peso y la saciedad."
+        ],
+        ingredients: [
+            "Alga Spirulina en polvo (Arthrospira platensis)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 2 cápsulas al día con un vaso de agua, preferiblemente antes de las comidas. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Spirulina, mi energía se ha disparado y me siento mucho más vital. ¡Un complemento esencial para mi bienestar!",
+                "author": "Carla S., 32 años"
+            },
+            {
+                "text": "Me ayuda a desintoxicarme y a sentirme más ligera. Es el superalimento perfecto para complementar mi dieta diaria. Lo recomiendo.",
+                "author": "Diego F., 45 años"
+            }
+            ]
+        },
+		
+		"c22": {
+        largeImage: "https://i.imgur.com/qEKTdul.png",
+        benefits: [
+            "Potencia la energía y reduce el cansancio y la fatiga.",
+            "Apoya el funcionamiento saludable del sistema nervioso.",
+            "Contribuye al metabolismo energético normal (Vitaminas B).",
+            "Fortalece el sistema inmunitario (Vitamina D, Ginseng).",
+            "Favorece la salud ósea y muscular (Vitamina D).",
+            "Mejora la concentración y el rendimiento mental (Ginseng)."
+        ],
+        ingredients: [
+            "Extracto de Ginseng (Panax ginseng)",
+            "Vitamina B1 (Tiamina)",
+            "Vitamina B2 (Riboflavina)",
+            "Vitamina B6 (Piridoxina)",
+            "Vitamina D (Colecalciferol)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tiene alguna condición médica o está tomando medicamentos.",
+        testimonials: [
+            {
+                "text": "Siento una energía increíble durante todo el día y mi mente está mucho más clara. ¡La combinación perfecta para mi rutina!",
+                "author": "Laura P., 40 años"
+            },
+            {
+                "text": "Me ha ayudado muchísimo a superar la fatiga y a sentirme más fuerte, tanto física como mentalmente. Un excelente impulso.",
+                "author": "Roberto F., 52 años"
+            }
+            ]
+        },
+		
+		  "c23": {
+        largeImage: "https://i.imgur.com/ma0KeR1.png",
+        benefits: [
+            "Apoya la salud del riñón y la vesícula biliar.",
+            "Ayuda a la eliminación natural de cálculos renales y biliares (piedras).",
+            "Contribuye a la desintoxicación del tracto urinario.",
+            "Promueve una función renal saludable.",
+            "Actúa como diurético natural para la eliminación de líquidos."
+        ],
+        ingredients: [
+            "Extracto de Chanca Piedra (Phyllanthus niruri)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con un vaso de agua, preferiblemente antes de las comidas. Se recomienda beber abundante agua durante el uso. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, o tiene condiciones médicas preexistentes de riñón o vesícula.",
+        testimonials: [
+            {
+                "text": "He tenido problemas renales por años y Chanca Piedra me ha ayudado a sentir un alivio notable. ¡Un gran apoyo natural!",
+                "author": "Manuel A., 60 años"
+            },
+            {
+                "text": "Siento que mi sistema urinario funciona mucho mejor y me siento más ligero. Un producto efectivo y natural.",
+                "author": "Rosa B., 52 años"
+            }
+            ]
+        },
+		
+		 "c24": {
+        largeImage: "https://i.imgur.com/QBwg3aF.png",
+        benefits: [
+            "Ayuda a mantener niveles saludables de azúcar en la sangre.",
+            "Contribuye al metabolismo normal de la glucosa.",
+            "Apoya la sensibilidad a la insulina.",
+            "Favorece la energía y reduce la fatiga asociada a desequilibrios de azúcar.",
+            "Promueve el bienestar general en personas con preocupaciones de azúcar en la sangre."
+        ],
+        ingredients: [
+            "Extracto de Melón Amargo (Momordica charantia)",
+            "Canela (Cinnamomum verum)",
+            "Picolinato de Cromo",
+            "Ácido Alfa Lipoico",
+            "Gimnema Silvestre (Gymnema sylvestre)",
+            "Nopal (Opuntia ficus-indica)",
+            "Extracto de Fenogreco (Trigonella foenum-graecum)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para mejores resultados, se recomienda el uso continuo y un estilo de vida saludable. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tomando medicamentos para la diabetes.",
+        testimonials: [
+            {
+                "text": "Desde que incorporé Diabetisan a mi rutina, he notado una mejora en la estabilidad de mis niveles de azúcar. Me siento más controlada y con más energía.",
+                "author": "Sofía V., 60 años"
+            },
+            {
+                "text": "Me ayuda a mantener mis niveles de glucosa bajo control de forma natural. Es un gran apoyo para mi salud metabólica.",
+                "author": "Carlos R., 55 años"
+            }
+            ]
+        },
+		
+		"c25": {
+        largeImage: "https://i.imgur.com/wQXXyBc.png",
+        benefits: [
+            "Esencial para la salud ósea y la absorción de calcio.",
+            "Fortalece el sistema inmunológico, ayudando a prevenir enfermedades.",
+            "Contribuye al buen funcionamiento muscular.",
+            "Apoya la salud cardiovascular.",
+            "Influye positivamente en el estado de ánimo y el bienestar emocional.",
+            "Fundamental para el equilibrio general del organismo."
+        ],
+        ingredients: [
+            "Vitamina D3 (Colecalciferol)",
+            "Aceite de girasol o coco (para mejor absorción, si es cápsula blanda)",
+            "Cápsula blanda de gelatina o cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes (en caso de tabletas o cápsulas duras)."
+        ],
+        usage: "Tomar 1 cápsula o gota al día con una comida, o según las indicaciones de su profesional de la salud. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi médico me recomendó Vitamina D y he notado una gran mejora en mi energía y mi ánimo. ¡Esencial para el día a día!",
+                "author": "Laura G., 48 años"
+            },
+            {
+                "text": "Me ayuda a mantener mis huesos fuertes y a sentirme con más vitalidad, especialmente en los meses con menos sol. Un producto de calidad.",
+                "author": "Roberto P., 60 años"
+            }
+            ]
+        },
+		
+		 "c26": {
+        largeImage: "https://i.imgur.com/yiIUVBf.png",
+        benefits: [
+            "Potente antioxidante que protege las células del daño.",
+            "Fortalece el sistema inmunológico, ayudando a prevenir resfriados y gripes.",
+            "Esencial para la formación de colágeno, mejorando la salud de la piel, huesos y encías.",
+            "Contribuye a la absorción de hierro.",
+            "Apoya la energía y reduce el cansancio y la fatiga.",
+            "Favorece la salud cardiovascular."
+        ],
+        ingredients: [
+            "Vitamina C (como Ácido Ascórbico o Ascorbato de Calcio/Sodio)",
+            "Extractos cítricos (si aplica, para bioflavonoides)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para un refuerzo inmunitario extra, se puede tomar hasta 2 cápsulas al día, consultando a un profesional. No exceder la dosis recomendada. Consulte a su médico si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Vitamina C, me siento con más defensas y energía. Es un básico para mi bienestar diario, especialmente en invierno.",
+                "author": "Andrea G., 30 años"
+            },
+            {
+                "text": "Mi piel luce más luminosa y mi sistema inmune está más fuerte. Un gran suplemento que no puede faltar en casa.",
+                "author": "Javier R., 45 años"
+            }
+            ]
+        },
+		
+		"c27": {
+        largeImage: "https://i.imgur.com/w1RNnQd.png",
+        benefits: [
+            "Favorece la salud y elasticidad de la piel, ayudando a reducir la apariencia de celulitis y estrías.",
+            "Contribuye a mejorar la circulación sanguínea, especialmente en las piernas.",
+            "Apoya la cicatrización de heridas y la regeneración de tejidos.",
+            "Ayuda a mejorar la función cognitiva y la memoria.",
+            "Tiene propiedades antioxidantes y antiinflamatorias.",
+            "Promueve el bienestar general y la vitalidad."
+        ],
+        ingredients: [
+            "Extracto de Centella Asiática (Gotu Kola, Centella asiatica)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos en la piel, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "He notado una mejora increíble en la firmeza de mi piel y la reducción de celulitis. ¡La Centella Asiática es maravillosa!",
+                "author": "Laura M., 39 años"
+            },
+            {
+                "text": "Me ayuda a sentir las piernas más ligeras y a mejorar la circulación. Un producto natural muy eficaz.",
+                "author": "Rosa P., 50 años"
+            }
+            ]
+        },
+		
+		 "c28": {
+        largeImage: "https://i.imgur.com/fuorVen.png",
+        benefits: [
+            "Ayuda a mejorar la circulación sanguínea en las piernas.",
+            "Contribuye a reducir la hinchazón y la sensación de pesadez.",
+            "Alivia las molestias y el cansancio asociados con las varices.",
+            "Fortalece las paredes de los vasos sanguíneos y capilares.",
+            "Promueve la salud venosa y el bienestar de las piernas."
+        ],
+        ingredients: [
+            "Castaño de Indias (Aesculus hippocastanum)",
+            "Rusco (Ruscus aculeatus)",
+            "Vid Roja (Vitis vinifera)",
+            "Ginkgo Biloba",
+            "Vitamina C (para la producción de colágeno en vasos)",
+            "Bioflavonoides Cítricos",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado y combinar con hábitos saludables para las piernas (ej. elevación, ejercicio). No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica circulatoria.",
+        testimonials: [
+            {
+                "text": "Mis piernas se sienten mucho más ligeras y la hinchazón ha disminuido notablemente. ¡Varizan ha sido un gran descubrimiento!",
+                "author": "Laura S., 58 años"
+            },
+            {
+                "text": "Noto una mejoría en la apariencia de mis venas y la molestia es casi nula. Me da mucha más comodidad en mi día a día.",
+                "author": "Mario P., 65 años"
+            }
+            ]
+        },
+		
+		"c29": {
+        largeImage: "https://i.imgur.com/Sa578cB.png",
+        benefits: [
+            "Esencial para la salud ósea y la absorción de calcio.",
+            "Fortalece el sistema inmunológico, ayudando a prevenir enfermedades.",
+            "Contribuye al buen funcionamiento muscular.",
+            "Apoya la salud cardiovascular.",
+            "Influye positivamente en el estado de ánimo y el bienestar emocional.",
+            "Fundamental para el equilibrio general del organismo."
+        ],
+        ingredients: [
+            "Vitamina D3 (Colecalciferol)",
+            "Aceite de girasol o coco (para mejor absorción, si es cápsula blanda)",
+            "Cápsula blanda de gelatina o cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes (en caso de tabletas o cápsulas duras)."
+        ],
+        usage: "Tomar 1 cápsula o gota al día con una comida, o según las indicaciones de su profesional de la salud. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi médico me recomendó Vitamina D y he notado una gran mejora en mi energía y mi ánimo. ¡Esencial para el día a día!",
+                "author": "Laura G., 48 años"
+            },
+            {
+                "text": "Me ayuda a mantener mis huesos fuertes y a sentirme con más vitalidad, especialmente en los meses con menos sol. Un producto de calidad.",
+                "author": "Roberto P., 60 años"
+            }
+            ]
+        },
+		
+		"c30": {
+        largeImage: "https://i.imgur.com/GYKe7Hi.png",
+        benefits: [
+            "Contribuye al funcionamiento normal de músculos y nervios.",
+            "Ayuda a mantener huesos y dientes fuertes y sanos.",
+            "Apoya la reducción del cansancio y la fatiga.",
+            "Favorece el equilibrio electrolítico en el cuerpo.",
+            "Participa en el metabolismo energético y la producción de proteínas.",
+            "Promueve un sueño reparador y la relajación."
+        ],
+        ingredients: [
+            "Cloruro de Magnesio Hexahidratado",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales (si aplica en la presentación)."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con agua, preferiblemente con las comidas. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tiene problemas renales o alguna otra condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Cloruro de Magnesio, mis calambres musculares han desaparecido y me siento con mucha más vitalidad. ¡Es increíble!",
+                "author": "Manuel S., 62 años"
+            },
+            {
+                "text": "Me ayuda a dormir profundamente y a sentirme más relajado. Un producto esencial para mi bienestar diario.",
+                "author": "Patricia V., 50 años"
+            }
+            ]
+        },
+		
+		"c31": {
+        largeImage: "https://i.imgur.com/ELxjUz3.png",
+        benefits: [
+            "Apoya el equilibrio hormonal femenino natural.",
+            "Contribuye al bienestar general del sistema reproductor femenino.",
+            "Ayuda a aliviar molestias asociadas con el ciclo menstrual.",
+            "Promueve una sensación de confort y vitalidad femenina.",
+            "Fomenta la desintoxicación y la limpieza del organismo."
+        ],
+        ingredients: [
+            "Extracto de Ñame Silvestre (Dioscorea villosa)",
+            "Dong Quai (Angelica sinensis)",
+            "Cimicífuga Racemosa (Black Cohosh)",
+            "Sauzgatillo (Vitex agnus-castus)",
+            "Maca (Lepidium meyenii)",
+            "Extracto de Frambuesa (Rubus idaeus)",
+            "Vitamina B6 (Piridoxina)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o si tiene alguna condición médica, especialmente si está bajo tratamiento médico.",
+        testimonials: [
+            {
+                "text": "He notado un gran equilibrio en mi ciclo y me siento mucho más cómoda y con menos molestias. Un producto natural que realmente ayuda.",
+                "author": "Patricia V., 40 años"
+            },
+            {
+                "text": "Me ha proporcionado un bienestar general que antes no sentía. Me siento más armoniosa y con más vitalidad como mujer.",
+                "author": "Isabel M., 48 años"
+            }
+            ]
+        },
+		
+		"c32": {
+        largeImage: "https://i.imgur.com/mrM1WqP.png",
+        benefits: [
+            "Potente acción antiinflamatoria natural para articulaciones y músculos.",
+            "Fuerte capacidad antioxidante que protege las células del daño.",
+            "Apoya la salud digestiva y alivia molestias estomacales.",
+            "Contribuye al bienestar del sistema inmunológico.",
+            "Mejora la absorción de los nutrientes (gracias a la pimienta negra).",
+            "Promueve la salud cerebral y cardiovascular."
+        ],
+        ingredients: [
+            "Extracto de Raíz de Cúrcuma (Curcuma longa)",
+            "Extracto de Raíz de Jengibre (Zingiber officinale)",
+            "Extracto de Pimienta Negra (Piper nigrum, estandarizado a Piperina)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tomando anticoagulantes o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mis dolores articulares han disminuido mucho desde que tomo este suplemento. La combinación es realmente efectiva y me siento más ágil.",
+                "author": "Sofía D., 58 años"
+            },
+            {
+                "text": "Un excelente antiinflamatorio natural que también me ayuda con la digestión. Siento una gran diferencia en mi bienestar general.",
+                "author": "Marco V., 45 años"
+            }
+            ]
+        },
+		
+		 "c33": {
+        largeImage: "https://i.imgur.com/LLUeKZV.png",
+        benefits: [
+            "Esencial para mantener huesos y dientes fuertes y sanos.",
+            "Contribuye al funcionamiento normal de músculos y nervios.",
+            "Fortalece el sistema inmunológico y las defensas del cuerpo.",
+            "Ayuda a reducir el cansancio y la fatiga.",
+            "Favorece un sueño reparador y la relajación.",
+            "Vital para el metabolismo energético y la división celular."
+        ],
+        ingredients: [
+            "Calcio (como Carbonato de Calcio o Citrato de Calcio)",
+            "Magnesio (como Óxido de Magnesio o Citrato de Magnesio)",
+            "Zinc (como Citrato de Zinc o Gluconato de Zinc)",
+            "Vitamina D3 (Colecalciferol, para la absorción de Calcio)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Desde que tomo este suplemento, siento mis huesos más fuertes y duermo mucho mejor. ¡La combinación perfecta!",
+                "author": "Elena G., 58 años"
+            },
+            {
+                "text": "Me ha ayudado a mejorar mi energía y mi sistema inmune. Es un básico para mi salud diaria. Muy recomendado.",
+                "author": "Pedro S., 45 años"
+            }
+            ]
+        },
+		
+		"c34": {
+        largeImage: "https://i.imgur.com/TDlMM9l.png",
+        benefits: [
+            "Potente apoyo para el sistema inmunológico.",
+            "Ayuda a reducir la inflamación y el dolor articular.",
+            "Contribuye a la salud digestiva y alivia molestias intestinales.",
+            "Actúa como un antioxidante natural.",
+            "Promueve el bienestar general y la vitalidad."
+        ],
+        ingredients: [
+            "Extracto de Corteza de Uña de Gato (Uncaria tomentosa)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica, especialmente autoinmunes o trasplantes.",
+        testimonials: [
+            {
+                "text": "Mis articulaciones se sienten mucho mejor y mi sistema inmune está más fuerte. ¡Uña de Gato es un aliado increíble para mi salud!",
+                "author": "Laura F., 50 años"
+            },
+            {
+                "text": "Noto una gran diferencia en mi bienestar general y mi digestión. Un producto natural que realmente me ayuda a sentirme mejor.",
+                "author": "Ricardo H., 62 años"
+            }
+            ]
+        },
+		
+		"c35": {
+        largeImage: "https://i.imgur.com/Tytc1yu.png",
+        benefits: [
+            "Apoya la salud y función hepática óptima.",
+            "Contribuye a la desintoxicación natural del hígado.",
+            "Ayuda a proteger el hígado de toxinas y daños.",
+            "Promueve la regeneración de las células hepáticas.",
+            "Actúa como un potente antioxidante para el bienestar general.",
+            "Favorece una digestión saludable."
+        ],
+        ingredients: [
+            "Extracto de Semilla de Cardo Mariano (Silybum marianum)",
+            "Estandarizado a Silimarina (el compuesto activo)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida. No exceder la dosis recomendada. Para obtener mejores resultados, se recomienda un uso continuado. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica hepática preexistente.",
+        testimonials: [
+            {
+                "text": "Mi hígado se siente mucho mejor y tengo más energía desde que tomo Cardo Mariano. ¡Un excelente desintoxicante natural!",
+                "author": "Ricardo B., 55 años"
+            },
+            {
+                "text": "Es el apoyo perfecto para mi hígado. Me ayuda a sentirme más ligero y a mantener mi sistema digestivo en forma. Lo recomiendo ampliamente.",
+                "author": "Ana F., 48 años"
+            }
+            ]
+        },
+		
+		"c36": {
+        largeImage: "https://i.imgur.com/fKGoM4t.png",
+        benefits: [
+            "Promueve la salud y el bienestar óptimo de la próstata.",
+            "Ayuda a mantener una función urinaria normal y un flujo saludable.",
+            "Contribuye a reducir la inflamación y las molestias urinarias.",
+            "Formulado con ingredientes naturales para el cuidado masculino.",
+            "Apoya la vitalidad y la calidad de vida en hombres."
+        ],
+        ingredients: [
+            "Extracto de Saw Palmetto (Serenoa repens)",
+            "Pygeum Africanum",
+            "Licopeno",
+            "Zinc (como Citrato de Zinc)",
+            "Selenio (como Selenometionina)",
+            "Ortiga (Urtica dioica)",
+            "Extracto de Semilla de Calabaza",
+            "Maca Negra (Lepidium meyenii, si aplica por origen peruano)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida. Se recomienda el uso continuo para obtener mejores resultados. No exceder la dosis recomendada. Consulte a su médico antes de usar si tiene alguna condición médica o está bajo medicación.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Bio Prost, he notado una gran mejora en mi flujo urinario y en mi bienestar general. ¡Es un alivio!",
+                "author": "Juan C., 68 años"
+            },
+            {
+                "text": "Un producto natural excelente que realmente apoya la salud de la próstata. Me siento con más confort y confianza.",
+                "author": "Felipe R., 62 años"
+            }
+            ]
+        },
+		
+		"c37": {
+        largeImage: "https://i.imgur.com/GjVC9YV.png",
+        benefits: [
+            "Promueve la regularidad intestinal y un tránsito saludable.",
+            "Ayuda a limpiar el colon de toxinas acumuladas.",
+            "Contribuye a aliviar las molestias asociadas con las hemorroides.",
+            "Favorece la desinflamación y el confort en la zona anal.",
+            "Apoya la salud digestiva general y el bienestar intestinal."
+        ],
+        ingredients: [
+            "Psyllium Husk (fibra soluble)",
+            "Linaza (Linum usitatissimum)",
+            "Aloe Vera (Aloe barbadensis Miller)",
+            "Castaño de Indias (Aesculus hippocastanum)",
+            "Rusco (Ruscus aculeatus)",
+            "Sen (Cassia angustifolia, en dosis moderadas para colon clean)",
+            "Cáscara Sagrada (Rhamnus purshiana, en dosis moderadas)",
+            "Jengibre (Zingiber officinale)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 2 cápsulas al día con un vaso grande de agua, preferiblemente antes de dormir o en ayunas. Es crucial beber abundante agua durante el día. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tiene alguna condición intestinal preexistente o está tomando laxantes.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Colon Clean, mi digestión es mucho más regular y he sentido un gran alivio en las molestias de las hemorroides. ¡Excelente!",
+                "author": "Martha R., 55 años"
+            },
+            {
+                "text": "Me ayuda a sentirme más ligero y a mantener mi colon limpio. Además, ha reducido la incomodidad considerablemente. Lo recomiendo.",
+                "author": "Carlos G., 48 años"
+            }
+            ]
+        },
+		
+		"c38": {
+        largeImage: "https://i.imgur.com/igMh4gA.png",
+        benefits: [
+            "Ayuda a regular el ciclo menstrual de forma natural.",
+            "Alivia los síntomas del Síndrome Premenstrual (SPM) como hinchazón, irritabilidad y cólicos.",
+            "Contribuye al equilibrio hormonal femenino.",
+            "Reduce las molestias y la irregularidad del periodo.",
+            "Promueve el bienestar y confort durante todo el ciclo."
+        ],
+        ingredients: [
+            "Sauzgatillo (Vitex agnus-castus)",
+            "Dong Quai (Angelica sinensis)",
+            "Cohosh Negro (Cimicífuga racemosa)",
+            "Ñame Silvestre (Dioscorea villosa)",
+            "Maca (Lepidium meyenii)",
+            "Extracto de Frambuesa (Rubus idaeus)",
+            "Vitamina B6 (Piridoxina)",
+            "Magnesio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda el uso continuo durante al menos 2-3 ciclos. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o si tiene alguna condición médica, especialmente trastornos hormonales.",
+        testimonials: [
+            {
+                "text": "Mi ciclo se ha vuelto mucho más regular y los cólicos son casi inexistentes. ¡Me siento una nueva persona durante mi periodo!",
+                "author": "Andrea N., 28 años"
+            },
+            {
+                "text": "Ha reducido drásticamente mis cambios de humor y la hinchazón antes del periodo. Es un gran apoyo natural para mi bienestar mensual.",
+                "author": "Paola S., 35 años"
+            }
+            ]
+        },
+		
+		"c39": {
+        largeImage: "https://i.imgur.com/pMUeyay.png",
+        benefits: [
+            "Mejora la elasticidad y firmeza de la piel, reduciendo arrugas y líneas de expresión.",
+            "Fortalece el cabello, las uñas y promueve su crecimiento saludable.",
+            "Apoya la salud de las articulaciones, tendones y ligamentos, reduciendo el dolor.",
+            "Contribuye a la regeneración de cartílagos y tejidos conectivos.",
+            "Favorece la salud ósea y la densidad mineral.",
+            "Promueve la salud intestinal y la digestión."
+        ],
+        ingredients: [
+            "Colágeno Hidrolizado (Bovino, Marino o de Pollo, especificar fuente si es posible)",
+            "Vitamina C (para la síntesis de colágeno)",
+            "Ácido Hialurónico (si aplica para mayor beneficio en piel/articulaciones)",
+            "Biotina (para cabello y uñas, si aplica)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con agua, preferiblemente en ayunas o antes de dormir. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi piel se ve más tersa y mis uñas están mucho más fuertes. ¡El Colágeno es un antes y un después en mi rutina de belleza!",
+                "author": "Ana S., 45 años"
+            },
+            {
+                "text": "Noto una gran mejoría en mis articulaciones, menos crujidos y más flexibilidad. Un excelente suplemento para mantenerme activo.",
+                "author": "Pedro M., 58 años"
+            }
+            ]
+        },
+		
+		"c40": {
+        largeImage: "https://i.imgur.com/Gr4875z.png",
+        benefits: [
+            "Promueve la salud y flexibilidad de las articulaciones.",
+            "Contribuye a la regeneración y protección del cartílago.",
+            "Fortalece huesos, tendones y ligamentos.",
+            "Ayuda a reducir el dolor y la inflamación articular.",
+            "Apoya la función muscular normal y la reducción de calambres.",
+            "Mejora la elasticidad de la piel y el bienestar general."
+        ],
+        ingredients: [
+            "Colágeno Hidrolizado",
+            "Cartílago de Tiburón",
+            "Magnesio (como Citrato de Magnesio, Cloruro de Magnesio, o similar)",
+            "Vitamina C (para la síntesis de colágeno, si aplica)",
+            "Condroitina y Glucosamina (presentes en cartílago de tiburón, o añadidas)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tiene alergia al pescado/mariscos o alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mis articulaciones se sienten mucho más lubricadas y flexibles. El dolor ha disminuido considerablemente. ¡Una combinación muy efectiva!",
+                "author": "Alberto G., 65 años"
+            },
+            {
+                "text": "Noto que mi recuperación post-ejercicio es mejor y mis huesos se sienten más fuertes. El magnesio además me ayuda a relajarme. Excelente producto.",
+                "author": "María P., 50 años"
+            }
+            ]
+        },
+		
+        // EJEMPLOS SUPLEMENTOS
+        "suplemento-1": {
+            largeImage: "https://i.imgur.com/F0zLVyw.mp4",
+            benefits: [
+                "🌾 Rica en zinc natural",
+                "🥤 Perfecta para smoothies",
+                "🌱 100% orgánica certificada",
+                "💪 Fortalece el sistema inmune",
+            ],
+            ingredients: [
+                "Harina de semillas de calabaza orgánica",
+                "Zinc natural",
+                "Ácidos grasos omega-3",
+                "Fibra dietética",
+            ],
+            usage: "Mezclar 2 cucharadas con agua, jugo o smoothie. Consumir 1-2 veces al día, preferiblemente en ayunas.",
+            testimonials: [
+                {
+                    text: "Excelente sabor y muy nutritiva",
+                    author: "David L., 42 años",
+                },
+                {
+                    text: "La uso en mis batidos matutinos, me encanta",
+                    author: "Alberto S., 36 años",
+                },
+            ],
+        },
+        "suplemento-2": {
+            largeImage: "https://i.imgur.com/j6ik9u1.png",
+            benefits: [
+                "🏆 Aceite premium prensado en frío",
+                "🌿 Rico en fitoesteroles",
+                "💊 Fácil absorción",
+                "🎯 Específico para próstata",
+            ],
+            ingredients: [
+                "Aceite de semilla de calabaza estiria",
+                "Fitoesteroles",
+                "Omega-3 y 6",
+                "Vitamina E natural",
+            ],
+            usage: "Tomar 1 cucharadita (5ml) dos veces al día con las comidas. Puede mezclarse con jugos o tomarse directamente.",
+            testimonials: [
+                {
+                    text: "Calidad excepcional, se nota la diferencia",
+                    author: "Manuel R., 50 años",
+                },
+                {
+                    text: "Muy concentrado y efectivo",
+                    author: "Pedro C., 47 años",
+                },
+            ],
+        },
+    };
+
+    // Return detailed info or default structure
+    return (
+        detailedProducts[productId] || {
+            largeImage: null,
+            benefits: [
+                "🌿 100% ingredientes naturales",
+                "✅ Sin efectos secundarios",
+                "🎯 Específico para salud prostática",
+                "💪 Fortalece el bienestar general",
+            ],
+            ingredients: [
+                "Extractos naturales",
+                "Vitaminas esenciales",
+                "Minerales importantes",
+            ],
+            usage: "Seguir las indicaciones del empaque. Consultar con especialista si es necesario.",
+            testimonials: [
+                {
+                    text: "Excelente producto, muy recomendado",
+                    author: "Cliente satisfecho",
+                },
+            ],
+        }
+    );
 }
 
 function closeProductModal() {
-    document.getElementById('productModal').style.display = 'none';
+    document.getElementById("productModal").style.display = "none";
 }
 
 // Cart functions
@@ -403,8 +2645,8 @@ function addToCart(productId) {
     const product = findProductById(productId);
     if (!product) return;
 
-    const existingItem = cart.find(item => item.id === productId);
-    
+    const existingItem = cart.find((item) => item.id === productId);
+
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -417,17 +2659,17 @@ function addToCart(productId) {
 }
 
 function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+    cart = cart.filter((item) => item.id !== productId);
     updateCartDisplay();
     saveCartToStorage();
 }
 
 function updateQuantity(productId, change) {
-    const item = cart.find(item => item.id === productId);
+    const item = cart.find((item) => item.id === productId);
     if (!item) return;
 
     item.quantity += change;
-    
+
     if (item.quantity <= 0) {
         removeFromCart(productId);
     } else {
@@ -440,13 +2682,13 @@ function clearCart() {
     cart = [];
     updateCartDisplay();
     saveCartToStorage();
-    showNotification('Carrito vacío');
+    showNotification("Carrito vacío");
 }
 
 function updateCartDisplay() {
-    const cartCount = document.getElementById('cartCount');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
+    const cartCount = document.getElementById("cartCount");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
 
     // Update cart count
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -455,20 +2697,21 @@ function updateCartDisplay() {
     // Update cart items
     if (cartItems) {
         if (cart.length === 0) {
-            cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Tu carrito está vacío</p>';
-            if (cartTotal) cartTotal.textContent = '0';
+            cartItems.innerHTML =
+                '<p style="text-align: center; color: #666; padding: 20px;">Tu carrito está vacío</p>';
+            if (cartTotal) cartTotal.textContent = "0";
             return;
         }
 
-        cartItems.innerHTML = '';
+        cartItems.innerHTML = "";
         let total = 0;
 
-        cart.forEach(item => {
+        cart.forEach((item) => {
             const itemTotal = item.price * item.quantity;
             total += itemTotal;
 
-            const cartItem = document.createElement('div');
-            cartItem.className = 'cart-item';
+            const cartItem = document.createElement("div");
+            cartItem.className = "cart-item";
             cartItem.innerHTML = `
                 <div class="item-info">
                     <div class="item-name">${item.name}</div>
@@ -478,6 +2721,7 @@ function updateCartDisplay() {
                     <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
                     <span>${item.quantity}</span>
                     <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+
                 </div>
                 <button class="remove-item" onclick="removeFromCart('${item.id}')">Eliminar</button>
             `;
@@ -489,19 +2733,20 @@ function updateCartDisplay() {
 }
 
 function toggleCart() {
-    const modal = document.getElementById('cartModal');
+    const modal = document.getElementById("cartModal");
     if (modal) {
-        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        modal.style.display =
+            modal.style.display === "block" ? "none" : "block";
     }
 }
 
 // Storage functions
 function saveCartToStorage() {
-    localStorage.setItem('naturalUrologyCart', JSON.stringify(cart));
+    localStorage.setItem("naturalUrologyCart", JSON.stringify(cart));
 }
 
 function loadCartFromStorage() {
-    const savedCart = localStorage.getItem('naturalUrologyCart');
+    const savedCart = localStorage.getItem("naturalUrologyCart");
     if (savedCart) {
         cart = JSON.parse(savedCart);
         updateCartDisplay();
@@ -511,31 +2756,34 @@ function loadCartFromStorage() {
 // Payment functions
 function showPaymentOptions() {
     if (cart.length === 0) {
-        alert('Tu carrito está vacío');
+        alert("Tu carrito está vacío");
         return;
     }
-    
-    document.getElementById('cartModal').style.display = 'none';
-    document.getElementById('paymentModal').style.display = 'block';
+
+    document.getElementById("cartModal").style.display = "none";
+    document.getElementById("paymentModal").style.display = "block";
 }
 
 function closePaymentModal() {
-    document.getElementById('paymentModal').style.display = 'none';
-    const paymentDetails = document.getElementById('paymentDetails');
+    document.getElementById("paymentModal").style.display = "none";
+    const paymentDetails = document.getElementById("paymentDetails");
     if (paymentDetails) {
-        paymentDetails.style.display = 'none';
-        paymentDetails.innerHTML = '';
+        paymentDetails.style.display = "none";
+        paymentDetails.innerHTML = "";
     }
 }
 
 function showPaymentDetails(method) {
-    const details = document.getElementById('paymentDetails');
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    let paymentInfo = '';
-    
-    switch(method) {
-        case 'bcp':
+    const details = document.getElementById("paymentDetails");
+    const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0,
+    );
+
+    let paymentInfo = "";
+
+    switch (method) {
+        case "bcp":
             paymentInfo = `
                 <div class="payment-info">
                     <h4>💳 Datos para Transferencia BCP</h4>
@@ -554,7 +2802,7 @@ function showPaymentDetails(method) {
                 </div>
             `;
             break;
-        case 'interbancaria':
+        case "interbancaria":
             paymentInfo = `
                 <div class="payment-info">
                     <h4>🏦 Datos para Transferencia Interbancaria</h4>
@@ -572,7 +2820,7 @@ function showPaymentDetails(method) {
                 </div>
             `;
             break;
-        case 'yape':
+        case "yape":
             paymentInfo = `
                 <div class="payment-info">
                     <h4>📱 Datos para Yape</h4>
@@ -591,23 +2839,23 @@ function showPaymentDetails(method) {
             `;
             break;
     }
-    
+
     details.innerHTML = paymentInfo;
-    details.style.display = 'block';
+    details.style.display = "block";
 }
 
 // Utility functions
 function findProductById(productId) {
     for (const category in products) {
-        const product = products[category].find(p => p.id === productId);
+        const product = products[category].find((p) => p.id === productId);
         if (product) return product;
     }
     return null;
 }
 
 function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
+    const notification = document.createElement("div");
+    notification.className = "notification";
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -622,11 +2870,11 @@ function showNotification(message) {
         animation: slideInRight 0.3s ease-out;
     `;
     notification.textContent = message;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease-in';
+        notification.style.animation = "slideOutRight 0.3s ease-in";
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.parentNode.removeChild(notification);
@@ -636,40 +2884,47 @@ function showNotification(message) {
 }
 
 // Close modals when clicking outside
-window.addEventListener('click', function(event) {
-    const cartModal = document.getElementById('cartModal');
-    const paymentModal = document.getElementById('paymentModal');
-    const productModal = document.getElementById('productModal');
-    
+window.addEventListener("click", function (event) {
+    const cartModal = document.getElementById("cartModal");
+    const paymentModal = document.getElementById("paymentModal");
+    const productModal = document.getElementById("productModal");
+
     if (event.target === cartModal) {
-        cartModal.style.display = 'none';
+        cartModal.style.display = "none";
     }
     if (event.target === paymentModal) {
-        paymentModal.style.display = 'none';
+        paymentModal.style.display = "none";
     }
     if (event.target === productModal) {
-        productModal.style.display = 'none';
+        productModal.style.display = "none";
     }
 });
 
 // Smooth scrolling for navigation
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+document.addEventListener("DOMContentLoaded", function () {
+    document
+        .querySelectorAll('a[href^="#"]:not([href="#"])')
+        .forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(
+                    this.getAttribute("href"),
+                );
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+                }
+            });
         });
-    });
 });
 
+// Para personalizar productos, edita directamente la función initializeProducts() arriba
+// No hay funciones de personalización desde el navegador - todo se hace desde el código fuente
+
 // Add CSS animations
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
     @keyframes slideInRight {
         from {
@@ -681,7 +2936,7 @@ style.textContent = `
             opacity: 1;
         }
     }
-    
+
     @keyframes slideOutRight {
         from {
             transform: translateX(0);
