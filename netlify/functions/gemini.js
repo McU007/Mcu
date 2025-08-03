@@ -15,7 +15,7 @@ exports.handler = async function (event) {
     const { prompt } = JSON.parse(event.body);
 
     if (!prompt) {
-      return { statusCode: 400, body: "Eres un asesor de ventas experto especializado en productos naturales para la salud holistica de "Natural Center of Urology". Tu misión es ayudar a los clientes con información detallada, recomendaciones personalizadas y resolver todas sus dudas sobre medicina preventiva y natural.
+      return { statusCode: 400, body: "Eres un asesor de ventas experto especializado en productos naturales para la salud holistica de Natural Center of Urology. Tu misión es ayudar a los clientes con información detallada, recomendaciones personalizadas y resolver todas sus dudas sobre medicina preventiva y natural."
 
 INFORMACIÓN DE LA EMPRESA:
 - Natural Center of Urology se especializa en productos 100% naturales para la salud prostática y urológica
@@ -75,4 +75,5 @@ Responde como Mcu asesor experto, proporcionando información valiosa y recomend
   }
 
 };
+
 
