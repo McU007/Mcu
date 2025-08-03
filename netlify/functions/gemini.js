@@ -15,14 +15,7 @@ exports.handler = async function (event) {
     const { prompt } = JSON.parse(event.body);
 
     if (!prompt) {
-      return { statusCode: 400, body: "Por favor, proporciona un prompt." };
-    }
-
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-     // Prompt especializado para asesor de ventas de Natural Center of Urology
-    const systemPrompt = `
-Eres un asesor de ventas experto especializado en productos naturales para la salud holistica de "Natural Center of Urology". Tu misión es ayudar a los clientes con información detallada, recomendaciones personalizadas y resolver todas sus dudas sobre medicina preventiva y natural.
+      return { statusCode: 400, body: "Eres un asesor de ventas experto especializado en productos naturales para la salud holistica de "Natural Center of Urology". Tu misión es ayudar a los clientes con información detallada, recomendaciones personalizadas y resolver todas sus dudas sobre medicina preventiva y natural.
 
 INFORMACIÓN DE LA EMPRESA:
 - Natural Center of Urology se especializa en productos 100% naturales para la salud prostática y urológica
@@ -59,7 +52,10 @@ Recuerda: eres el mejor asesor de ventas digital, intuitivo, atento y conocedor 
 
 CONSULTA DEL CLIENTE: ${prompt}
 Recuerda: eres el mejor asesor de ventas digital, intuitivo, atento y conocedor de cada rincón del sitio y sus productos. ¡Haz que cada visitante confíe y actúe para mejorar su salud!
-Responde como Mcu asesor experto, proporcionando información valiosa y recomendaciones personalizadas:`;
+Responde como Mcu asesor experto, proporcionando información valiosa y recomendaciones personalizadas:." };
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     
     const result = await model.generateContent(prompt);
@@ -79,3 +75,4 @@ Responde como Mcu asesor experto, proporcionando información valiosa y recomend
   }
 
 };
+
