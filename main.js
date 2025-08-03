@@ -618,6 +618,196 @@ function initializeProducts() {
         category: "capsulas",
     });
 	
+			 products.capsulas.push({
+        id: "c41",
+        name: "Saw Palmetto Ultra, El aliado natural de tu próstata después de los 40",
+        price: 49,
+        image: "https://i.imgur.com/LKAOmrB.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c42",
+        name: "Biotina Hair & Nails 💖 ¡La fórmula definitiva para un cabello de ensueño y uñas fuertes! 💖",
+        price: 49,
+        image: "https://i.imgur.com/lCxXrKu.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c43",
+        name: "HepaDetox Ultra higado graso ¡Regeneración Hepática Avanzada,  para tu salud hepática!",
+        price: 49,
+        image: "https://i.imgur.com/apK9Mrp.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c44",
+        name: "Melatonina Ultra+, El descanso que tu cuerpo merece",
+        price: 49,
+        image: "https://i.imgur.com/xBMUggB.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c45",
+        name: "StemBiotin Renewal, Celulas madres+biotina La ciencia de la juventud en una fórmula",
+        price: 49,
+        image: "https://i.imgur.com/60peIsC.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c46",
+        name: "Brewer's Gold+ Levadura de Cerveza El multivitamínico que la naturaleza te diseñó",
+        price: 49,
+        image: "https://i.imgur.com/wThCyy1.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c47",
+        name: "NAD+ Elite Renewal ¡Antienvejecimiento Celular Premium!",
+        price: 49,
+        image: "https://i.imgur.com/FbD8ory.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c48",
+        name: "NAD+ 1500mg 🧬 ¡Regeneración Celular Avanzada!",
+        price: 49,
+        image: "https://i.imgur.com/lAYKg7O.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c49",
+        name: "Resveratrol Ultra+ 1500mg✨ ¡Antioxidante Premium para Longevidad!",
+        price: 49,
+        image: "https://i.imgur.com/J2c4hLD.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c50",
+        name: "NAD+ Resveratrol Elite, La combinación más avanzada para la longevidad celular",
+        price: 49,
+        image: "https://i.imgur.com/aCi8mjK.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c51",
+        name: "Ashwagandha Pura 500mg ¡Adaptógeno Clínico para Estrés y Energía!",
+        price: 49,
+        image: "https://i.imgur.com/88LxZhe.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c52",
+        name: "Ashwagandha Forte 600mg ¡Potenciador de Energía y Resistencia Natural!",
+        price: 49,
+        image: "https://i.imgur.com/0Wy1fAG.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c53",
+        name: "Ácido Hialurónico Ultra+💧 ¡Hidratación Profunda y Antiedad!",
+        price: 49,
+        image: "https://i.imgur.com/isEX2YJ.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c54",
+        name: "Shilajit Premiums ¡Energía Ancestral de los Andes!",
+        price: 49,
+        image: "https://i.imgur.com/1S6CIJ5.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c55",
+        name: "Magnesium L-Threonate Premium🧠 ¡Potenciador Cerebral de Última Generación!",
+        price: 49,
+        image: "https://i.imgur.com/cL4K2PH.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c56",
+        name: "Citrato de Magnesio Puro ¡Relajación Muscular y Nerviosa!",
+        price: 49,
+        image: "https://i.imgur.com/KkSQqin.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c57",
+        name: "Magnesio + Potasio Dual ¡Equilibrio Electrolítico Premium!",
+        price: 49,
+        image: "https://i.imgur.com/1915WhN.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c58",
+        name: "Magnesio Dual Avanzado ¡Doble Formulación para Máximo Beneficio!",
+        price: 49,
+        image: "https://i.imgur.com/uYLHjhR.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c59",
+        name: "Melena de León Neuro, El aliado natural de tu cerebro",
+        price: 49,
+        image: "https://i.imgur.com/lcy3Yj2.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c60",
+        name: "L-Arginina Ultra+❤️ ¡Potencia Tu Circulación y Energía!",
+        price: 49,
+        image: "https://i.imgur.com/2cjHplg.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
     // Resto de cápsulas (generadas automáticamente)
     for (let i = 1; i <= 1; i++) {
         products.capsulas.push({
@@ -2554,6 +2744,507 @@ function getDetailedProductInfo(productId) {
             }
             ]
         },
+			
+		"c40": {
+        largeImage: "https://i.imgur.com/Gr4875z.png",
+        benefits: [
+            "Promueve la salud y flexibilidad de las articulaciones.",
+            "Contribuye a la regeneración y protección del cartílago.",
+            "Fortalece huesos, tendones y ligamentos.",
+            "Ayuda a reducir el dolor y la inflamación articular.",
+            "Apoya la función muscular normal y la reducción de calambres.",
+            "Mejora la elasticidad de la piel y el bienestar general."
+        ],
+        ingredients: [
+            "Colágeno Hidrolizado",
+            "Cartílago de Tiburón",
+            "Magnesio (como Citrato de Magnesio, Cloruro de Magnesio, o similar)",
+            "Vitamina C (para la síntesis de colágeno, si aplica)",
+            "Condroitina y Glucosamina (presentes en cartílago de tiburón, o añadidas)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tiene alergia al pescado/mariscos o alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mis articulaciones se sienten mucho más lubricadas y flexibles. El dolor ha disminuido considerablemente. ¡Una combinación muy efectiva!",
+                "author": "Alberto G., 65 años"
+            },
+            {
+                "text": "Noto que mi recuperación post-ejercicio es mejor y mis huesos se sienten más fuertes. El magnesio además me ayuda a relajarme. Excelente producto.",
+                "author": "María P., 50 años"
+            }
+            ]
+        },
+			
+		"c41": {
+        largeImage: "https://i.imgur.com/LKAOmrB.png",
+        benefits: [
+            "Apoya la salud de la próstata y la función urinaria en hombres.",
+            "Contribuye a reducir los síntomas asociados con el agrandamiento benigno de la próstata (BPH).",
+            "Ayuda a mejorar el flujo urinario y la frecuencia.",
+            "Puede contribuir a la salud del cabello y reducir la caída en hombres.",
+            "Fomenta el bienestar general y la calidad de vida masculina."
+        ],
+        ingredients: [
+            "Extracto de Fruto de Saw Palmetto (Serenoa repens)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si tiene alguna condición médica o está tomando medicamentos, especialmente para la próstata.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Saw Palmetto, he notado una gran mejora en mis visitas nocturnas al baño. ¡Me siento mucho mejor!",
+                "author": "Roberto C., 65 años"
+            },
+            {
+                "text": "Un producto natural excelente para la próstata. Me ha ayudado a sentirme más cómodo y con un flujo urinario más normal. Totalmente recomendado.",
+                "author": "Luis F., 59 años"
+            }
+            ]
+        },
+			
+		"c42": {
+        largeImage: "https://i.imgur.com/lCxXrKu.png",
+        benefits: [
+            "Fortalece el cabello, promoviendo su crecimiento saludable y reduciendo la caída.",
+            "Mejora la salud de las uñas, haciéndolas más fuertes y menos quebradizas.",
+            "Contribuye a una piel radiante y saludable.",
+            "Esencial para el metabolismo de carbohidratos, grasas y proteínas.",
+            "Apoya la energía y la función del sistema nervioso."
+        ],
+        ingredients: [
+            "Biotina (Vitamina B7 o H)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos en cabello y uñas, se recomienda un uso continuado de al menos 3 meses. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi cabello está más grueso y brillante que nunca. ¡La Biotina realmente funciona para la salud capilar!",
+                "author": "Sofía V., 30 años"
+            },
+            {
+                "text": "Mis uñas ya no se rompen con facilidad y mi piel luce mucho mejor. Un básico para mi rutina de belleza y bienestar.",
+                "author": "Andrea G., 42 años"
+            }
+            ]
+        },
+			
+		"c43": {
+        largeImage: "https://i.imgur.com/apK9Mrp.png",
+        benefits: [
+            "Ayuda a la desintoxicación y depuración del hígado.",
+            "Contribuye a la reducción de la grasa acumulada en el hígado.",
+            "Favorece la regeneración de las células hepáticas.",
+            "Apoya la función digestiva y el metabolismo de las grasas.",
+            "Promueve el bienestar general y la energía.",
+            "Protege el hígado contra el daño oxidativo."
+        ],
+        ingredients: [
+            "Extracto de Cardo Mariano (Silybum marianum)",
+            "Boldo (Peumus boldus)",
+            "Alcachofa (Cynara scolymus)",
+            "Diente de León (Taraxacum officinale)",
+            "Colina (como Bitartrato de Colina)",
+            "Inositol",
+            "Metionina",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado y un estilo de vida saludable. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tiene alguna condición hepática grave o está bajo medicación.",
+        testimonials: [
+            {
+                "text": "Mi médico me recomendó un apoyo para el hígado graso y este producto ha sido excelente. Siento mi digestión mucho mejor y más energía.",
+                "author": "Ricardo G., 55 años"
+            },
+            {
+                "text": "Noto una gran diferencia en mi bienestar general. Me siento más ligero y mi hígado funciona de manera más eficiente. Muy contento con los resultados.",
+                "author": "Sofía C., 48 años"
+            }
+            ]
+        },
+			
+		"c44": {
+        largeImage: "https://i.imgur.com/xBMUggB.png",
+        benefits: [
+            "Ayuda a conciliar el sueño más rápidamente.",
+            "Mejora la calidad del sueño, permitiendo un descanso más profundo y reparador.",
+            "Contribuye a regular el ciclo natural de sueño-vigilia (ritmo circadiano).",
+            "Alivia los síntomas del jet lag y la adaptación a nuevos horarios.",
+            "Reduce el insomnio ocasional y promueve la relajación antes de dormir."
+        ],
+        ingredients: [
+            "Melatonina",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula 30 minutos antes de acostarse con un vaso de agua. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tomando otros medicamentos (especialmente sedantes o anticoagulantes) o tiene alguna condición médica. Evitar conducir u operar maquinaria pesada después de tomarla.",
+        testimonials: [
+            {
+                "text": "Desde que tomo Melatonina, duermo toda la noche sin interrupciones. Me levanto renovado y con energía. ¡Es un salvavidas!",
+                "author": "María G., 55 años"
+            },
+            {
+                "text": "Me ayuda a regular mi sueño cuando viajo o cuando mis horarios cambian. Es suave pero efectiva. Muy recomendable para el insomnio ocasional.",
+                "author": "Andrés P., 40 años"
+            }
+            ]
+        },
+			
+		"c45": {
+        largeImage: "https://i.imgur.com/60peIsC.png",
+        benefits: [
+            "Estimula la regeneración celular para una piel más joven y radiante.",
+            "Fortalece el cabello desde la raíz, promoviendo su crecimiento y reduciendo la caída.",
+            "Mejora la salud y fortaleza de las uñas, evitando la fragilidad.",
+            "Ayuda a reparar y revitalizar tejidos, contribuyendo a una apariencia más juvenil.",
+            "Aporta un brillo natural a la piel y el cabello, mejorando su textura."
+        ],
+        ingredients: [
+            "Células Madre Vegetales (por ejemplo, de argán, manzana o uva)",
+            "Biotina (Vitamina B7 o H)",
+            "Colágeno Hidrolizado (si aplica para sinergia)",
+            "Vitamina C (como antioxidante y para síntesis de colágeno)",
+            "Extractos botánicos (ej. Ginseng, Cola de caballo, si aplican)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos en piel, cabello y uñas, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi piel luce increíblemente más suave y mis líneas de expresión se han atenuado. El cabello también ha mejorado muchísimo. ¡Una fórmula potente!",
+                "author": "Laura M., 50 años"
+            },
+            {
+                "text": "Siento una revitalización general. Mis uñas están irrompibles y mi cabello tiene un brillo asombroso. Es el secreto para sentirme y verme más joven.",
+                "author": "Alejandra P., 42 años"
+            }
+            ]
+        },
+			
+		"c46": {
+        largeImage: "https://i.imgur.com/wThCyy1.png",
+        benefits: [
+            "Fuente rica en Vitaminas del Complejo B para energía y vitalidad.",
+            "Ayuda a fortalecer el cabello, la piel y las uñas.",
+            "Contribuye a una digestión saludable y al equilibrio de la flora intestinal.",
+            "Apoya el sistema inmunológico.",
+            "Promueve la salud nerviosa y reduce la fatiga.",
+            "Aporta proteínas y aminoácidos esenciales."
+        ],
+        ingredients: [
+            "Levadura de Cerveza (Saccharomyces cerevisiae)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 a 2 cápsulas al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Mi piel luce mucho más clara y mi cabello está más fuerte. La Levadura de Cerveza ha sido un gran aliado para mi belleza y energía.",
+                "author": "Laura F., 35 años"
+            },
+            {
+                "text": "Me siento con más energía y mi digestión ha mejorado notablemente. Un suplemento natural muy completo para el día a día.",
+                "author": "Carlos V., 48 años"
+            }
+            ]
+        },
+			
+		"c47": {
+        largeImage: "https://i.imgur.com/FbD8ory.png",
+        benefits: [
+            "Potente fórmula antienvejecimiento que ayuda a combatir el daño celular.",
+            "Aumenta los niveles de energía celular y la vitalidad general.",
+            "Contribuye a la salud cardiovascular y la función cardíaca.",
+            "Apoya la función cerebral, la memoria y la concentración.",
+            "Actúa como un fuerte antioxidante que protege el cuerpo contra el estrés oxidativo.",
+            "Promueve la longevidad y el bienestar a nivel celular."
+        ],
+        ingredients: [
+            "NAD+ (Nicotinamida Adenina Dinucleótido)",
+            "Resveratrol",
+            "Coenzima Q10 (CoQ10)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado como parte de un régimen de bienestar. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tomando anticoagulantes o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Siento una energía renovada y mi piel luce más joven. ¡Esta combinación es un verdadero impulso antiedad!",
+                "author": "Isabel R., 55 años"
+            },
+            {
+                "text": "Mi claridad mental ha mejorado y me siento con más vitalidad en el día a día. Es un suplemento esencial para mi salud a largo plazo.",
+                "author": "Carlos S., 62 años"
+            }
+            ]
+        },
+			
+		"c48": {
+        largeImage: "https://i.imgur.com/lAYKg7O.png",
+        benefits: [
+            "Potencia la producción de energía celular y la vitalidad.",
+            "Ayuda a ralentizar los procesos de envejecimiento a nivel celular.",
+            "Contribuye a la reparación del ADN y la salud general de las células.",
+            "Favorece la función cognitiva, la claridad mental y la memoria.",
+            "Apoya el metabolismo saludable y la salud cardiovascular.",
+            "Incrementa la resistencia y el rendimiento físico."
+        ],
+        ingredients: [
+            "NAD+ (Nicotinamida Adenina Dinucleótido) 1500mg",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con un vaso de agua, preferiblemente con una comida. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Siento una energía y vitalidad que no recordaba. Mi concentración ha mejorado muchísimo. ¡Este NAD+ de 1500mg es increíble!",
+                "author": "Roberto P., 60 años"
+            },
+            {
+                "text": "Es el impulso que necesitaba para mi día a día. Me siento más joven y mis células, literalmente, tienen más vida. Un cambio notable.",
+                "author": "Ana L., 55 años"
+            }
+            ]
+        },
+			
+		"c49": {
+        largeImage: "https://i.imgur.com/J2c4hLD.png",
+        benefits: [
+            "Potente antioxidante que ayuda a proteger las células del daño de los radicales libres.",
+            "Contribuye a la salud cardiovascular y al buen funcionamiento del corazón.",
+            "Apoya la longevidad celular y los procesos antienvejecimiento.",
+            "Favorece la salud cerebral y la función cognitiva.",
+            "Ayuda a mantener niveles saludables de inflamación en el cuerpo."
+        ],
+        ingredients: [
+            "Resveratrol (de Polygonum cuspidatum o uva roja)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado como parte de un estilo de vida saludable. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tomando anticoagulantes o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Me siento más joven y con más energía desde que tomo Resveratrol. Es mi secreto para el bienestar general y el antienvejecimiento.",
+                "author": "Elena V., 50 años"
+            },
+            {
+                "text": "He notado una mejora en mi vitalidad y mi piel luce más radiante. Un excelente antioxidante que recomiendo a todos.",
+                "author": "Sergio L., 58 años"
+            }
+            ]
+        },
+				
+		"c50": {
+        largeImage: "https://i.imgur.com/aCi8mjK.png",
+        benefits: [
+            "Potencia la energía celular y la vitalidad general.",
+            "Ayuda a proteger las células del daño oxidativo (acción antioxidante).",
+            "Contribuye a la reparación del ADN y los procesos antienvejecimiento.",
+            "Favorece la salud cardiovascular y la circulación.",
+            "Apoya la función cerebral y la claridad mental.",
+            "Promueve la longevidad y el bienestar a nivel celular."
+        ],
+        ingredients: [
+            "NAD+ (Nicotinamida Adenina Dinucleótido)",
+            "Resveratrol (de origen natural, como Polygonum cuspidatum)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado como parte de un régimen de bienestar. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando, tomando anticoagulantes o tiene alguna condición médica.",
+        testimonials: [
+            {
+                "text": "Siento una energía renovada y mi piel luce más joven. ¡Esta combinación es un verdadero impulso antiedad!",
+                "author": "Isabel R., 55 años"
+            },
+            {
+                "text": "Mi claridad mental ha mejorado y me siento con más vitalidad en el día a día. Es un suplemento esencial para mi salud a largo plazo.",
+                "author": "Carlos S., 62 años"
+            }
+            ]
+        },
+				
+		 "c51": {
+        largeImage: "https://i.imgur.com/88LxZhe.png",
+        benefits: [
+            "Ayuda a **reducir el estrés y la ansiedad**, promoviendo la calma y la relajación.",
+            "Mejora la **calidad del sueño**, contribuyendo a un descanso más profundo y reparador.",
+            "Apoya la **función cognitiva**, mejorando la memoria y la concentración.",
+            "Incrementa la **energía y la resistencia física**, combatiendo la fatiga.",
+            "Fortalece el **sistema inmunológico** y la capacidad del cuerpo para adaptarse al estrés.",
+            "Contribuye al **equilibrio hormonal** y al bienestar general."
+        ],
+        ingredients: [
+            "Extracto de Raíz de **Ashwagandha** (Withania somnifera) 500mg",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomar 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos, se recomienda un uso continuado como parte de un estilo de vida saludable. No exceder la dosis recomendada. Consulte a su médico antes de usar si está embarazada, amamantando o tiene alguna condición médica o está tomando medicamentos."
+    },
+		
+				
+		"c52": {
+        largeImage: "https://i.imgur.com/0Wy1fAG.png",
+        benefits: [
+            "Ayuda a manejar el **estrés y la ansiedad**, promoviendo una sensación de calma.",
+            "Mejora la **calidad del sueño**, facilitando un descanso reparador.",
+            "Aumenta la **energía y la resistencia** física, combatiendo la fatiga.",
+            "Contribuye a la **claridad mental y la concentración**.",
+            "Fortalece el **sistema inmunológico** y la capacidad de adaptación del cuerpo.",
+            "Favorece el **equilibrio hormonal** y el bienestar general."
+        ],
+        ingredients: [
+            "Extracto de Raíz de **Ashwagandha** (Withania somnifera) 600mg",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 cápsula al día con una comida y un vaso de agua. Para resultados óptimos, te recomendamos un uso continuado como parte de un estilo de vida saludable. No excedas la dosis recomendada. Si estás embarazada, amamantando, tienes alguna condición médica o estás tomando otros medicamentos, consulta a tu médico antes de usarla."
+    },
+		
+		"c53": {
+        largeImage: "https://i.imgur.com/isEX2YJ.png",
+        benefits: [
+            "Hidrata profundamente la piel, mejorando su elasticidad y firmeza.",
+            "Ayuda a reducir la apariencia de arrugas y líneas finas.",
+            "Contribuye a la lubricación y salud de las articulaciones.",
+            "Promueve la cicatrización de la piel y la regeneración de tejidos.",
+            "Aporta un aspecto más joven y radiante a la piel desde el interior."
+        ],
+        ingredients: [
+            "Ácido Hialurónico (de origen vegetal o fermentación)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 cápsula al día con un vaso de agua, preferiblemente con una comida. Para resultados óptimos en piel y articulaciones, se recomienda el uso continuado. No excedas la dosis recomendada. Si estás embarazada, amamantando o tienes alguna condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	 "c54": {
+        largeImage: "https://i.imgur.com/1S6CIJ5.png",
+        benefits: [
+            "Aumenta los **niveles de energía** y reduce la fatiga.",
+            "Mejora la **fuerza y resistencia** física.",
+            "Contribuye a la **salud cognitiva**, mejorando la memoria y el enfoque.",
+            "Actúa como un potente **antioxidante** y antiinflamatorio.",
+            "Favorece la **desintoxicación** natural del cuerpo.",
+            "Apoya la **salud hormonal** y la vitalidad general."
+        ],
+        ingredients: [
+            "Extracto purificado de **Shilajit** (asphaltum punjabianum)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 cápsula al día con un vaso de agua, preferiblemente con una comida. Para resultados óptimos, te recomendamos un uso continuado como parte de un estilo de vida saludable. No excedas la dosis recomendada. Si estás embarazada, amamantando o tienes alguna condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	 "c55": {
+        largeImage: "https://i.imgur.com/cL4K2PH.png",
+        benefits: [
+            "Mejora significativamente la **memoria, el aprendizaje y la concentración**.",
+            "Ayuda a **reducir la niebla mental** y promueve la claridad cognitiva.",
+            "Contribuye a la **calidad del sueño**, facilitando un descanso más profundo y reparador.",
+            "Apoya la **salud cerebral** a largo plazo y la plasticidad sináptica.",
+            "Puede ayudar a **reducir la ansiedad y el estrés**, promoviendo la relajación."
+        ],
+        ingredients: [
+            "L-Treonato de Magnesio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente una por la mañana y otra 30 minutos antes de dormir, o según la indicación de tu profesional de la salud. No excedas la dosis recomendada. Si estás embarazada, amamantando o tienes alguna condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	 "c56": {
+        largeImage: "https://i.imgur.com/KkSQqin.png",
+        benefits: [
+            "Ayuda a **reducir el cansancio y la fatiga**, aumentando la energía.",
+            "Contribuye al funcionamiento normal de **músculos y nervios**.",
+            "Promueve la **salud ósea y dental**.",
+            "Favorece la **relajación y un sueño reparador**.",
+            "Apoya la **salud digestiva** y la regularidad intestinal.",
+            "Participa en el **metabolismo energético**."
+        ],
+        ingredients: [
+            "Citrato de Magnesio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida. No excedas la dosis recomendada. Si estás embarazada, amamantando, tienes problemas renales o alguna otra condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	"c57": {
+        largeImage: "https://i.imgur.com/1915WhN.png",
+        benefits: [
+            "Apoya el **equilibrio de electrolitos** esencial para el funcionamiento celular.",
+            "Contribuye a la **salud muscular** y previene calambres.",
+            "Ayuda a mantener una **presión arterial saludable** dentro de los rangos normales.",
+            "Favorece la **salud ósea y nerviosa**.",
+            "Promueve la **energía** y reduce la fatiga.",
+            "Soporta la **función renal** y la hidratación adecuada."
+        ],
+        ingredients: [
+            "Citrato de Magnesio",
+            "Citrato de Potasio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida. No excedas la dosis recomendada. Si estás embarazada, amamantando, tienes problemas renales, cardíacos o alguna otra condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	"c58": {
+        largeImage: "https://i.imgur.com/uYLHjhR.png",
+        benefits: [
+            "Favorece una **relajación profunda** y ayuda a **reducir el estrés y la ansiedad**.",
+            "Mejora la **calidad del sueño**, facilitando un descanso reparador sin interrupciones.",
+            "Contribuye al funcionamiento normal de **músculos y nervios**, aliviando calambres y tensiones.",
+            "Promueve la **salud ósea y cardiovascular**.",
+            "Alta **biodisponibilidad** para una mejor absorción y menor riesgo de molestias digestivas.",
+            "Ayuda a **reducir el cansancio y la fatiga**, incrementando los niveles de energía."
+        ],
+        ingredients: [
+            "Glicinato de Magnesio",
+            "Citrato de Magnesio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida o antes de dormir. No excedas la dosis recomendada. Si estás embarazada, amamantando, tienes problemas renales o alguna otra condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	 "c59": {
+        largeImage: "https://i.imgur.com/lcy3Yj2.png",
+        benefits: [
+            "Apoya la **función cognitiva**, mejorando la memoria, el enfoque y la claridad mental.",
+            "Estimula el **crecimiento nervioso** y la regeneración cerebral.",
+            "Ayuda a **reducir la ansiedad y la depresión**, promoviendo un estado de ánimo equilibrado.",
+            "Fortalece el **sistema inmunológico**.",
+            "Contribuye a la **salud digestiva**, beneficiando la flora intestinal.",
+            "Protege contra el **daño neuronal** y el envejecimiento cerebral."
+        ],
+        ingredients: [
+            "Extracto de **Melena de León** (Hericium erinaceus)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida. Para resultados óptimos, te recomendamos un uso continuado. No excedas la dosis recomendada. Si estás embarazada, amamantando o tienes alguna condición médica, consulta a tu médico antes de usarlo."
+    },
+	
+	"c60": {
+        largeImage: "https://i.imgur.com/2cjHplg.png",
+        benefits: [
+            "Mejora la Circulación Sanguínea: Favorece el ensanchamiento de los vasos sanguíneos, optimizando el flujo de sangre a órganos y músculos.",
+			"Aumenta la Energía y Resistencia: Al mejorar el suministro de oxígeno y nutrientes a las células, incrementa tu vitalidad y rendimiento físico.",
+			"Apoya la Salud Cardiovascular: Contribuye a mantener una presión arterial saludable y la elasticidad de las arterias.",
+			"Promueve la Función Sexual: Un mejor flujo sanguíneo es crucial para una función eréctil saludable en hombres.",
+			"Ayuda en la Recuperación Muscular: Facilita la entrega de nutrientes a los músculos, acelerando la recuperación después del ejercicio.",
+			"Fortalece el Sistema Inmunológico: Participa en la producción de células inmunitarias, mejorando las defensas del cuerpo.",
+        ],
+        ingredients: [
+            "L-Arginina HCl",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales"
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con el estómago vacío para una mejor absorción, o según las indicaciones de tu profesional de la salud. Para potenciar sus efectos, te recomendamos un uso continuado como parte de un estilo de vida activo. No excedas la dosis recomendada."
+    },
 		
         // EJEMPLOS SUPLEMENTOS
         "suplemento-1": {
