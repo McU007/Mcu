@@ -807,6 +807,303 @@ function initializeProducts() {
             "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
         category: "capsulas",
     });
+			 products.capsulas.push({
+        id: "c61",
+        name: "Spirulina Azul Premium, el poder del océano en tu suplemento diario",
+        price: 49,
+        image: "https://i.imgur.com/290VT7K.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c62",
+        name: "🛡️ ¡Colostrum Bovino Premium, Refuerzo Inmunológico Natural!",
+        price: 49,
+        image: "https://i.imgur.com/67yqkeP.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c63",
+        name: "🏔️Shilajit Premium, El secreto energético de las montañas",
+        price: 49,
+        image: "https://i.imgur.com/vTK0JRT.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c64",
+        name: "Magnesio Malato Premium, El magnesio inteligente para tu energía celular",
+        price: 49,
+        image: "https://i.imgur.com/Ailn6yG.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c65",
+        name: "CoQ10 Ultra 250mg El combustible esencial para tu corazón y células",
+        price: 49,
+        image: "https://i.imgur.com/YjuUH5z.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c66",
+        name: "Citrato de Potasio Puro, el mineral esencial para músculos y nervios",
+        price: 49,
+        image: "https://i.imgur.com/JI3xXzX.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c67",
+        name: "✔ Berberina Ultra+, el aliado natural para el equilibrio glucémico",
+        price: 49,
+        image: "https://i.imgur.com/U5gQlUC.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c68",
+        name: "Vitamina K2 + D3 Premium, La sinergia inteligente para tu salud ósea y cardiovascular",
+        price: 49,
+        image: "https://i.imgur.com/Iy2ODxS.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+			 products.capsulas.push({
+        id: "c69",
+        name: "Carbonato de Magnesio Puro ¡Alcalinizante y Digestivo Natural!",
+        price: 49,
+        image: "https://i.imgur.com/XVVQjfr.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+			 products.capsulas.push({
+        id: "c70",
+        name: "Cardo Mariano Ultra+ ¡Detox Hepático Profundo!",
+        price: 49,
+        image: "https://i.imgur.com/JCrJ5u8.png", // EJEMPLO: imagen de Imgur
+        description:
+            "✨ ¡El mineral que tu cuerpo está pidiendo! ✨",
+        category: "capsulas",
+    });
+	
+	   products.capsulas.push({
+        id: "c71",
+        name: "Citrato de Magnesio + Ashwagandha",
+        price: 49,
+        image: "https://i.imgur.com/SW8LP4c.png",
+        description: "✨ ¡Relajación muscular y alivio del estrés en una fórmula! ✨",
+        category: "capsulas",
+    });
+	
+	  products.capsulas.push({
+        id: "c72",
+        name: "Citrato de Zinc",
+        price: 49,
+        image: "https://i.imgur.com/4cyU8sw.png",
+        description: "✨ ¡Refuerzo inmunológico y apoyo metabólico esencial! ✨",
+        category: "capsulas",
+    });
+	
+	 products.capsulas.push({
+        id: "c73",
+        name: "Ginseng Malayo",
+        price: 49,
+        image: "https://i.imgur.com/dH8S4mv.png",
+        description: "🌿 ¡Energía natural y vitalidad renovada! 🌿",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c74",
+        name: "Astaxantina - Antioxidante Potente",
+        price: 49,
+        image: "https://i.imgur.com/LesKtgv.png",
+        description: "✨ ¡Protección celular y rejuvenecimiento premium! ✨",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c75",
+        name: "KSM-66 Ashwagandha - Alivio del Estrés",
+        price: 49,
+        image: "https://i.imgur.com/Qthl9qQ.png",
+        description: "🧠 ¡Reduce el cortisol y mejora tu bienestar mental! 🧠",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c76",
+        name: "Cloruro de Magnesio - Relajación Muscular",
+        price: 49,
+        image: "https://i.imgur.com/eKvRbzo.png",
+        description: "💪 ¡Alivia calambres y mejora la recuperación muscular! 💪",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c77",
+        name: "Colágeno Marino 1000mg - Piel y Articulaciones",
+        price: 49,
+        image: "https://i.imgur.com/kN7ZxYQ.png",
+        description: "🌊 ¡Nutrición para tu piel y soporte articular premium! 🌊",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c78",
+        name: "Citrato de Calcio, Magnesio y Zinc + Vitamina D3 - Absorción Mejorada",
+        price: 49,
+        image: "https://i.imgur.com/WpUw5Ry.png",
+        description: "🦴 ¡Fórmula completa para huesos fuertes y salud óptima! 🦴",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c79",
+        name: "Bicarbonato de Sodio - Alcalinizante Natural",
+        price: 49,
+        image: "https://i.imgur.com/es3NXNc.png",
+        description: "⚖️ ¡Balancea tu pH corporal y mejora tu digestión! ⚖️",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c80",
+        name: "Vitamina D3 10,000 IU - Salud Ósea e Inmune",
+        price: 49,
+        image: "https://i.imgur.com/5Eb5Zzv.png",
+        description: "🛡️ ¡Refuerza tus defensas y fortalece tu sistema óseo! 🛡️",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c81",
+        name: "Ultimate Omega 2X - Ácidos Grasos Premium",
+        price: 49,
+        image: "https://i.imgur.com/8H09eIV.png",
+        description: "🧠❤️ ¡Doble concentración para cerebro y corazón saludables! 🧠❤️",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c82",
+        name: "Flexacil Ultra - Soporte Articular Avanzado",
+        price: 49,
+        image: "https://i.imgur.com/6nbNBrC.png",
+        description: "🦵 ¡Alivio articular y movilidad mejorada en fórmula potenciada! 🦵",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c83",
+        name: "Trans-Resveratrol 1500mg - Antioxidante Premium",
+        price: 49,
+        image: "https://i.imgur.com/ZCCyNf6.png",
+        description: "✨ ¡Protección celular avanzada y longevidad en mega dosis! ✨",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c84",
+        name: "Ashwagandha + Melena de León 1500mg - Energía y Enfoque",
+        price: 49,
+        image: "https://i.imgur.com/fvBNqZE.png",
+        description: "🦁🍃 ¡Combustible natural para tu mente y resistencia al estrés! 🍃🦁",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c85",
+        name: "Células Madres + Ácido Hialurónico + Colágeno Hidrolizado + Vitamina C - Regeneración Avanzada",
+        price: 49,
+        image: "https://i.imgur.com/nKXHTRy.png",
+        description: "🌟 ¡Fórmula rejuvenecedora para piel, articulaciones y vitalidad celular! 🌟",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c86",
+        name: "HGH Complex - Soporte Hormonal Natural",
+        price: 49,
+        image: "https://i.imgur.com/In26bty.png",
+        description: "⚡️ ¡Estimulación natural de energía, metabolismo y regeneración celular! ⚡️",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c87",
+        name: "Glicinato de Magnesio - Relajación Profunda",
+        price: 49,
+        image: "https://i.imgur.com/hwrfQf7.png",
+        description: "😴 ¡Sueño reparador y relajación muscular premium! 😴",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c88",
+        name: "Glicinato de Zinc - Soporte Inmunológico",
+        price: 49,
+        image: "https://i.imgur.com/DDda1pc.png",
+        description: "🛡️ ¡Refuerzo para defensas naturales y metabolismo esencial! 🛡️",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c90",
+        name: "Biopro - Soporte Integral Premium",
+        price: 49,
+        image: "https://i.imgur.com/kD56BnP.png",
+        description: "⚡️ ¡Fórmula avanzada para energía y bienestar general! ⚡️",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c91",
+        name: "Mero Macho - Vitalidad Masculina",
+        price: 49,
+        image: "https://i.imgur.com/yYn6rPn.png",
+        description: "💪 ¡Energía, vigor y soporte para el desempeño físico! 💪",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c92",
+        name: "Colágeno Hidrolizado - Piel y Articulaciones",
+        price: 49,
+        image: "https://i.imgur.com/YL8YVlt.png",
+        description: "✨ ¡Renovación celular para una piel firme y articulaciones flexibles! ✨",
+        category: "capsulas",
+    });
+	
+	    products.capsulas.push({
+        id: "c93",
+        name: "Biotina - Belleza Capilar y Uñas",
+        price: 49,
+        image: "https://i.imgur.com/yVPAAGy.png",
+        description: "💇‍♀️ ¡Fortalece cabello, uñas y promueve una piel radiante! 💇‍♀️",
+        category: "capsulas",
+    });
+	
 	
     // Resto de cápsulas (generadas automáticamente)
     for (let i = 1; i <= 1; i++) {
@@ -3246,6 +3543,627 @@ function getDetailedProductInfo(productId) {
         usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con el estómago vacío para una mejor absorción, o según las indicaciones de tu profesional de la salud. Para potenciar sus efectos, te recomendamos un uso continuado como parte de un estilo de vida activo. No excedas la dosis recomendada."
     },
 		
+		 "c61": {
+        largeImage: "https://i.imgur.com/290VT7K.png",
+        benefits: [
+            "Potente **antioxidante** que combate los radicales libres, protegiendo tus células del daño oxidativo y apoyando un envejecimiento saludable.",
+            "Fuente de **energía natural** que contribuye a reducir el cansancio y la fatiga, dándote un impulso de vitalidad.",
+            "**Apoyo inmunológico** que fortalece las defensas de tu cuerpo, ayudándote a mantenerte fuerte y resistente.",
+            "**Desintoxicación suave** que contribuye a los procesos naturales de limpieza de tu organismo.",
+            "Rica en **nutrientes esenciales** como vitaminas, minerales y aminoácidos que complementan tu dieta diaria."
+        ],
+        ingredients: [
+            "Extracto de **Espirulina Azul** (Phycocyanin)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida. Te recomendamos un uso continuado para integrar sus beneficios en tu estilo de vida. No excedas la dosis recomendada. Si estás embarazada, amamantando o tienes alguna condición médica, consulta a tu médico antes de usar este producto."
+    },
+	
+	"c62": {
+        largeImage: "https://i.imgur.com/67yqkeP.png",
+        benefits: [
+            "**Fortalece el sistema inmunológico**, mejorando las defensas naturales del cuerpo.",
+            "Ayuda a **combatir infecciones** y reduce la severidad de las enfermedades.",
+            "Promueve la **salud intestinal** al reparar y sellar la barrera del intestino.",
+            "Apoya la **recuperación muscular** y el crecimiento en atletas.",
+            "Contribuye al **bienestar general** y la vitalidad.",
+            "Rico en factores de crecimiento y nutrientes esenciales para el desarrollo."
+        ],
+        ingredients: [
+            "Calostro Bovino (Estandarizado en Inmunoglobulinas IgG)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Toma 1 a 2 cápsulas al día con un vaso de agua, preferiblemente en ayunas o entre comidas. Para resultados óptimos, te recomendamos un uso continuado. No excedas la dosis recomendada. Si estás embarazada, amamantando, tienes alergia a la leche o alguna condición médica, consulta a tu médico antes de usar este producto."
+    },
+	
+	  "c63": {
+        largeImage: "https://i.imgur.com/vTK0JRT.png",
+        benefits: [
+            "Aumenta **la energía y la resistencia** física, combatiendo la fatiga.",
+            "Mejora la **función cognitiva**, incluyendo la memoria, el enfoque y la claridad mental.",
+            "Potente **antioxidante** que ayuda a proteger las células del estrés oxidativo.",
+            "Favorece la **desintoxicación natural** del organismo y la eliminación de toxinas.",
+            "Apoya la **salud hormonal** y el bienestar general en hombres y mujeres.",
+            "Contribuye a la **salud ósea y muscular**."
+        ],
+        ingredients: [
+            "Extracto purificado de **Shilajit** (asphaltum punjabianum)",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomá 1 cápsula al día con un vaso de agua, preferiblemente con una comida. Para resultados óptimos, te recomendamos un uso continuado como parte de un estilo de vida saludable. No excedas la dosis recomendada. Si estás embarazada, amamantando o tenés alguna condición médica, consultá a tu médico antes de usarlo."
+    },
+	
+	 "c64": {
+        largeImage: "https://i.imgur.com/Ailn6yG.png",
+        benefits: [
+            "Ayuda a **reducir el cansancio y la fatiga**, optimizando la producción de energía celular.",
+            "Contribuye a aliviar el **dolor muscular** y la tensión, incluyendo la fibromialgia.",
+            "Mejora la **función muscular** y la recuperación después del ejercicio.",
+            "Promueve la **salud ósea y cardiovascular**.",
+            "Apoya la **función nerviosa** y la relajación.",
+            "Es una forma de magnesio **altamente biodisponible** y suave para el sistema digestivo."
+        ],
+        ingredients: [
+            "Malato de Magnesio",
+            "Cápsula vegetal (Hipromelosa)",
+            "Agentes de carga y antiaglomerantes naturales."
+        ],
+        usage: "Tomá 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida. Para resultados óptimos, te recomendamos un uso continuado. No excedas la dosis recomendada. Si estás embarazada, amamantando o tenés alguna condición médica, consultá a tu médico antes de usarlo."
+    },
+	
+	"c65": {
+    largeImage: "https://i.imgur.com/YjuUH5z.png",
+    benefits: [
+        "Ayuda a **reducir el cansancio y la fatiga**, optimizando la producción de energía celular.",
+        "Contribuye a aliviar el **dolor muscular** y la tensión, incluyendo la fibromialgia.",
+        "Mejora la **función muscular** y la recuperación después del ejercicio.",
+        "Promueve la **salud ósea y cardiovascular**.",
+        "Apoya la **función nerviosa** y la relajación.",
+        "Es una forma de magnesio **altamente biodisponible** y suave para el sistema digestivo."
+    ],
+    ingredients: [
+        "Malato de Magnesio",
+        "Cápsula vegetal (Hipromelosa)",
+        "Agentes de carga y antiaglomerantes naturales."
+    ],
+    usage: "Tomá 1 a 2 cápsulas al día con un vaso de agua, preferiblemente con una comida. Para resultados óptimos, te recomendamos un uso continuado. No excedas la dosis recomendada. Si estás embarazada, amamantando o tenés alguna condición médica, consultá a tu médico antes de usarlo."
+},
+
+	"c66": {
+    largeImage: "https://i.imgur.com/JI3xXzX.png",
+    benefits: [
+        "Ayuda a **equilibrar los niveles de electrolitos**, esencial para la función muscular y nerviosa.",
+        "Contribuye a **prevenir calambres musculares** y mejorar la hidratación celular.",
+        "Apoya la **salud cardiovascular** y la presión arterial normal.",
+        "Promueve la **función renal adecuada** y reduce el riesgo de cálculos.",
+        "Forma de potasio **altamente absorbible** y bien tolerado."
+    ],
+    ingredients: [
+        "Citrato de Potasio",
+        "Cápsula vegetal (Hipromelosa)",
+        "Antiaglomerantes naturales (estearato de magnesio vegetal)"
+    ],
+    usage: "Tomar 1 cápsula al día con comida, acompañada de un vaso de agua. No exceder la dosis recomendada. Consultar a un médico en caso de enfermedad renal o uso de medicamentos."
+},
+"c67": {
+    largeImage: "https://i.imgur.com/U5gQlUC.png",
+    benefits: [
+        "Ayuda a **regular los niveles de glucosa en sangre** de manera natural.",
+        "Contribuye a **mejorar la sensibilidad a la insulina** y el metabolismo energético.",
+        "Apoya la **salud cardiovascular** y ayuda a mantener niveles saludables de colesterol.",
+        "Promueve una **digestión saludable** y el equilibrio de la microbiota intestinal.",
+        "Puede ayudar en la **gestión del peso** al regular el metabolismo de los lípidos.",
+        "Compuesto vegetal **potente y biodisponible** con múltiples beneficios sistémicos."
+    ],
+    ingredients: [
+        "Berberina HCl (97% de pureza)",
+        "Agente de carga: Celulosa microcristalina",
+        "Cápsula vegetal (Hipromelosa)",
+        "Antiaglomerante: Dióxido de silicio"
+    ],
+    usage: "Tomar 1 cápsula (500 mg) antes de las comidas principales, hasta 3 veces al día. Se recomienda comenzar con 1 cápsula al día para evaluar tolerancia. No exceder la dosis recomendada. Consultar con un profesional de la salud si se está embarazada, en período de lactancia o bajo medicación."
+},
+"c68": {
+    largeImage: "https://i.imgur.com/Iy2ODxS.png",
+    benefits: [
+        "**Potente combinación** que optimiza la absorción de calcio en huesos y dientes",
+        "Ayuda a **prevenir la pérdida de densidad ósea** y reduce el riesgo de osteoporosis",
+        "Contribuye a **la salud cardiovascular** al dirigir el calcio a los huesos y no a las arterias",
+        "Favorece **el funcionamiento del sistema inmunológico** y la respuesta inflamatoria",
+        "Sinergia de nutrientes para **mejorar la sensibilidad a la insulina**",
+        "Forma altamente biodisponible con **óptima absorción**"
+    ],
+    ingredients: [
+        "Vitamina K2 (MK-7, 100 mcg)",
+        "Vitamina D3 (Colecalciferol, 2000 UI)",
+        "Aceite de oliva virgen extra como vehículo",
+        "Cápsula blanda (gelatina bovina)",
+        "Antioxidante natural (D-alfa tocoferol)"
+    ],
+    usage: "Tomar 1 cápsula al día con la comida principal. Idealmente consumir junto a alimentos grasos para mejor absorción. No exceder la dosis diaria recomendada. Consultar con un profesional de la salud en caso de embarazo, lactancia o tratamiento con anticoagulantes."
+},
+
+"c69": {
+    largeImage: "https://i.imgur.com/XVVQjfr.png",
+    benefits: [
+        "**Alcalinizante natural** que ayuda a regular el pH corporal",
+        "Efectivo para **combatir la acidez estomacal** y mejorar la digestión",
+        "Contribuye a **relajar el sistema nervioso** y reducir el estrés",
+        "Ayuda a **fortalecer huesos y dientes** junto con el calcio",
+        "Alivia **calambres musculares** y contracturas",
+        "Forma de magnesio con **acción laxante suave** para el estreñimiento ocasional"
+    ],
+    ingredients: [
+        "Carbonato de Magnesio puro",
+        "Agentes antiaglomerantes naturales",
+        "Cápsula vegetal (hipromelosa)",
+        "Sin aditivos artificiales"
+    ],
+    usage: "Tomar 1-2 cápsulas al día con abundante agua, preferiblemente por la noche. Puede tomarse con o sin alimentos. En caso de acidez, consumir después de las comidas. No exceder la dosis recomendada. Consultar al médico si se está bajo tratamiento médico o con problemas renales."
+},
+
+"c70": {
+    largeImage: "https://i.imgur.com/JCrJ5u8.png",
+    benefits: [
+        "**Desintoxica y protege el hígado** gracias a su contenido en silimarina",
+        "Estimula la **regeneración de células hepáticas** dañadas",
+        "Ayuda a **mejorar la digestión de grasas** y la función biliar",
+        "Potente **efecto antioxidante** que combate el estrés oxidativo",
+        "Contribuye a **regular los niveles de colesterol** naturalmente",
+        "Apoya en la **desintoxicación de metales pesados** y toxinas ambientales"
+    ],
+    ingredients: [
+        "Extracto estandarizado de Cardo Mariano (80% silimarina)",
+        "Cápsula vegetal (hipromelosa)",
+        "Agente de carga: celulosa microcristalina",
+        "Antiaglomerante: estearato de magnesio vegetal"
+    ],
+    usage: "Tomar 1 cápsula 2 veces al día con las comidas principales. Para tratamientos intensivos de desintoxicación, consultar a un profesional. No recomendado durante el embarazo. Consumir con abundante agua. Los resultados óptimos se observan con uso continuado durante al menos 3 meses."
+},
+
+"c71": {
+    largeImage: "https://i.imgur.com/SW8LP4c.png",
+    benefits: [
+        "**Doble acción relajante**: combina los beneficios del magnesio y ashwagandha para reducir el estrés",
+        "Mejora la **calidad del sueño** y ayuda a combatir el insomnio",
+        "Reduce la **fatiga adrenal** y equilibra la respuesta al estrés",
+        "Alivia **tensión muscular** y calambres gracias al citrato de magnesio",
+        "Potencia la **resistencia física y mental** durante periodos de exigencia",
+        "Fórmula **altamente biodisponible** con rápida absorción"
+    ],
+    ingredients: [
+        "Citrato de Magnesio (500mg por porción)",
+        "Extracto de Ashwagandha (KSM-66®, 300mg)",
+        "Cápsula vegetal (hipromelosa)",
+        "Agentes de flujo naturales (dióxido de silicio)"
+    ],
+    usage: "Tomar 2 cápsulas al día, 1 por la mañana y 1 antes de dormir. Consumir con agua. Para mejores resultados, usar continuamente por 30 días. No exceder la dosis recomendada. Consultar con médico si está embarazada, amamantando o tomando medicamentos."
+},
+
+"c72": {
+    largeImage: "https://i.imgur.com/4cyU8sw.png",
+    benefits: [
+        "**Refuerza el sistema inmunológico** y la respuesta defensiva natural del organismo",
+        "Esencial para **la salud de la piel**, cabello y uñas por su rol en la síntesis de colágeno",
+        "Potente **antioxidante celular** que combate el estrés oxidativo",
+        "Apoya la **función cognitiva** y la agudeza mental",
+        "Promueve la **salud hormonal** y la fertilidad en hombres y mujeres",
+        "Forma de zinc **altamente biodisponible** para óptima absorción"
+    ],
+    ingredients: [
+        "Citrato de Zinc (30mg equivalente a 10mg zinc elemental)",
+        "Cápsula vegetal (hipromelosa)",
+        "Agente de carga: celulosa microcristalina",
+        "Antiaglomerante: estearato de magnesio vegetal"
+    ],
+    usage: "Tomar 1 cápsula al día con alimentos. Para mejor absorción, evitar consumir con lácteos o suplementos de hierro. Uso continuado recomendado por mínimo 3 meses para resultados óptimos. No exceder la dosis diaria. Consultar con profesional en caso de embarazo o condiciones médicas."
+},
+
+"c73": {
+    largeImage: "https://i.imgur.com/dH8S4mv.png",
+    benefits: [
+        "**Potente adaptógeno** que aumenta la resistencia al estrés físico y mental",
+        "Mejora el **rendimiento cognitivo** y la claridad mental",
+        "Estimula la **energía natural** sin efectos nerviosos",
+        "Apoya la **función sexual** y la vitalidad",
+        "Refuerza el **sistema inmunológico** de forma integral",
+        "**Equilibrador hormonal** con efectos tonificantes"
+    ],
+    ingredients: [
+        "Extracto estandarizado de Ginseng Malayo (Eurycoma longifolia)",
+        "Excipiente vegetal: celulosa microcristalina",
+        "Cápsula vegetal (hipromelosa)",
+        "Antiaglomerante natural"
+    ],
+    usage: "Tomar 1 cápsula por la mañana con desayuno. Para periodos de alta exigencia física/mental, puede tomarse 1 cápsula adicional al mediodía. Ciclos recomendados de 3 meses con descansos. No consumir por la noche. Consultar con profesional en caso de hipertensión o tratamiento hormonal."
+},
+
+"c74": {
+    largeImage: "https://i.imgur.com/LesKtgv.png",
+    benefits: [
+        "**Antioxidante más potente de la naturaleza** (65x más fuerte que vitamina C)",
+        "Protege la **piel contra el envejecimiento** y daño solar desde dentro",
+        "Aumenta la **resistencia física** y reduce el dolor muscular post-ejercicio",
+        "Fortalece la **salud ocular** protegiendo contra la fatiga visual",
+        "Apoya la **función cerebral** y previene el estrés oxidativo neuronal",
+        "**Antiinflamatorio natural** para articulaciones y sistema cardiovascular"
+    ],
+    ingredients: [
+        "Astaxantina natural (Haematococcus pluvialis) 4mg",
+        "Aceite de oliva virgen extra como vehículo",
+        "Cápsula blanda (gelatina pescado)",
+        "Vitamina E natural como conservante"
+    ],
+    usage: "Tomar 1 cápsula al día con la comida principal, preferiblemente con alimentos grasos para mejor absorción. Para resultados óptimos, usar mínimo 8 semanas continuas. No superar la dosis diaria. Ideal combinarlo con protección solar tópica. Consultar con médico si está embarazada o toma anticoagulantes."
+},
+
+"c75": {
+    largeImage: "https://i.imgur.com/Qthl9qQ.png",
+    benefits: [
+        "**Adaptógeno clínicamente probado** para reducir el cortisol hasta un 28%",
+        "Mejora **el rendimiento cognitivo** y la resistencia al estrés mental",
+        "Aumenta los **niveles de energía natural** sin causar nerviosismo",
+        "Promueve el **equilibrio hormonal** y la función tiroidea",
+        "Fortalece la **masa muscular magra** y la recuperación post-ejercicio",
+        "Forma **KSM-66® patentada** con 5% withanólidos para máxima eficacia"
+    ],
+    ingredients: [
+        "Extracto de Ashwagandha KSM-66® (600mg)",
+        "Agente de carga: maltodextrina orgánica",
+        "Cápsula vegetal (hipromelosa)",
+        "Antiaglomerante: estearato de magnesio vegetal"
+    ],
+    usage: "Tomar 1 cápsula dos veces al día (mañana y tarde) con comida. Para efectos óptimos, usar continuamente por 2-3 meses. No consumir cerca de la hora de dormir. Consultar con profesional si está embarazada, amamantando o tomando medicamentos para tiroides/ansiedad."
+},
+
+"c76": {
+    largeImage: "https://i.imgur.com/eKvRbzo.png",
+    benefits: [
+        "**Recarga electrolítica avanzada** para óptimo equilibrio mineral",
+        "**Alto poder remineralizante** para huesos y articulaciones",
+        "Efectivo **relajante muscular natural** para calambres y contracturas",
+        "**Desintoxicante celular** que promueve la eliminación de toxinas",
+        "Regula **la función nerviosa** y reduce síntomas de estrés",
+        "Forma de magnesio **de rápida absorción** con alta biodisponibilidad"
+    ],
+    ingredients: [
+        "Cloruro de Magnesio puro (500mg por cápsula)",
+        "Agentes de flujo naturales (dióxido de silicio)",
+        "Cápsula vegetal (hipromelosa)",
+        "Sin aditivos artificiales"
+    ],
+    usage: "Tomar 2 cápsulas al día con abundante agua, preferiblemente una por la mañana y otra por la noche. Puede aumentar a 3 cápsulas en periodos de alta demanda física o estrés. Consumir con alimentos para mejor tolerancia. No exceder la dosis recomendada. Consultar con médico en caso de insuficiencia renal."
+},
+
+"c77": {
+    largeImage: "https://i.imgur.com/kN7ZxYQ.png",
+    benefits: [
+        "**Reconstrucción profunda** de tejidos: piel, articulaciones y huesos",
+        "**Piel más firme e hidratada** gracias a su alta biodisponibilidad",
+        "Reduce **dolor articular** y mejora la flexibilidad en 4 semanas",
+        "**Fortalece uñas y cabello** desde la raíz con nutrientes esenciales",
+        "Fuente natural de **aminoácidos glicina y prolina** para regeneración celular",
+        "**Hidrolizado premium** para absorción 10x mayor que colágeno normal"
+    ],
+    ingredients: [
+        "Colágeno Marino Hidrolizado (1000mg)",
+        "Vitamina C (Ácido Ascórbico) para síntesis de colágeno",
+        "Cápsula vegetal (hipromelosa)",
+        "Antiaglomerante natural"
+    ],
+    usage: "Tomar 2 cápsulas al día con abundante agua, preferiblemente en ayunas. Para resultados óptimos combinar con vitamina C adicional. Uso continuado mínimo 3 meses. Ideal para combinar con ejercicio y dieta balanceada. No apto para personas con alergia al pescado."
+},
+
+"c78": {
+    largeImage: "https://i.imgur.com/WpUw5Ry.png",
+    benefits: [
+        "**Fórmula sinérgica completa** para salud ósea y muscular",
+        "**Triple acción mineral** (calcio+mag+zin) con máxima biodisponibilidad",
+        "**Vitamina D3 incluida** para óptima absorción de minerales",
+        "Protege contra **pérdida de densidad ósea** y osteoporosis",
+        "**Relajante muscular profesional** con citrato de magnesio",
+        "**Refuerzo inmunológico** con zinc de alta absorción"
+    ],
+    ingredients: [
+        "Citrato de Calcio (500mg)",
+        "Citrato de Magnesio (200mg)",
+        "Citrato de Zinc (15mg)",
+        "Vitamina D3 (25mcg/1000UI)",
+        "Cápsula vegetal (hipromelosa)",
+        "Antiaglomerantes naturales"
+    ],
+    usage: "Tomar 2 cápsulas al día con alimentos (1 mañana + 1 noche). Para mejor absorción, evitar consumir con lácteos o café. Uso continuado mínimo 6 meses para beneficios óseos. Consultar médico si toma diuréticos o tiene problemas renales. No exceder la dosis diaria."
+},
+
+"c79": {
+    largeImage: "https://i.imgur.com/es3NXNc.png",
+    benefits: [
+        "**Alcalinizante sistémico** que regula el pH corporal naturalmente",
+        "**Mejora el rendimiento deportivo** reduciendo la acidosis muscular",
+        "**Solución digestiva completa**: acidez, indigestión y reflujo ocasional",
+        "**Desintoxicante hepático** que potencia la eliminación de toxinas",
+        "**Potenciador de hidratación** con electrolitos esenciales",
+        "**Versatilidad premium**: uso interno y tópico (baños/bebidas)"
+    ],
+    ingredients: [
+        "Bicarbonato de Sodio USP grado alimenticio (99.9% pureza)",
+        "Sin aditivos ni aluminio",
+        "Envase protector de humedad",
+        "Origen mineral natural"
+    ],
+    usage: "Disolver 1/2 cucharadita (1.5g) en 250ml de agua. Máximo 2 dosis diarias, preferiblemente en ayunas o post-entreno. Para uso tópico: añadir 3 cucharadas al baño. Evitar consumir 2h después de comidas copiosas. No usar continuamente por más de 2 semanas sin supervisión."
+},
+
+"c80": {
+    largeImage: "https://i.imgur.com/5Eb5Zzv.png",
+    benefits: [
+        "**Dosis clínicamente efectiva** para corregir deficiencias graves",
+        "**Refuerzo inmunológico superior** con acción antiviral comprobada",
+        "**Salud ósea potenciada**: aumenta la absorción de calcio hasta un 80%",
+        "**Regulador hormonal clave** para tiroides y sistema endocrino",
+        "**Neuroprotector natural** que reduce riesgo de depresión estacional",
+        "**Forma colecalciferol premium** con máxima biodisponibilidad"
+    ],
+    ingredients: [
+        "Vitamina D3 (Colecalciferol) 10,000 UI",
+        "Aceite de coco MCT como vehículo liposoluble",
+        "Cápsula blanda libre de alérgenos",
+        "Sin excipientes artificiales"
+    ],
+    usage: "Tomar 1 cápsula cada 3 días con la comida más grasosa del día. Para deficiencias severas (<20 ng/ml), usar diariamente por 1 mes luego reevaluar. No exceder 25,000 UI semanales sin supervisión. Mantener refrigerado en climas cálidos."
+},
+
+"c81": {
+    largeImage: "https://i.imgur.com/8H09eIV.png",
+    benefits: [
+        "**Potencia cerebral 2X**: concentración récord de 1200mg EPA/DHA por dosis",
+        "**Corazón de atleta**: reduce triglicéridos hasta un 30% en 8 semanas",
+        "**Antiinflamatorio sistémico**: alivia dolor articular crónico",
+        "**Focus premium**: mejora memoria y rendimiento cognitivo",
+        "**Piel ultrasana**: reduce acné y envejecimiento desde dentro",
+        "**Pureza certificada**: 0% metales pesados (testado en laboratorio)"
+    ],
+    ingredients: [
+        "Aceite de pescado ultrapurificado (2000mg)",
+        "EPA (800mg) + DHA (400mg) en ratio 2:1 clínico",
+        "Vitamina E natural como antioxidante",
+        "Cápsula entérica para cero reflujo",
+        "Aceite de limón orgánico para frescura"
+    ],
+    usage: "Tomar 1 cápsula 2 veces al día con comidas. Para máxima absorción, consumir con alimentos grasos. Ideal combinarlo con curcumina. Refrigerar después de abierto. No usar si es alérgico a mariscos (aunque es pescado blanco)."
+},
+
+"c82": {
+    largeImage: "https://i.imgur.com/6nbNBrC.png",
+    benefits: [
+        "**Regeneración articular 360°**: combina 5 ingredientes clínicos",
+        "**Alivio rápido del dolor**: reduce rigidez matutina en 72% (estudio clínico)",
+        "**Reparador cartilaginoso**: estimula producción de colágeno tipo II",
+        "**Fórmula antiinflamatoria premium**: sin efectos gástricos",
+        "**Movilidad restaurada**: mejora amplitud articular en 15 días",
+        "**Protección prolongada**: efecto acumulativo de 6 meses+"
+    ],
+    ingredients: [
+        "Condroitín Sulfato Farmacopeico (800mg)",
+        "Glucosamina HCl (1500mg)",
+        "MSM OptiMSM® (1000mg)",
+        "Ácido Hialurónico (50mg)",
+        "Cúrcuma Phytosome® (500mg)",
+        "Cápsula vegetal DRcaps® (liberación retardada)"
+    ],
+    usage: "Tomar 2 cápsulas al día (mañana/noche) con zumo de piña natural para potenciar absorción. Para casos agudos, usar por 3 meses mínimo. Compatible con antiinflamatorios. No apto para alérgicos a mariscos (por glucosamina)."
+},
+
+"c83": {
+    largeImage: "https://i.imgur.com/ZCCyNf6.png",
+    benefits: [
+        "**Activador SIRT1** - Potencia la longevidad celular mediante activación de genes antienvejecimiento",
+        "**Cardioprotector élite** - Mejora la elasticidad arterial en un 30% (estudio de 6 meses)",
+        "**Detox metabólico** - Neutraliza radicales libres 50x más que la vitamina E",
+        "**Neuroprotector premium** - Cruza barrera hematoencefálica para protección cognitiva",
+        "**Piel timeless** - Reduce arrugas profundas estimulando producción de colágeno endógeno",
+        "**Forma trans-puro** 99.9% - Sin emodina ni contaminantes (HPLC-verificado)"
+    ],
+    ingredients: [
+        "Trans-Resveratrol (Polygonum cuspidatum) 1500mg",
+        "Piperina BioPerine® para absorción 200% mayor",
+        "Fosfolípidos de girasol (tecnología Phytosome)",
+        "Cápsula vegetal DRcaps® (liberación sostenida)",
+        "Libre de solventes químicos"
+    ],
+    usage: "Tomar 1 cápsula en ayunas con jugo de granada orgánico. Ciclos de 3 meses con descansos de 1 mes. Evitar consumo nocturno (puede afectar patrones de sueño). No exceder dosis. Consultar si toma anticoagulantes."
+},
+
+"c84": {
+    largeImage: "https://i.imgur.com/fvBNqZE.png",
+    benefits: [
+        "**Neuroregeneración dual**: combina adaptógenos para cerebro y sistema nervioso",
+        "**Focus 360°**: mejora concentración y memoria a corto/largo plazo (clínicamente probado)",
+        "**Anti-ansiedad natural**: reduce cortisol 31% + aumenta GABA endógeno",
+        "**Reparador neuronal**: estimula factor de crecimiento nervioso (NGF) en un 40%",
+        "**Energía sin nerviosismo**: equilibrio perfecto entre estimulación y relajación",
+        "**Sinergia científica**: 2.3x más efectivo que los componentes por separado"
+    ],
+    ingredients: [
+        "Ashwagandha KSM-66® (600mg)",
+        "Melena de León (Hericium erinaceus) 20% polisacáridos (900mg)",
+        "Fosfatidilserina (50mg) para absorción neural",
+        "Cápsula vegetal con tecnología MCT",
+        "Sin excipientes artificiales"
+    ],
+    usage: "Tomar 1 cápsula mañana y noche. Para uso intensivo (exámenes/competencias), aumentar a 3 cápsulas diarias por ciclos de 2 semanas. Ideal con aceite de coco. No combinar con ISRS sin supervisión médica."
+},
+
+"c85": {
+    largeImage: "https://i.imgur.com/nKXHTRy.png",
+    benefits: [
+        "**Regeneración celular 4D**: combina ingredientes que activan células madre adultas",
+        "**Antiedad sistémico**: reduce arrugas profundas en un 47% (estudio clínico 12 semanas)",
+        "**Reparación articular premium**: reconstruye cartílago y líquido sinovial",
+        "**Piel de bebé**: aumenta hidratación epidérmica 300% con ácido hialurónico de bajo peso molecular",
+        "**Fórmula inteligente**: vitamina C natural potencia la síntesis endógena de colágeno",
+        "**Biodisponibilidad extrema**: tecnología liposomal para absorción 5x mayor"
+    ],
+    ingredients: [
+        "Colágeno Hidrolizado Verisol® (5000mg)",
+        "Ácido Hialurónico (150mg) 4 tipos moleculares",
+        "Vitamina C Natural (Acerola 300mg)",
+        "Extracto de Uva (95% OPC) como activador celular",
+        "Cápsulas de liberación prolongada con tecnología Liposhell®",
+        "Sin OGM ni alérgenos"
+    ],
+    usage: "Tomar 2 cápsulas al día en ayunas con jugo cítrico. Para resultados óptimos, combinar con aplicación tópica. Uso continuado mínimo 6 meses. No apto para embarazadas. Conservar refrigerado después de abierto."
+},
+
+"c86": {
+    largeImage: "https://i.imgur.com/In26bty.png",
+    benefits: [
+        "**Estimulador natural de GH**: activa la producción endógena sin inyecciones",
+        "**Regeneración nocturna**: maximiza la fase 3/4 del sueño profundo",
+        "**Quemador metabólico**: acelera la oxidación de grasas durante el sueño",
+        "**Reparador muscular 360°**: reduce tiempos de recuperación en un 40%",
+        "**Antiedad hormonal**: aumenta niveles de IGF-1 para rejuvenecimiento celular",
+        "**Fórmula clínica**: combinación sinérgica de 8 secretagogos probados"
+    ],
+    ingredients: [
+        "L-Arginina AKG (3000mg)",
+        "L-Glutamina Micronizada (2000mg)",
+        "GABA PharmaPure® (750mg)",
+        "Colostro Bovino 40% IGF-1 (500mg)",
+        "Mucuna Pruriens 15% L-Dopa (200mg)",
+        "Cápsula de liberación prolongada MoonShell™"
+    ],
+    usage: "Tomar 3 cápsulas 30 minutos antes de dormir con jugo de piña natural. Usar en ciclos de 3 meses con descansos de 4 semanas. No combinar con alcohol. Requiere ayuno nocturno de 3h para máxima eficacia. Resultados óptimos a partir de la 6ta semana."
+},
+
+"c87": {
+    largeImage: "https://i.imgur.com/hwrfQf7.png",
+    benefits: [
+        "**Relajación profunda sin somnolencia**: forma quelada para equilibrio nervioso perfecto",
+        "**Recuperación muscular elite**: reduce lactato 40% más rápido que otros magnesios (estudio clínico)",
+        "**Sueño reparador científico**: incrementa fase REM en un 25% sin efecto resaca",
+        "**Desintoxicante celular**: quelante natural de metales pesados (plomo/mercurio)",
+        "**Digestión perfecta**: 0% efectos laxantes vs otras formulaciones",
+        "**Biodisponibilidad récord**: 8x mayor absorción que óxido de magnesio"
+    ],
+    ingredients: [
+        "Glicinato de Magnesio Albion Minerals® (500mg elemental)",
+        "L-Teanina Suntheanine® (100mg) para sinergia neural",
+        "Cápsula vegetal con tecnología Slow-Release",
+        "Sin estearatos ni flujantes químicos"
+    ],
+    usage: "Tomar 2 cápsulas 1 hora antes de dormir con infusión de manzanilla. Para estrés agudo: 1 cápsula mañana + 2 noche. Compatible con deporte de alto rendimiento. No requiere ciclos. Seguro para uso prolongado."
+},
+
+"c88": {
+    largeImage: "https://i.imgur.com/DDda1pc.png",
+    benefits: [
+        "**Absorción superior**: forma quelada que evita competición con otros minerales",
+        "**Refuerzo inmunológico 360°**: aumenta producción de linfocitos T en un 45%",
+        "**Reparador intestinal**: curación de mucosa digestiva sin irritación gástrica",
+        "**Equilibrio hormonal científico**: regula testosterona/estrógenos naturalmente",
+        "**Neuroprotector nocturno**: mejora calidad del sueño profundo (aumenta GABA cerebral)",
+        "**Piel inteligente**: reduce acné hormonal y acelera cicatrización 3x"
+    ],
+    ingredients: [
+        "Glicinato de Zinc Albion Minerals® (30mg - equivalente a 7mg elemental)",
+        "L-Histidina para transporte celular (50mg)",
+        "Cápsula vegetal DRcaps® (liberación intestinal)",
+        "Sin metales pesados (certificado ICP-MS)"
+    ],
+    usage: "Tomar 1 cápsula diaria con cena (nunca en ayunas). Para resfriados: 2 cápsulas/día por 5 días. Ideal combinado con magnesio. Evitar concurrente con lácteos/café. Resultados óptimos en 8-12 semanas."
+},
+
+"c90": {
+    largeImage: "https://i.imgur.com/kD56BnP.png",
+    benefits: [
+        "**Fórmula metabólica 5-en-1**: termogénesis + energía + enfoque + recuperación + detox",
+        "**Quemador inteligente**: activa UCP-1 sin sobreestimular SNC (0% crash posterior)",
+        "**Energía sostenida**: tecnología Time-Release 8h (perfil plano de cafeína)",
+        "**Neurofocus premium**: combinación nootrópica para claridad mental sin nerviosismo",
+        "**Recuperación integrada**: reduce marcadores inflamatorios post-entreno en 68%",
+        "**Detox hepático**: soporte para metabolización de catecolaminas"
+    ],
+    ingredients: [
+        "Cafeína Verde Nutratech® (200mg)",
+        "L-Teanina Suntheanine® (300mg)",
+        "Extracto de Té Verde 95% EGCG (500mg)",
+        "Capsimax® (100mg capsaicina)",
+        "BioPerine® (10mg) para biodisponibilidad",
+        "Cápsula vegetal de liberación prolongada"
+    ],
+    usage: "Tomar 1 cápsula al despertar con 300ml agua. Máximo 1 dosis cada 24h. Ideal para entrenamientos matutinos. No combinar con otros estimulantes. Ciclos recomendados: 8 semanas activas + 2 de descanso."
+},
+
+"c91": {
+    largeImage: "https://i.imgur.com/yYn6rPn.png",
+    benefits: [
+        "**Potenciador masculino 360°**: desempeño + vigor + confianza hormonal",
+        "**Flujo sanguíneo premium**: aumenta óxido nítrico en un 40% (estudio Doppler)",
+        "**Testosterona libre**: eleva niveles bioactivos sin conversión a DHT",
+        "**Energía primal**: combate fatiga adrenal con adaptógenos específicos",
+        "**Recuperación bestial**: reduce cortisol post-ejercicio en un 35%",
+        "**Fórmula discreta**: efectos progresivos sin picos artificiales"
+    ],
+    ingredients: [
+        "Tribulus terrestris 60% saponinas (1000mg)",
+        "L-Citrulina Malate 2:1 (3000mg)",
+        "Ashwagandha KSM-66® (600mg)",
+        "Maca Negra (Lepidium meyenii) 4:1 (500mg)",
+        "Saw Palmetto EU Extract (320mg)",
+        "Cápsula vegetal de liberación prolongada"
+    ],
+    usage: "Tomar 2 cápsulas 45 minutos antes de actividad física con jugo de sandía. Para mantenimiento: 1 cápsula/día. No requiere ciclado. Evitar consumo nocturno. Resultados óptimos desde la 3ra semana."
+},
+
+"c92": {
+    largeImage: "https://i.imgur.com/YL8YVlt.png",
+    benefits: [
+        "**Regeneración 5D**: piel + articulaciones + huesos + cabello + uñas",
+        "**Efecto lifting interno**: reduce arrugas profundas en un 47% (estudio clínico 12 semanas)",
+        "**Movilidad restaurada**: alivia dolor articular en 72% de usuarios en 28 días",
+        "**Hidratación celular profunda**: ácido hialurónico endógeno aumentado 3x",
+        "**Fórmula bioactiva**: péptidos <3000Da para absorción inmediata",
+        "**Potenciador deportivo**: acelera recuperación muscular post-entreno"
+    ],
+    ingredients: [
+        "Colágeno Hidrolizado Verisol® Tipo I/III (10000mg)",
+        "Ácido Hialurónico (100mg) multi-peso molecular",
+        "Vitamina C Quali®-C (120mg) como cofactor",
+        "Silicio Orgánico (50mg) para matriz conectiva",
+        "Cápsula vegetal de triple liberación",
+        "Sin OGM, gluten o alérgenos"
+    ],
+    usage: "Tomar 3 cápsulas diarias en ayunas con jugo cítrico. Para resultados óptimos, combinar con aplicación tópica. Uso continuado mínimo 4 meses. Conservar en lugar fresco. No apto para vegetarianos estrictos."
+},
+
+"c93": {
+    largeImage: "https://i.imgur.com/yVPAAGy.png",
+    benefits: [
+        "**Megadosificación inteligente**: 10,000 mcg de biotina activa (no simple relleno)",
+        "**Crecimiento capilar acelerado**: +1.25cm/mes (estudio clínico en mujeres 25-55 años)",
+        "**Uñas de acero**: reduce fracturas ungueales en un 89% en 8 semanas",
+        "**Piel de bebé**: aumenta producción de ceramidas naturales para hidratación profunda",
+        "**Metabolismo premium**: activa enzimas claves para procesar grasas/proteínas",
+        "**Fórmula potenciada**: con zinc y selenio para absorción maximizada"
+    ],
+    ingredients: [
+        "D-Biotina USP (10,000 mcg)",
+        "Zinc Citrate (15mg)",
+        "Selenium Methionine (100mcg)",
+        "Cápsula vegetal de absorción sublingual",
+        "Excipientes libres de alérgenos"
+    ],
+    usage: "Tomar 1 cápsula diaria preferentemente en ayunas, colocando bajo la lengua por 30 segundos antes de tragar. Para casos severos: 2 cápsulas/día por 1 mes. No requiere ciclado. Resultados visibles desde la semana 6-8."
+},
+
+
+
+
+
         // EJEMPLOS SUPLEMENTOS
         "suplemento-1": {
             largeImage: "https://i.imgur.com/F0zLVyw.mp4",
