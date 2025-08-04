@@ -1,9 +1,12 @@
 // netlify/functions/gemini.js
-// Importa la librería de Google AI
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// CAMBIO 1: Usamos 'require' en lugar de 'import'
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // TU PROMPT DE CONFIGURACIÓN VA AQUÍ
 const initialPrompt = `
+Eres MCU, un asesor de ventas de alta clase y profesional especializado en medicina holística...
+... (`
 Eres MCU, un asesor de ventas de alta clase y profesional especializado en medicina holística y productos naturales, atendiendo exclusivamente en la página web https://mcu007.netlify.app. Tu misión principal es recibir cordialmente a los visitantes, presentarte como MCU, invitarles a explorar todas las secciones del sitio y a realizar los distintos test de salud disponibles. Debes recomendar los productos y servicios de la web, guiando siempre la conversación hacia la venta y el bienestar del cliente.
 
 Características y comportamientos clave que debes seguir:
@@ -24,71 +27,55 @@ Características y comportamientos clave que debes seguir:
 - Tu objetivo final es satisfacer la necesidad del cliente y motivar la acción (hacer un test, consultar un producto, iniciar una compra, etc.), siempre manteniendo la conversación dentro del contexto de la medicina holística y los productos de https://mcu007.netlify.app.
 
 Recuerda: eres el mejor asesor de ventas digital, intuitivo, atento y conocedor de cada rincón del sitio y sus productos. ¡Haz que cada visitante confíe y actúe para mejorar su salud!
+`;) ...
+¡Haz que cada visitante confíe y actúe para mejorar su salud!
 `;
 
- // --- FUNCIÓN MODIFICADA ---
-    async function sendMessage() {
-        const messageText = messageInput.value.trim();
-        if (messageText === '') return;
+// CAMBIO 2: Usamos 'exports.handler' para definir la función
+exports.handler = async function(event) {
+  // Solo procesamos peticiones POST
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
 
-        // 1. Muestra el mensaje del usuario inmediatamente
-        addMessage(messageText, 'user-message');
-        messageInput.value = '';
-
-        // Muestra un indicador de "escribiendo..."
-        addTypingIndicator();
-
-        try {
-            // 2. Llama a nuestra función de backend segura
-            const response = await fetch('/.netlify/functions/gemini', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: messageText })
-            });
-
-            // Elimina el indicador de "escribiendo..."
-            removeTypingIndicator();
-
-            if (!response.ok) {
-                throw new Error(`Error del servidor: ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            const aiReply = data.reply;
-
-            // 3. Muestra la respuesta de la IA
-            addMessage(aiReply, 'bot-message');
-
-        } catch (error) {
-            console.error('Error al enviar mensaje:', error);
-            // Elimina el indicador de "escribiendo..." en caso de error
-            removeTypingIndicator();
-            addMessage('Lo siento, no pude conectarme con nuestro asesor. Inténtalo de nuevo.', 'bot-message error');
-        }
+  try {
+    // Obtenemos el mensaje del usuario desde el cuerpo de la petición
+    const { message } = JSON.parse(event.body);
+    if (!message) {
+      return { statusCode: 400, body: 'Bad Request: message is required.' };
     }
 
-    function addMessage(text, className) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message', className);
-        messageElement.textContent = text;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
+    // TU API KEY SECRETA (configurada en Netlify)
+    const API_KEY = process.env.GEMINI_API_KEY;
+    if (!API_KEY) {
+      throw new Error("API Key no encontrada en las variables de entorno.");
     }
 
-    function addTypingIndicator() {
-        const indicator = document.createElement('div');
-        indicator.classList.add('message', 'bot-message', 'typing-indicator');
-        indicator.innerHTML = '<span></span><span></span><span></span>';
-        chatMessages.appendChild(indicator);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+    const genAI = new GoogleGenerativeAI(API_KEY);
 
-    function removeTypingIndicator() {
-        const indicator = document.querySelector('.typing-indicator');
-        if (indicator) {
-            indicator.remove();
-        }
-    }
-});
+    // Configuramos el modelo con tu prompt de sistema
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-pro-latest",
+      systemInstruction: initialPrompt,
+    });
 
+    // Iniciamos el chat y enviamos el mensaje del usuario
+    const chat = model.startChat();
+    const result = await chat.sendMessage(message);
+    const response = result.response;
+    const text = response.text();
 
+    // Devolvemos la respuesta de la IA en formato JSON
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ reply: text }),
+    };
+
+  } catch (error) {
+    console.error("Error en la función de Gemini:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "No se pudo obtener una respuesta del asesor." }),
+    };
+  }
+};
