@@ -124,7 +124,7 @@ if (chatForm && messageInput && chatWindow) {
         chatWindow.scrollTop = chatWindow.scrollHeight;
         return messageElement;
     }
-}
+});
 
 // Initialize products with sample data
 function initializeProducts() {
@@ -4605,4 +4605,5 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
