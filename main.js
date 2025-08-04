@@ -97,12 +97,14 @@ if (chatForm && messageInput && chatWindow) {
             console.error("Error al contactar la API:", error);
 
             // Quita el indicador "Escribiendo...".
-            chatWindow.removeChild(loadingIndicator);
+            if (loadingIndicator && chatWindow.contains(loadingIndicator)) {
+                chatWindow.removeChild(loadingIndicator);
+            }
 
             // Muestra un mensaje de error claro al usuario en el chat.
             addMessageToWindow(
                 "Lo siento, algo salió mal. Por favor, inténtalo de nuevo más tarde.",
-                "bot-message error",
+                "bot-message-error",
             );
         }
     });
@@ -112,7 +114,9 @@ if (chatForm && messageInput && chatWindow) {
     // 'className': Es la clase CSS para darle estilo (diferenciar usuario de bot).
     function addMessageToWindow(message, className) {
         const messageElement = document.createElement("div");
-        messageElement.classList.add("message", className);
+        // Separar las clases si contienen espacios
+        const classes = className.split(' ');
+        messageElement.classList.add("message", ...classes);
         messageElement.textContent = message;
         chatWindow.appendChild(messageElement);
 
@@ -121,8 +125,6 @@ if (chatForm && messageInput && chatWindow) {
         return messageElement;
     }
 }
-    // =============== FIN DE LA INTEGRACIÓN DEL CHATBOT ===============
-});
 
 // Initialize products with sample data
 function initializeProducts() {
@@ -4603,3 +4605,4 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
