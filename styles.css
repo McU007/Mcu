@@ -1407,6 +1407,41 @@ body {
     pointer-events: none;
 }
 
+/* Estilos para el ícono del Chatbot */
+#chatbot-icon {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background-color: #6200ea;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 999;
+}
+
+#chatbot-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para el contenedor del Chatbot */
+#chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 400px;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#chatbot-container.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
 /* Estilos de la ventana de chat (versión negro/verde manzana) */
 .chatbot { 
     width: 100%; 
@@ -1504,6 +1539,14 @@ body {
     color: #7CFC00;
     align-self: center; 
 }
+
+.bot-message-error {
+    background-color: #ff4444;
+    color: #fff;
+    align-self: flex-start;
+}
+/* Final del chatbot (versión negro/verde manzana) */
+/* Final del chatbot mcu4 (versión negro/verde manzana) */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -1650,3 +1693,4 @@ body {
         transform: translateY(-5px);
     }
 }
+
