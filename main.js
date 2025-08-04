@@ -15,87 +15,112 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartDisplay();
     loadCartFromStorage();
 
-    // =============== INTEGRACIÓN DEL CHATBOT ===============
+// =================================================================
+// =============== SECCIÓN DE LÓGICA DEL CHATBOT MCU ===============
+// =================================================================
 
-    const chatbotIcon = document.getElementById("chatbot-icon");
-    const chatbotContainer = document.getElementById("chatbot-container");
-    const closeChatbotButton = document.getElementById("close-chatbot");
-    const chatForm = document.getElementById("chat-form");
-    const messageInput = document.getElementById("message-input");
-    const chatWindow = document.getElementById("chat-window");
-    const apiEndpoint = "/.netlify/functions/gemini";
+// --- 1. SELECCIÓN DE ELEMENTOS DEL DOM ---
+// Guardamos en constantes los elementos HTML con los que vamos a interactuar.
+const chatbotIcon = document.getElementById("chatbot-icon");
+const chatbotContainer = document.getElementById("chatbot-container");
+const closeChatbotButton = document.getElementById("close-chatbot");
+const chatForm = document.getElementById("chat-form");
+const messageInput = document.getElementById("message-input");
+const chatWindow = document.getElementById("chat-window");
 
-    // Evento: Al hacer click en el ícono se muestra el contenedor del chat.
-    if (chatbotIcon && chatbotContainer) {
-        chatbotIcon.addEventListener("click", () => {
-            chatbotContainer.classList.remove("hidden");
-        });
-    }
+// La ruta a nuestra función de backend en Netlify.
+// AJUSTE: La ruta debe coincidir con el nombre del archivo (gemini-chat.js -> /gemini-chat).
+const apiEndpoint = "/.netlify/functions/gemini";
 
-    // Evento: Al hacer click en el botón de cerrar, oculta el contenedor del chat.
-    if (closeChatbotButton && chatbotContainer) {
-        closeChatbotButton.addEventListener("click", () => {
-            chatbotContainer.classList.add("hidden");
-        });
-    }
+// --- 2. MANEJO DE EVENTOS PARA ABRIR Y CERRAR EL CHAT ---
 
-    // Evento: Al enviar el formulario, envía el mensaje del usuario y muestra la respuesta del bot.
-    if (chatForm && messageInput && chatWindow) {
-        chatForm.addEventListener("submit", async (e) => {
-            e.preventDefault(); // Previene recargar la página
+// Evento: Al hacer clic en el ícono, se muestra el contenedor del chat.
+if (chatbotIcon && chatbotContainer) {
+    chatbotIcon.addEventListener("click", () => {
+        chatbotContainer.classList.remove("hidden");
+    });
+}
 
-            const userMessage = messageInput.value.trim();
-            if (!userMessage) return; // Sale si el input está vacío
+// Evento: Al hacer clic en el botón de cerrar, se oculta el contenedor del chat.
+if (closeChatbotButton && chatbotContainer) {
+    closeChatbotButton.addEventListener("click", () => {
+        chatbotContainer.classList.add("hidden");
+    });
+}
 
-            // Muestra el mensaje del usuario en la ventana del chat.
-            addMessageToWindow(userMessage, "user-message");
-            messageInput.value = "";
+// --- 3. LÓGICA PRINCIPAL PARA ENVIAR Y RECIBIR MENSAJES ---
 
-            // Muestra mensaje de "Escribiendo..." mientras espera la respuesta.
-            const loadingIndicator = addMessageToWindow(
-                "Escribiendo...",
-                "loading",
-            );
+// Evento: Se activa cuando el usuario envía el formulario (presiona Enter o el botón de enviar).
+if (chatForm && messageInput && chatWindow) {
+    chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Previene que la página se recargue.
 
-            try {
-                // Llama al backend (Netlify Function) enviando el mensaje como prompt.
-                const response = await fetch(apiEndpoint, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ prompt: userMessage }),
-                });
+        const userMessage = messageInput.value.trim();
+        if (!userMessage) return; // No hace nada si el mensaje está vacío.
 
-                // Si hay error en la respuesta HTTP, lanza excepción.
-                if (!response.ok)
-                    throw new Error(`Error: ${response.statusText}`);
+        // Muestra el mensaje del usuario en la ventana del chat.
+        addMessageToWindow(userMessage, "user-message");
+        messageInput.value = ""; // Limpia el campo de entrada.
 
-                // Procesa la respuesta y muestra el mensaje del bot.
-                const data = await response.json();
-                chatWindow.removeChild(loadingIndicator);
-                addMessageToWindow(data.message, "bot-message");
-            } catch (error) {
-                // Si hay error de red o backend, muestra mensaje de error al usuario.
-                console.error("Error:", error);
-                chatWindow.removeChild(loadingIndicator);
-                addMessageToWindow(
-                    "Lo siento, algo salió mal. Por favor, inténtalo de nuevo.",
-                    "bot-message",
-                );
+        // Muestra el indicador "Escribiendo..." mientras espera la respuesta.
+        const loadingIndicator = addMessageToWindow(
+            "Escribiendo...",
+            "loading",
+        );
+
+        // Bloque try...catch para manejar posibles errores de conexión.
+        try {
+            // Llama a nuestra función de backend (Netlify Function).
+            const response = await fetch(apiEndpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                // AJUSTE: Enviamos el dato como "message", que es lo que el backend espera.
+                body: JSON.stringify({ message: userMessage }),
+            });
+
+            // Si la respuesta del servidor no es exitosa (ej: error 500), lanza una excepción.
+            if (!response.ok) {
+                throw new Error(`Error del servidor: ${response.statusText}`);
             }
-        });
 
-        // Función auxiliar para agregar mensajes a la ventana del chat.
-        // 'message': texto del mensaje. 'className': clase CSS para diferenciar tipo de mensaje.
-        function addMessageToWindow(message, className) {
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message", className);
-            messageElement.textContent = message;
-            chatWindow.appendChild(messageElement);
-            // Asegura que siempre se vea el último mensaje (scroll abajo).
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-            return messageElement;
+            // Procesa la respuesta JSON del bot.
+            const data = await response.json();
+
+            // Quita el indicador "Escribiendo...".
+            chatWindow.removeChild(loadingIndicator);
+
+            // Muestra el mensaje de respuesta del bot en el chat.
+            addMessageToWindow(data.reply, "bot-message");
+
+        } catch (error) {
+            // Si ocurre cualquier error en el bloque 'try', se ejecuta esto.
+            console.error("Error al contactar la API:", error);
+
+            // Quita el indicador "Escribiendo...".
+            chatWindow.removeChild(loadingIndicator);
+
+            // Muestra un mensaje de error claro al usuario en el chat.
+            addMessageToWindow(
+                "Lo siento, algo salió mal. Por favor, inténtalo de nuevo más tarde.",
+                "bot-message error",
+            );
         }
+    });
+
+    // --- 4. FUNCIÓN AUXILIAR PARA AÑADIR MENSAJES AL CHAT ---
+    // 'message': Es el texto del mensaje a mostrar.
+    // 'className': Es la clase CSS para darle estilo (diferenciar usuario de bot).
+    function addMessageToWindow(message, className) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message", className);
+        messageElement.textContent = message;
+        chatWindow.appendChild(messageElement);
+
+        // Asegura que la ventana del chat siempre muestre el último mensaje.
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return messageElement;
     }
+}
     // =============== FIN DE LA INTEGRACIÓN DEL CHATBOT ===============
 });
 
