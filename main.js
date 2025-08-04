@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeProducts();
     updateCartDisplay();
     loadCartFromStorage();
+}); // Asegúrate de que esta llave cierra el DOMContentLoaded de la parte superior
+	
 
 // Versión simplificada y corregida del main.js para debugging
 
@@ -4622,6 +4624,7 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
 
 
